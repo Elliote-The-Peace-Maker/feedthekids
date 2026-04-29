@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | STA Travel</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy: #1e272e; --primary: #28a745; --primary-dark: #218838;
+            --text: #2f3640; --border: #dee2e6; --bg-light: #f8f9fa; --blue-link: #006ce4;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text); background-color: #f4f7f6; }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation */
+        .navbar { background: var(--navy) !important; padding: 15px 0; border-bottom: 3px solid var(--primary); }
+        .navbar-brand { font-size: 1.5rem; color: white !important; }
+        .nav-link { color: white !important; font-weight: 600; }
+
+        /* Dashboard Layout */
+        .dashboard-header { background: var(--navy); padding: 40px 0; color: white; margin-bottom: 40px; }
+        .profile-img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; }
+        
+        .sidebar-menu { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .menu-item { display: block; padding: 15px 20px; color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid #f1f1f1; transition: 0.2s; }
+        .menu-item:hover { background: var(--bg-light); color: var(--primary); padding-left: 25px; }
+        .menu-item.active { background: #f0f9f0; color: #008009; border-left: 4px solid var(--primary); }
+        .menu-item i { width: 25px; color: #7f8c8d; }
+        .menu-item.active i { color: var(--primary); }
+
+        /* Tabs */
+        .nav-tabs { border-bottom: 2px solid var(--border); margin-bottom: 25px; }
+        .nav-tabs .nav-link { color: #7f8c8d; font-weight: 600; border: none; padding: 12px 20px; font-size: 15px; }
+        .nav-tabs .nav-link.active { color: var(--navy); border-bottom: 3px solid var(--primary); background: transparent; }
+        .nav-tabs .nav-link:hover { color: var(--primary); }
+
+        /* Booking Cards */
+        .booking-card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 25px; margin-bottom: 20px; transition: 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .booking-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-2px); border-color: #ccc; }
+        
+        .status-badge { padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 10px; }
+        .status-confirmed { background: #eafaf1; color: #008009; border: 1px solid #c3e6cb; }
+        .status-past { background: #f8f9fa; color: #6c757d; border: 1px solid #dae0e5; }
+        .status-cancelled { background: #fbebeb; color: #d63031; border: 1px solid #f5c6cb; }
+        
+        .icon-box { width: 50px; height: 50px; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 20px; border: 1px solid #eee; }
+        .icon-stay { background: #e8f0fe; color: #1a73e8; }
+        .icon-car { background: #fff3e0; color: #d93025; }
+        .icon-flight { background: #e6f4ea; color: #1e8e3e; }
+
+        .btn-outline-custom { border: 1px solid var(--border); color: var(--navy); font-weight: 600; padding: 8px 16px; border-radius: 6px; transition: 0.2s; background: white; font-size: 14px;}
+        .btn-outline-custom:hover { background: var(--bg-light); border-color: #bbb; }
+        .btn-action { background: var(--primary); color: white; border: none; font-weight: 600; padding: 8px 16px; border-radius: 6px; font-size: 14px; transition: 0.2s;}
+        .btn-action:hover { background: var(--primary-dark); }
+
+        /* Footer */
+        footer { background: var(--navy); color: white; padding-top: 60px; margin-top: 80px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 25px; color: white; text-transform: uppercase; letter-spacing: 1px;}
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #a4b0be; text-decoration: none; font-size: 14px; transition: 0.2s;}
+        .footer-col ul li a:hover { color: white; }
+        .footer-bottom { background: rgba(0,0,0,0.3); padding: 20px 0; margin-top: 50px; font-size: 13px; color: #a4b0be; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary);">STA Travel</span>.co.za
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="gauteng.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item ms-lg-4">
+                        <a href="#" class="nav-link d-flex align-items-center">
+                            <img src="https://ui-avatars.com/api/?name=Guest+User&background=fbc531&color=1e272e" class="rounded-circle me-2" width="30" height="30">
+                            <span>My Account</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="d-flex align-items-center gap-4">
+                <img src="https://ui-avatars.com/api/?name=Guest+User&background=28a745&color=fff" class="profile-img" alt="Profile Picture">
+                <div>
+                    <h2 class="mb-1">Hello, Guest!</h2>
+                    <p class="mb-0 text-white-50"><i class="fa fa-envelope me-2"></i> guest@example.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5">
+        <div class="row">
+            
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <div class="sidebar-menu sticky-top" style="top: 100px;">
+                    <a href="#" class="menu-item active"><i class="fa fa-suitcase-rolling"></i> My Bookings</a>
+                    <a href="#" class="menu-item"><i class="fa fa-user"></i> Personal Details</a>
+                    <a href="#" class="menu-item"><i class="fa fa-credit-card"></i> Payment Methods</a>
+                    <a href="#" class="menu-item"><i class="fa fa-heart"></i> Saved Lists</a>
+                    <a href="#" class="menu-item"><i class="fa fa-cog"></i> Settings</a>
+                    <a href="#" class="menu-item text-danger mt-3 border-top"><i class="fa fa-sign-out-alt text-danger"></i> Sign Out</a>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="upcoming-tab" data-bs-toggle="tab" data-bs-target="#upcoming" type="button" role="tab">Upcoming Trips</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab">Past Trips</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="cancelled-tab" data-bs-toggle="tab" data-bs-target="#cancelled" type="button" role="tab">Cancelled</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    
+                    <div class="tab-pane fade show active" id="upcoming" role="tabpanel">
+                        
+                        <div class="booking-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 d-flex gap-3">
+                                    <div class="icon-box icon-stay"><i class="fa fa-bed"></i></div>
+                                    <div>
+                                        <span class="status-badge status-confirmed">Confirmed</span>
+                                        <h4 class="mb-1 fs-5 fw-bold" style="color: var(--navy);">The Royal Manor Boutique Hotel</h4>
+                                        <p class="text-muted small mb-0"><i class="fa fa-map-marker-alt text-danger me-1"></i> Camps Bay, Western Cape</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mt-4 mt-md-0 border-start ps-md-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span class="text-muted small text-uppercase fw-bold" style="font-size: 10px;">Check-in</span>
+                                            <div class="fw-bold" style="color: var(--navy);">14 Dec 2026</div>
+                                            <div class="small text-muted">14:00 PM</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="text-muted small text-uppercase fw-bold" style="font-size: 10px;">Check-out</span>
+                                            <div class="fw-bold" style="color: var(--navy);">18 Dec 2026</div>
+                                            <div class="small text-muted">10:00 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                                <div>
+                                    <div class="fw-bold fs-5" style="color: var(--navy);">ZAR 8,400.00</div>
+                                    <div class="text-muted small">Paid via PayFast</div>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn-outline-custom d-none d-sm-block"><i class="fa fa-file-invoice me-2"></i>Receipt</button>
+                                    <button class="btn-outline-custom text-danger border-danger" onclick="cancelBooking(this)"><i class="fa fa-times me-2"></i>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="booking-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 d-flex gap-3">
+                                    <div class="icon-box icon-car"><i class="fa fa-car"></i></div>
+                                    <div>
+                                        <span class="status-badge status-confirmed">Confirmed</span>
+                                        <h4 class="mb-1 fs-5 fw-bold" style="color: var(--navy);">Toyota RAV4 (SUV)</h4>
+                                        <p class="text-muted small mb-0"><i class="fa fa-building me-1"></i> Avis Rentals - OR Tambo Airport</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mt-4 mt-md-0 border-start ps-md-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span class="text-muted small text-uppercase fw-bold" style="font-size: 10px;">Pick-up</span>
+                                            <div class="fw-bold" style="color: var(--navy);">01 Nov 2026</div>
+                                            <div class="small text-muted">09:00 AM</div>
+                                        </div>
+                                        <div class="col-6">
+                                            <span class="text-muted small text-uppercase fw-bold" style="font-size: 10px;">Drop-off</span>
+                                            <div class="fw-bold" style="color: var(--navy);">05 Nov 2026</div>
+                                            <div class="small text-muted">09:00 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                                <div>
+                                    <div class="fw-bold fs-5" style="color: var(--navy);">ZAR 3,600.00</div>
+                                    <div class="text-muted small">Paid via Stripe</div>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn-outline-custom d-none d-sm-block"><i class="fa fa-file-invoice me-2"></i>Receipt</button>
+                                    <button class="btn-outline-custom text-danger border-danger" onclick="cancelBooking(this)"><i class="fa fa-times me-2"></i>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="past" role="tabpanel">
+                        <div class="booking-card bg-light border-0">
+                            <div class="row align-items-center opacity-75">
+                                <div class="col-md-7 d-flex gap-3">
+                                    <div class="icon-box icon-flight bg-white"><i class="fa fa-plane"></i></div>
+                                    <div>
+                                        <span class="status-badge status-past">Completed</span>
+                                        <h4 class="mb-1 fs-5 fw-bold" style="color: var(--navy);">FlySafair (FA 201)</h4>
+                                        <p class="text-muted small mb-0">Johannesburg (JNB) to Cape Town (CPT)</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mt-4 mt-md-0 border-start ps-md-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span class="text-muted small text-uppercase fw-bold" style="font-size: 10px;">Departed</span>
+                                            <div class="fw-bold" style="color: var(--navy);">12 Jan 2025</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top border-secondary opacity-75">
+                                <div class="fw-bold fs-5" style="color: var(--navy);">ZAR 1,200.00</div>
+                                <button class="btn-action"><i class="fa fa-redo me-2"></i>Book Again</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="cancelled" role="tabpanel">
+                        <div class="booking-card">
+                            <div class="row align-items-center opacity-75">
+                                <div class="col-md-7 d-flex gap-3">
+                                    <div class="icon-box bg-light border"><i class="fa fa-bed text-muted"></i></div>
+                                    <div>
+                                        <span class="status-badge status-cancelled">Cancelled & Refunded</span>
+                                        <h4 class="mb-1 fs-5 fw-bold text-decoration-line-through text-muted">Protea Hotel Fire & Ice</h4>
+                                        <p class="text-muted small mb-0">Pretoria, Gauteng</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 mt-4 mt-md-0 border-start ps-md-4">
+                                    <span class="text-muted small text-uppercase fw-bold" style="font-size: 10px;">Cancellation Date</span>
+                                    <div class="fw-bold text-muted">04 Feb 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container pb-4">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h2 class="mb-4 fw-bold" style="color:var(--primary); font-family: 'Poppins', sans-serif;">STA Travel<span class="text-white">.co.za</span></h2>
+                    <p style="color: #a4b0be; line-height: 1.8;">South Africa's premier booking platform for stays, adventures, and secure car rentals.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-angle-right me-2 small"></i>Customer Service</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2 small"></i>Safety Centre</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2 small"></i>Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-angle-right me-2 small"></i>Genius Loyalty</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2 small"></i>Holiday Deals</a></li>
+                        <li><a href="#"><i class="fa fa-angle-right me-2 small"></i>Business Travel</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col">
+                    <h4>Secure Payments</h4>
+                    <p style="color: #a4b0be; font-size: 14px;">We process transactions securely using South Africa's trusted gateways.</p>
+                    <div class="fs-1 mt-3 d-flex gap-3 align-items-center">
+                        <i class="fab fa-cc-visa text-light opacity-75"></i>
+                        <i class="fab fa-cc-mastercard text-light opacity-75"></i>
+                        <span class="badge bg-light text-dark fs-6 py-2 px-3 rounded-3 opacity-75">PayFast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container"><p class="mb-0">© 1979–2026 STA Travel.co.za™. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function cancelBooking(btnElement) {
+            if(confirm("Are you sure you want to cancel this booking? If you cancel 48 hours prior to the date, you will receive a full refund to your original payment method.")) {
+                const card = btnElement.closest('.booking-card');
+                card.style.opacity = '0';
+                
+                setTimeout(() => {
+                    alert("Booking successfully cancelled. Your refund has been initiated.");
+                    window.location.reload(); 
+                }, 500);
+            }
+        }
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+    // Paste your same firebaseConfig object here and initialize app
+    firebase.initializeApp(firebaseConfig);
+
+    // Listen for auth state changes
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            // User is signed in.
+            console.log("Logged in as:", user.email);
+            // You can update the UI here, e.g., document.getElementById('user-email').innerText = user.email;
+        } else {
+            // No user is signed in. Redirect them to login page.
+            window.location.href = "login.html";
+        }
+    });
+
+    // Log Out Function (Attach this to your "Sign Out" button)
+    function logOut() {
+        firebase.auth().signOut().then(() => {
+            window.location.href = "login.html";
+        });
+    }
+</script>
+    </script>
+</body>
+</html>

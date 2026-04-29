@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stays in South Africa | SafariStay.co.za</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Frameworks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #fbc531;
+            --light-bg: #f5f6fa;
+            --border-color: #dcdde1;
+            --text-main: #2f3640;
+            --text-muted: #7f8c8d;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
+        h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation (Synced with Index) */
+        .topbar { background: var(--navy-blue); color: white; font-size: 13px; padding: 8px 0; }
+        .topbar a { color: white; text-decoration: none; margin-left: 15px; }
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+
+        /* Hero & Search (Synced with Index) */
+        .stays-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1549144482-f024ee083fcd?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0 100px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .search-engine-wrapper {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            z-index: 100;
+        }
+        .search-engine {
+            background: var(--accent-gold);
+            padding: 4px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 3fr 2fr 2fr 1fr;
+            gap: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .search-input-group { background: white; padding: 12px; border-radius: 4px; display: flex; align-items: center; }
+        .search-input-group i { color: var(--text-muted); margin-right: 10px; }
+        .search-input-group input { border: none; outline: none; width: 100%; font-size: 14px; }
+
+        /* Category Nav */
+        .province-nav { overflow-x: auto; white-space: nowrap; padding: 20px 0; border-bottom: 1px solid var(--border-color); }
+        .province-link { display: inline-block; padding: 8px 20px; background: white; border: 1px solid var(--border-color); border-radius: 50px; text-decoration: none; color: var(--text-main); margin-right: 10px; font-weight: 600; transition: 0.3s; font-size: 14px; }
+        .province-link:hover, .province-link.active { border-color: var(--primary-green); color: var(--primary-green); background: rgba(40, 167, 69, 0.05); }
+
+        /* Property Cards (Synced with Index) */
+        .property-card { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; transition: 0.3s; height: 100%; background: #fff; }
+        .property-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .rating-box { background: var(--navy-blue); color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .badge-genius { background: #003580; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        
+        .section-title { border-left: 5px solid var(--primary-green); padding-left: 15px; margin-bottom: 30px; }
+        .redirect-heading { text-decoration: none; color: inherit; transition: 0.2s; }
+        .redirect-heading:hover { color: var(--primary-green); }
+
+        .btn-green { background: var(--primary-green); color: white; border: none; font-weight: bold; padding: 8px 20px; border-radius: 4px; text-decoration: none; transition: 0.3s; }
+        .btn-green:hover { background: var(--dark-green); color: white; }
+
+        /* Footer (Synced with Index) */
+        footer { background: #00224f; color: white; padding-top: 50px; margin-top: 80px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
+        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+
+        @media (max-width: 992px) {
+            .search-engine { grid-template-columns: 1fr; }
+            .search-engine-wrapper { position: static; transform: none; width: 100%; margin-top: -20px; padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar (Synced) -->
+    <div class="topbar d-none d-lg-block">
+        <div class="container d-flex justify-content-between">
+            <div>
+                <span><i class="fas fa-phone-alt me-2"></i>+27 75 104 9048</span>
+                <span class="ms-4"><i class="fas fa-envelope me-2"></i>info@safaristay.co.za</span>
+            </div>
+            <div>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation (Synced) -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">SafariStay</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item ms-lg-3"><a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Subpage Style) -->
+    <header class="stays-hero">
+        <div class="container">
+            <h1 class="display-5">Find your next stay in Mzansi</h1>
+            <p class="lead">Search deals on hotels, lodges, and unique homes</p>
+        </div>
+
+        <!-- Integrated Search Bar (Synced with Index) -->
+        <div class="search-engine-wrapper">
+            <div class="search-engine">
+                <div class="search-input-group">
+                    <i class="fas fa-bed"></i>
+                    <input type="text" placeholder="Where are you going?">
+                </div>
+                <div class="search-input-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="text" placeholder="Check-in — Check-out">
+                </div>
+                <div class="search-input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="2 adults · 1 room" readonly>
+                </div>
+                <button class="btn btn-dark w-100 fw-bold">SEARCH</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mt-5 pt-4">
+        
+        <!-- Replace the province-nav in stays.html with this -->
+<div class="province-nav mb-5">
+    <div class="container text-center">
+        <a href="gauteng.html" class="province-link">Gauteng</a>
+        <a href="eastern-cape.html" class="province-link">Eastern Cape</a>
+        <a href="kzn.html" class="province-link">KwaZulu-Natal</a>
+        <a href="limpopo.html" class="province-link">Limpopo</a>
+        <a href="northern-cape.html" class="province-link">Northern Cape</a>
+        <a href="western-cape.html" class="province-link">Western Cape</a>
+    </div>
+</div>
+
+        <!-- Featured Stays Sections (Synced with Card Design) -->
+        <section id="gauteng" class="mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <h3 class="section-title mb-0">Gauteng: Top Picks</h3>
+                <a href="#" class="text-success fw-bold text-decoration-none">See all 370+ stays <i class="fas fa-arrow-right small"></i></a>
+            </div>
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-md-3">
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:160px; object-fit:cover;" alt="Leopardsong">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">Leopardsong Manor</h6>
+                                <span class="rating-box">9.1</span>
+                            </div>
+                            <p class="text-muted small mb-2">Centurion • Golf Estate</p>
+                            <span class="badge-genius"><i class="fas fa-lightbulb"></i> Genius</span>
+                            <div class="mt-3 text-end">
+                                <h5 class="fw-bold mb-0">ZAR 1,850</h5>
+                                <p class="text-muted small mb-2">Per night</p>
+                                <a href="#" class="btn btn-green btn-sm w-100">See Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-3">
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:160px; object-fit:cover;" alt="Villa Amor">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">Villa Amor</h6>
+                                <span class="rating-box">8.9</span>
+                            </div>
+                            <p class="text-muted small mb-2">Pretoria East • Romantic</p>
+                            <span class="text-success small fw-bold"><i class="fas fa-leaf"></i> Travel Sustainable</span>
+                            <div class="mt-3 text-end">
+                                <h5 class="fw-bold mb-0">ZAR 2,100</h5>
+                                <p class="text-muted small mb-2">Per night</p>
+                                <a href="#" class="btn btn-green btn-sm w-100">See Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-3">
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:160px; object-fit:cover;" alt="Emerald">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">Emerald GuestHouse</h6>
+                                <span class="rating-box">8.5</span>
+                            </div>
+                            <p class="text-muted small mb-2">Kempton Park • Near OR Tambo</p>
+                            <div class="mt-3 text-end">
+                                <h5 class="fw-bold mb-0">ZAR 1,200</h5>
+                                <p class="text-muted small mb-2">Per night</p>
+                                <a href="#" class="btn btn-green btn-sm w-100">See Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Quick Info Card -->
+                <div class="col-md-3">
+                    <div class="p-4 border rounded bg-light h-100">
+                        <h6 class="fw-bold mb-3">Popular Area Filters</h6>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-dark btn-sm text-start">Sandton (120)</button>
+                            <button class="btn btn-outline-dark btn-sm text-start">Rosebank (45)</button>
+                            <button class="btn btn-outline-dark btn-sm text-start">Menlo Park (32)</button>
+                            <button class="btn btn-outline-dark btn-sm text-start">Soweto (18)</button>
+                        </div>
+                        <hr>
+                        <p class="small text-muted">Average price in Gauteng: <strong>ZAR 1,450</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECIAL PACKAGES (From Index Vibes) -->
+        <section class="py-4 mb-5 bg-light rounded px-4">
+            <h3 class="mb-4"><a href="specialmzansipackages.html" class="redirect-heading">Special Mzansi Packages <i class="fas fa-chevron-right ms-2" style="font-size: 18px;"></i></a></h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white border-0 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80" class="card-img opacity-50" style="height: 200px; object-fit: cover;" alt="Safari">
+                        <div class="card-img-overlay d-flex flex-column justify-content-center">
+                            <h4>Kruger 3-Day Bush Escape</h4>
+                            <p>Inclusive of all meals and game drives</p>
+                            <div><span class="btn btn-green">From ZAR 8,500 pp</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white border-0 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=800&q=80" class="card-img opacity-50" style="height: 200px; object-fit: cover;" alt="Cape">
+                        <div class="card-img-overlay d-flex flex-column justify-content-center">
+                            <h4>Cape Town Winelands Tour</h4>
+                            <p>4 Nights at a luxury boutique estate</p>
+                            <div><span class="btn btn-green">From ZAR 12,200 pp</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KZN SECTION -->
+        <section id="kzn" class="mb-5">
+            <h3 class="section-title">KwaZulu-Natal: Coastal Gems</h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="property-card">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:200px; object-fit:cover;" alt="Oyster Box">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">The Oyster Box</h6>
+                                <span class="rating-box">9.8</span>
+                            </div>
+                            <p class="text-muted small">Umhlanga Rocks • Luxury</p>
+                            <span class="badge-genius mb-2 d-inline-block"><i class="fas fa-lightbulb"></i> Genius</span>
+                            <h5 class="fw-bold mt-2">ZAR 4,800</h5>
+                            <a href="#" class="btn btn-green btn-sm w-100 mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-4 border rounded h-100">
+                        <h5 class="mb-3">Recommended in KZN</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=100&q=80" class="rounded me-3" style="width:60px;height:60px;object-fit:cover;">
+                                    <div>
+                                        <h6 class="mb-0">Ridgeview Lodge</h6>
+                                        <small class="text-success">9.2 Excellent • ZAR 1,450</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=100&q=80" class="rounded me-3" style="width:60px;height:60px;object-fit:cover;">
+                                    <div>
+                                        <h6 class="mb-0">Belaire Suites</h6>
+                                        <small class="text-success">8.4 Good • ZAR 1,100</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=100&q=80" class="rounded me-3" style="width:60px;height:60px;object-fit:cover;">
+                                    <div>
+                                        <h6 class="mb-0">Zimbali Lodge</h6>
+                                        <small class="text-success">9.0 Superb • ZAR 3,200</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=100&q=80" class="rounded me-3" style="width:60px;height:60px;object-fit:cover;">
+                                    <div>
+                                        <h6 class="mb-0">Umhlanga Sands</h6>
+                                        <small class="text-success">8.8 Great • ZAR 2,400</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Synced with Index) -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h2 class="mb-4" style="color:var(--primary-green)">SafariStay<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                    <div class="mt-4">
+                        <h6>Subscribe to our newsletter</h6>
+                        <form action="thanks.html" class="d-flex gap-2">
+                            <input type="email" class="form-control" placeholder="Email address" required>
+                            <button type="submit" class="btn btn-green">Join</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="partner-help.html">Partner Help</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="genius.html">Genius Loyalty</a></li>
+                        <li><a href="articles.html">Travel Articles</a></li>
+                        <li><a href="deals.html">Holiday Deals</a></li>
+                        <li><a href="safari-packages.html">Safari Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col">
+                    <h4>Mzansi Secure Payments</h4>
+                    <p class="small text-muted">We accept all major South African payment methods.</p>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
+                        <span class="fs-6 badge bg-light text-dark align-middle">PayFast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 1996–2026 SafariStay.co.za™. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STA Travel | Special Mzansi Packages</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #fbc531;
+            --border-color: #dcdde1;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: #2f3640; }
+        h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        .nav-link { color: white !important; font-weight: 600; }
+        
+        /* Package Card Styles */
+        .property-card { 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            height: 100%;
+            background: #fff;
+        }
+        .property-card:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        }
+        .img-container { height: 200px; position: relative; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .rating-box { 
+            background: var(--accent-gold); 
+            color: var(--navy-blue); 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            font-size: 14px; 
+        }
+        .category-header {
+            border-left: 5px solid var(--accent-gold);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            color: var(--navy-blue);
+        }
+        .btn-availability {
+            background: var(--navy-blue);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-availability:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+        .price-tag { color: var(--primary-green); font-weight: 700; font-size: 1.2rem; }
+        .badge-type {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }     
+
+        /* Footer */
+        footer { background: #00224f; color: white; padding-top: 50px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
+        .footer-col ul li a:hover { color: var(--primary-green); }
+        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation (Synced) -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">STA Travel</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item ms-lg-3"><a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold">All-In-One Mzansi Packages</h1>
+            <p class="lead">Accommodation + Experiences + Relaxation. Everything you need in one booking.</p>
+        </div>
+
+        <!-- SECTION: ROMANCE & WELLNESS (MASSAGES) -->
+        <h3 class="category-header">Wellness & Romance (Stays + Massages)</h3>
+        <div class="row g-4 mb-5">
+            <!-- 1. Magalies Retreat -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Spa & Stay</span>
+                        <img src="https://images.unsplash.com/photo-1544161515-4508f5ad4c14?auto=format&fit=crop&w=400" alt="Spa">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Magalies Zen Lodge</h6>
+                        <small class="text-muted">Stay + Full Body Massage</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> 1 Night Stay included</div>
+                        <div class="price-tag mt-2">ZAR 2,450</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 2. Sandton Sky -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Luxury</span>
+                        <img src="https://images.unsplash.com/photo-1560624052-449f5ddf0c31?auto=format&fit=crop&w=400" alt="Sandton">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Sandton Sky Suite</h6>
+                        <small class="text-muted">Stay + Couples Hot Stone</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> 5-Star Hotel Room</div>
+                        <div class="price-tag mt-2">ZAR 3,800</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 3. Vaal River Relaxation -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Riverfront</span>
+                        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=400" alt="Vaal">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Vaal River Manor</h6>
+                        <small class="text-muted">Stay + Aromatherapy</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> Breakfast included</div>
+                        <div class="price-tag mt-2">ZAR 1,950</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 4. Muldersdrift Country -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Country</span>
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400" alt="Spa">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Cradle Spa Estate</h6>
+                        <small class="text-muted">Stay + Head & Neck Massage</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> Garden Villa</div>
+                        <div class="price-tag mt-2">ZAR 2,100</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 5. Pretoria Boutique -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Boutique</span>
+                        <img src="https://images.unsplash.com/photo-1615460547269-3429c4903565?auto=format&fit=crop&w=400" alt="Boutique">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Waterkloof Heights</h6>
+                        <small class="text-muted">Stay + Swedish Massage</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> Bottle of MCC</div>
+                        <div class="price-tag mt-2">ZAR 2,750</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 6. Lanseria Escape -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Nature</span>
+                        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400" alt="Lanseria">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Lanseria Country Lodge</h6>
+                        <small class="text-muted">Stay + Foot Massage</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> Sunset Deck Access</div>
+                        <div class="price-tag mt-2">ZAR 1,600</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 7. Harties Hidden Gem -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Escape</span>
+                        <img src="https://images.unsplash.com/photo-1590523741477-241d63645e82?auto=format&fit=crop&w=400" alt="Harties">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Harties Waterside</h6>
+                        <small class="text-muted">Stay + Reflexology</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> Balcony with View</div>
+                        <div class="price-tag mt-2">ZAR 2,200</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 8. Joburg Zen -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Urban Spa</span>
+                        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=400" alt="Zen">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Houghton Wellness</h6>
+                        <small class="text-muted">Stay + Deep Tissue</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-check-circle"></i> Spa Lunch Included</div>
+                        <div class="price-tag mt-2">ZAR 3,100</div>
+                        <a href="#" class="btn-availability mt-3">Book Package</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: ADVENTURE & TOURS -->
+        <h3 class="category-header">Safari & Adventure (Stays + Tours)</h3>
+        <div class="row g-4 mb-5">
+            <!-- 9. Dinokeng Safari -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Safari</span>
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400" alt="Safari">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Dinokeng Bush Camp</h6>
+                        <small class="text-muted">Stay + Sunset Game Drive</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-binoculars"></i> Big 5 Sightings</div>
+                        <div class="price-tag mt-2">ZAR 2,900</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 10. Soweto Experience -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Culture</span>
+                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=400" alt="Soweto">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Soweto Backpackers</h6>
+                        <small class="text-muted">Stay + Tuk-Tuk Heritage Tour</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-history"></i> Vilakazi St Tour</div>
+                        <div class="price-tag mt-2">ZAR 1,200</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 11. Cullinan Diamond -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">History</span>
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400" alt="Diamond">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Cullinan Heritage Inn</h6>
+                        <small class="text-muted">Stay + Underground Mine Tour</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-gem"></i> Diamond History</div>
+                        <div class="price-tag mt-2">ZAR 1,850</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 12. Magalies Canopy -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Extreme</span>
+                        <img src="https://images.unsplash.com/photo-1533664488202-6af66d26c44a?auto=format&fit=crop&w=400" alt="Zipline">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Kloof Mountain Lodge</h6>
+                        <small class="text-muted">Stay + Zipline Tour</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-mountain"></i> 10 Slide Tour</div>
+                        <div class="price-tag mt-2">ZAR 2,300</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 13. Hot Air Ballooning -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Dreamy</span>
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400" alt="Balloon">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Cradle Boutique Hotel</h6>
+                        <small class="text-muted">Stay + Hot Air Balloon</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-cloud"></i> Includes Champagne</div>
+                        <div class="price-tag mt-2">ZAR 5,400</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 14. Pilanesberg Day Trip -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Full Day</span>
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=400" alt="Zebra">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Bakubung Bush Lodge</h6>
+                        <small class="text-muted">Stay + Guided Game Drive</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-paw"></i> Guided by Ranger</div>
+                        <div class="price-tag mt-2">ZAR 4,200</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 15. Lion & Safari Park -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Wildlife</span>
+                        <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=400" alt="Lion">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Lanseria Farm Stay</h6>
+                        <small class="text-muted">Stay + Lion Interaction</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-camera"></i> Photo Op included</div>
+                        <div class="price-tag mt-2">ZAR 1,750</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 16. Elephant Sanctuary -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Gentle Giant</span>
+                        <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=400" alt="Elephant">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Harties Bush Lodge</h6>
+                        <small class="text-muted">Stay + Elephant Interaction</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-leaf"></i> Educational Tour</div>
+                        <div class="price-tag mt-2">ZAR 2,600</div>
+                        <a href="#" class="btn-availability mt-3">Book Adventure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: URBAN EXPERIENCES & FOOD -->
+        <h3 class="category-header">Urban Vibes & Experiences (Stays + Activities)</h3>
+        <div class="row g-4">
+            <!-- 17. Maboneng Loft -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Art Stay</span>
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400" alt="Art">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Maboneng Penthouse</h6>
+                        <small class="text-muted">Stay + Graffiti Street Tour</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-palette"></i> Local Artist Guide</div>
+                        <div class="price-tag mt-2">ZAR 1,400</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 18. Braamfontein Pulse -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Nightlife</span>
+                        <img src="https://images.unsplash.com/photo-1514525253361-bee243870d22?auto=format&fit=crop&w=400" alt="Jazz">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Braam City Hotel</h6>
+                        <small class="text-muted">Stay + Jazz Club Tickets</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-music"></i> Entrance to Orbit</div>
+                        <div class="price-tag mt-2">ZAR 1,650</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 19. Rosebank High Tea -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Classy</span>
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=400" alt="Tea">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">The Rosebank Boutique</h6>
+                        <small class="text-muted">Stay + High Tea for Two</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-utensils"></i> Gourmet Pastries</div>
+                        <div class="price-tag mt-2">ZAR 2,100</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 20. Montecasino Tuscan -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Entertainment</span>
+                        <img src="https://images.unsplash.com/photo-1596567130084-0c291246f08e?auto=format&fit=crop&w=400" alt="Monte">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Palazzo Montecasino</h6>
+                        <small class="text-muted">Stay + Theatre Tickets</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-ticket-alt"></i> Live Show access</div>
+                        <div class="price-tag mt-2">ZAR 4,500</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 21. Gold Reef Thrills -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Family</span>
+                        <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=400" alt="Theme Park">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Gold Reef Theme Park Hotel</h6>
+                        <small class="text-muted">Stay + Park All-Day Pass</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-smile"></i> Rollercoaster Access</div>
+                        <div class="price-tag mt-2">ZAR 2,200</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 22. Constitution Hill -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Heritage</span>
+                        <img src="https://images.unsplash.com/photo-1549413203-02f534608f65?auto=format&fit=crop&w=400" alt="Hill">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">The Hill Side Guesthouse</h6>
+                        <small class="text-muted">Stay + Museum Audio Tour</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-landmark"></i> Court & Jail Tour</div>
+                        <div class="price-tag mt-2">ZAR 1,350</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 23. Golf & Stay -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Sport</span>
+                        <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=400" alt="Golf">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Steyn City Estate</h6>
+                        <small class="text-muted">Stay + 18-Hole Round</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-golf-ball"></i> Golf Cart Included</div>
+                        <div class="price-tag mt-2">ZAR 3,900</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 24. Modderfontein Picnic -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Outdoors</span>
+                        <img src="https://images.unsplash.com/photo-1526401485004-46910ecc8e51?auto=format&fit=crop&w=400" alt="Picnic">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">The Reserve Guesthouse</h6>
+                        <small class="text-muted">Stay + Luxury Picnic Basket</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-umbrella-beach"></i> Near Nature Trail</div>
+                        <div class="price-tag mt-2">ZAR 1,550</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 25. Rietvlei Birding -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Nature</span>
+                        <img src="https://images.unsplash.com/photo-1444464666168-49d633b867ad?auto=format&fit=crop&w=400" alt="Bird">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">Irene Country Lodge</h6>
+                        <small class="text-muted">Stay + Bird Watching Tour</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-feather"></i> Pro Binoculars Provided</div>
+                        <div class="price-tag mt-2">ZAR 2,800</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 26. Vaal Houseboat -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Unique</span>
+                        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7a56?auto=format&fit=crop&w=400" alt="Boat">
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-0">The Liquid Lounge</h6>
+                        <small class="text-muted">Overnight + Cruise</small>
+                        <div class="mt-2 small text-success"><i class="fas fa-ship"></i> Sleeping on Water</div>
+                        <div class="price-tag mt-2">ZAR 3,500</div>
+                        <a href="#" class="btn-availability mt-3">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold">Special Mzansi Packages</h1>
+            <p class="lead">Hand-picked Gauteng experiences combining heritage, nature, and urban vibes.</p>
+        </div>
+
+        <!-- CATEGORY: Heritage & History -->
+        <h3 class="category-header">The Heritage Trail (Pretoria & Beyond)</h3>
+        <div class="row g-4">
+            <!-- 1. Cradle of Humankind -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Heritage</span>
+                        <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=400" alt="Cradle of Humankind">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Cradle of Humankind</h6><small class="text-muted">Sterkfontein</small></div>
+                            <span class="rating-box">4.9</span>
+                        </div>
+                        <p class="mt-2 small">Explore the origins of humanity with a guided cave tour.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 450</span>
+                        </div>
+                        <a href="#" class="btn-availability">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 2. Maropeng -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Museum</span>
+                        <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=400" alt="Maropeng">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Maropeng Visitor Centre</h6><small class="text-muted">Gauteng</small></div>
+                            <span class="rating-box">4.8</span>
+                        </div>
+                        <p class="mt-2 small">An award-winning world-class exhibition of human evolution.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 320</span>
+                        </div>
+                        <a href="#" class="btn-availability">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 3. Union Buildings -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Landmark</span>
+                        <img src="https://images.unsplash.com/photo-1549413203-02f534608f65?auto=format&fit=crop&w=400" alt="Union Buildings">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Union Buildings</h6><small class="text-muted">Pretoria</small></div>
+                            <span class="rating-box">4.7</span>
+                        </div>
+                        <p class="mt-2 small">The seat of government with breathtaking gardens and history.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">Free Entry</span>
+                        </div>
+                        <a href="#" class="btn-availability">Tour Guide Info</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 4. Freedom Park -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Memorial</span>
+                        <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=400" alt="Freedom Park">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Freedom Park</h6><small class="text-muted">Salvokop, PTA</small></div>
+                            <span class="rating-box">4.9</span>
+                        </div>
+                        <p class="mt-2 small">A tribute to African heritage and the struggle for freedom.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 150</span>
+                        </div>
+                        <a href="#" class="btn-availability">Book Experience</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: Urban & Markets -->
+        <h3 class="category-header">Urban Culture & Markets</h3>
+        <div class="row g-4">
+            <!-- 5. Maboneng -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Arts</span>
+                        <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=400" alt="Maboneng">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Maboneng Precinct</h6><small class="text-muted">Joburg CBD</small></div>
+                            <span class="rating-box">4.6</span>
+                        </div>
+                        <p class="mt-2 small">A vibrant urban hub of art, coffee, and African nightlife.</p>
+                        <a href="#" class="btn-availability mt-3">Tour Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 6. Rosebank Art & Craft Market -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Shopping</span>
+                        <img src="https://images.unsplash.com/photo-1459156212016-c812468e2115?auto=format&fit=crop&w=400" alt="Rosebank Market">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Rosebank Craft Market</h6><small class="text-muted">Rosebank</small></div>
+                            <span class="rating-box">4.8</span>
+                        </div>
+                        <p class="mt-2 small">The best place for authentic African curios and art pieces.</p>
+                        <a href="#" class="btn-availability mt-3">See Visiting Hours</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 7. Fourways Farmers Market -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Foodie</span>
+                        <img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=400" alt="Fourways Market">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Fourways Farmers Market</h6><small class="text-muted">Modderfontein</small></div>
+                            <span class="rating-box">4.9</span>
+                        </div>
+                        <p class="mt-2 small">The most beautiful outdoor market in the city.</p>
+                        <a href="#" class="btn-availability mt-3">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 8. Hazelwood Pretoria -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Trendy</span>
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400" alt="Hazelwood">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Hazelwood Pretoria</h6><small class="text-muted">The Village</small></div>
+                            <span class="rating-box">4.8</span>
+                        </div>
+                        <p class="mt-2 small">Gourmet restaurants and boutique coffee shops.</p>
+                        <a href="#" class="btn-availability mt-3">Explore Village</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: Nature & Outdoors -->
+        <h3 class="category-header">Nature & Outdoors</h3>
+        <div class="row g-4">
+            <!-- 9. Melville Koppies -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Hiking</span>
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=400" alt="Melville Koppies">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Melville Koppies</h6><small class="text-muted">Johannesburg</small></div>
+                            <span class="rating-box">4.7</span>
+                        </div>
+                        <p class="mt-2 small">A heritage site and nature reserve with 3-billion-year-old rocks.</p>
+                        <a href="#" class="btn-availability mt-3">Trail Info</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 10. Klipriviersberg Nature Reserve -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Nature</span>
+                        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=400" alt="Klipriviersberg">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Klipriviersberg</h6><small class="text-muted">Johannesburg South</small></div>
+                            <span class="rating-box">4.8</span>
+                        </div>
+                        <p class="mt-2 small">The "Jewel of the South" - perfect for hiking and zebras.</p>
+                        <a href="#" class="btn-availability mt-3">Trail Info</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 11. Loftus Versfeld Stadium -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Sport</span>
+                        <img src="https://images.unsplash.com/photo-1510563800743-aed236490d08?auto=format&fit=crop&w=400" alt="Loftus Versfeld">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Loftus Versfeld</h6><small class="text-muted">Pretoria</small></div>
+                            <span class="rating-box">4.9</span>
+                        </div>
+                        <p class="mt-2 small">Experience the passion of South African Rugby and Soccer.</p>
+                        <a href="#" class="btn-availability mt-3">Match Packages</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 12. Emperors Palace -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Entertainment</span>
+                        <img src="https://images.unsplash.com/photo-1596567130084-0c291246f08e?auto=format&fit=crop&w=400" alt="Emperors Palace">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Emperors Palace</h6><small class="text-muted">Kempton Park</small></div>
+                            <span class="rating-box">4.6</span>
+                        </div>
+                        <p class="mt-2 small">The Palace of Dreams: Casino, hotels, and live shows.</p>
+                        <a href="#" class="btn-availability mt-3">See Showtimes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h2 class="mb-4" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Packages</h4>
+                    <ul>
+                        <li><a href="#">History Bundle</a></li>
+                        <li><a href="#">Market Hop</a></li>
+                        <li><a href="#">Outdoor Trek</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col">
+                    <h4>Mzansi Secure Payments</h4>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 1979–2026 STA Travel.co.za™. All rights reserved. Local is Lekker!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

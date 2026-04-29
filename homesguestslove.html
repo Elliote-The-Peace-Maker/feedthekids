@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafariStay | South Africa's Top Rated Stays</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #fbc531;
+            --border-color: #dcdde1;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: #2f3640; }
+        h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        .nav-link { color: white !important; font-weight: 600; }
+        
+        /* Property Card Styles */
+        .property-card { 
+            border: 1px solid var(--border-color); 
+            border-radius: 8px; 
+            overflow: hidden; 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            height: 100%;
+            background: #fff;
+        }
+        .property-card:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+        }
+        .img-container { height: 200px; position: relative; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .rating-box { 
+            background: var(--navy-blue); 
+            color: white; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            font-size: 14px; 
+        }
+        .category-header {
+            border-left: 5px solid var(--primary-green);
+            padding-left: 15px;
+            margin: 40px 0 20px;
+            color: var(--navy-blue);
+        }
+        .btn-availability {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-availability:hover {
+            background: var(--dark-green);
+            color: white;
+        }
+        .price-tag { color: var(--navy-blue); font-weight: 700; font-size: 1.2rem; }
+        .badge-type {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }     
+		/* Heading Redirect Styles */
+        .redirect-heading { text-decoration: none; color: inherit; transition: 0.2s; }
+        .redirect-heading:hover { color: var(--primary-green); }
+
+        /* Footer (Mega Style) */
+        footer { background: #00224f; color: white; padding-top: 50px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
+        .footer-col ul li a:hover { color: var(--primary-green); }
+        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation (Synced) -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">SafariStay</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item ms-lg-3"><a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5">Homes Guests Love in South Africa</h1>
+            <p class="lead">From trendy Joburg lofts to quiet Karoo escapes.</p>
+        </div>
+
+        <!-- CATEGORY: Johannesburg & Gauteng -->
+        <h3 class="category-header">Johannesburg & Gauteng</h3>
+        <div class="row g-4">
+            <!-- 1. Vanilla Guest House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Guest House</span>
+                        <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=400" alt="Vanilla Guest House">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Vanilla Guest House</h6><small class="text-muted">Randburg, JHB</small></div>
+                            <span class="rating-box">9.2</span>
+                        </div>
+                        <p class="mt-2 small">Stylish, modern stay with strong guest reviews.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 1,250</span>
+                        </div>
+                        <a href="vanilla-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 2. Sand River Guest House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Garden Stay</span>
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=400" alt="Sand River">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Sand River Guest House</h6><small class="text-muted">Sandton, JHB</small></div>
+                            <span class="rating-box">8.8</span>
+                        </div>
+                        <p class="mt-2 small">Popular Sandton option with a calm garden setting.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 1,400</span>
+                        </div>
+                        <a href="sand-river-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 3. Hyde Park Guest House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Upscale</span>
+                        <img src="https://images.unsplash.com/photo-1551882547-ff43c63fedfe?auto=format&fit=crop&w=400" alt="Hyde Park">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Hyde Park Guest House</h6><small class="text-muted">Hyde Park, JHB</small></div>
+                            <span class="rating-box">9.5</span>
+                        </div>
+                        <p class="mt-2 small">Luxury rooms and consistently highly rated service.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 2,100</span>
+                        </div>
+                        <a href="hyde-park-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 4. Saffron Guest House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Trendy</span>
+                        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=400" alt="Saffron Melville">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Saffron Guest House</h6><small class="text-muted">Melville, JHB</small></div>
+                            <span class="rating-box">9.0</span>
+                        </div>
+                        <p class="mt-2 small">Trendy Melville stay, great for vibe and local food.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 950</span>
+                        </div>
+                        <a href="saffron-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 5. Serenity Place (AirBnB) -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Airbnb Favourite</span>
+                        <img src="https://images.unsplash.com/photo-1499716608984-2ad50260b77c?auto=format&fit=crop&w=400" alt="Serenity Place">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Serenity Place</h6><small class="text-muted">Joburg Central</small></div>
+                            <span class="rating-box">4.9/5</span>
+                        </div>
+                        <p class="mt-2 small">Cozy, homely Airbnb-style guest favourite.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 800</span>
+                        </div>
+                        <a href="serenity-place-airbnb.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: Cape Town & Western Cape -->
+        <h3 class="category-header">Cape Town & Western Cape</h3>
+        <div class="row g-4">
+            <!-- 6. Greenhouse Guesthouse -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=400" alt="Greenhouse">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Greenhouse Guesthouse</h6><small class="text-muted">Green Point, CPW</small></div>
+                            <span class="rating-box">9.3</span>
+                        </div>
+                        <p class="mt-2 small">Bright, modern stay near the stadium and V&A.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 1,850</span>
+                        </div>
+                        <a href="greenhouse-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 7. Luxurious Guest Suite Bantry Bay -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Ocean View</span>
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=400" alt="Bantry Bay Suite">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Luxurious Guest Suite</h6><small class="text-muted">Bantry Bay, CT</small></div>
+                            <span class="rating-box">9.8</span>
+                        </div>
+                        <p class="mt-2 small">Stunning ocean views, very "Instagrammable".</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 3,200</span>
+                        </div>
+                        <a href="luxurious-suite-bantry-bay.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 8. Antiqua Guest House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=400" alt="Antiqua George">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Antiqua Guest House</h6><small class="text-muted">George, Garden Route</small></div>
+                            <span class="rating-box">9.1</span>
+                        </div>
+                        <p class="mt-2 small">Charming and elegant stay in the heart of George.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 1,100</span>
+                        </div>
+                        <a href="antiqua-guesthouse-george.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 9. Cape Karoo Guesthouse -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=400" alt="Cape Karoo">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Cape Karoo Guesthouse</h6><small class="text-muted">Beaufort West</small></div>
+                            <span class="rating-box">8.9</span>
+                        </div>
+                        <p class="mt-2 small">Authentic Karoo experience with world-class stars.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 980</span>
+                        </div>
+                        <a href="cape-karoo-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: Nature & Countryside -->
+        <h3 class="category-header">Nature, Karoo & Countryside</h3>
+        <div class="row g-4">
+            <!-- 10. River Bend Cottages -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <span class="badge-type">Cottage</span>
+                        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=400" alt="River Bend">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">River Bend Cottages</h6><small class="text-muted">Graaff-Reinet</small></div>
+                            <span class="rating-box">9.4</span>
+                        </div>
+                        <p class="mt-2 small">Peaceful self-catering cottages in the Camdeboo.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 850</span>
+                        </div>
+                        <a href="river-bend-cottages.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 11. Bethulie Guest Farm -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400" alt="Bethulie Farm">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">The Bethulie Guest Farm</h6><small class="text-muted">Free State</small></div>
+                            <span class="rating-box">9.2</span>
+                        </div>
+                        <p class="mt-2 small">Farm-style retreat with beautiful scenic surroundings.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 1,050</span>
+                        </div>
+                        <a href="bethulie-guest-farm.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 12. Kalahari Guest House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=400" alt="Kalahari">
+                    </div>
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Kalahari Guest House</h6><small class="text-muted">Northern Cape</small></div>
+                            <span class="rating-box">8.7</span>
+                        </div>
+                        <p class="mt-2 small">Quiet desert-style escape, highly rated for peace.</p>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="price-tag">ZAR 1,150</span>
+                        </div>
+                        <a href="kalahari-guesthouse.html" class="btn-availability">See availability</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY: Others & Bonus -->
+        <h3 class="category-header">Other Notable Favourites & Heritage</h3>
+        <div class="row g-4">
+            <!-- 13. Gabbys Cottage -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Gabbys Cottage</h6><small class="text-muted">Bloemfontein</small></div>
+                            <span class="rating-box">9.6</span>
+                        </div>
+                        <p class="mt-2 small">Very highly rated, cozy stay in the City of Roses.</p>
+                        <a href="gabbys-cottage-bloem.html" class="btn-availability mt-3">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 14. Africa House -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Africa House</h6><small class="text-muted">Centurion</small></div>
+                            <span class="rating-box">8.6</span>
+                        </div>
+                        <p class="mt-2 small">Comfortable and reliable business or leisure option.</p>
+                        <a href="africa-house-centurion.html" class="btn-availability mt-3">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 15. Windmill On Vaal -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card">
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0">Windmill On Vaal</h6><small class="text-muted">Vaal River</small></div>
+                            <span class="rating-box">4.8/5</span>
+                        </div>
+                        <p class="mt-2 small">Unique riverside Airbnb-style home with great views.</p>
+                        <a href="windmill-on-vaal-airbnb.html" class="btn-availability mt-3">See availability</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 16. Satyagraha House (Bonus) -->
+            <div class="col-md-4 col-lg-3">
+                <div class="property-card border-success" style="border-width: 2px;">
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div><h6 class="mb-0 text-success">Satyagraha House</h6><small class="text-muted">Orchards, JHB</small></div>
+                            <span class="rating-box bg-success">9.7</span>
+                        </div>
+                        <p class="mt-2 small"><strong>Heritage Stay:</strong> Gandhi's former home, now a boutique stay.</p>
+                        <a href="satyagraha-house-heritage.html" class="btn-availability bg-success">See availability</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Footer -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h2 class="mb-4" style="color:var(--primary-green)">SafariStay<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                    <div class="mt-4">
+                        <h6>Subscribe to our newsletter</h6>
+                        <form action="thanks.html" class="d-flex gap-2">
+                            <input type="email" class="form-control" placeholder="Email address" required>
+                            <button type="submit" class="btn btn-green">Join</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="partner-help.html">Partner Help</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="genius.html">Genius Loyalty</a></li>
+                        <li><a href="articles.html">Travel Articles</a></li>
+                        <li><a href="deals.html">Holiday Deals</a></li>
+                        <li><a href="safari-packages.html">Safari Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col">
+                    <h4>Mzansi Secure Payments</h4>
+                    <p class="small text-muted">We accept all major South African payment methods.</p>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
+                        <span class="fs-6 badge bg-light text-dark align-middle">PayFast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0">&copy; 1996–2026 SafariStay.co.za™. All rights reserved. Your Premier South African Travel Partner.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
