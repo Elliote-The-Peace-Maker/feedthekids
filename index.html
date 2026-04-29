@@ -24,7 +24,7 @@
             --text-muted: #7f8c8d;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; overflow-x: hidden; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
         h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
         /* Topbar */
@@ -32,36 +32,32 @@
         .topbar a { color: white; text-decoration: none; margin-left: 15px; }
 
         /* Header/Nav */
-        .navbar { background: var(--navy-blue) !important; padding: 10px 0; }
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
         .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
         .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
         
         /* Hero Carousel & Search */
         .hero-container { position: relative; }
-        .carousel-item { height: 60vh; min-height: 400px; }
+        .carousel-item { height: 70vh; min-height: 500px; }
         .carousel-item img { object-fit: cover; height: 100%; filter: brightness(0.6); }
-        
-        /* Responsive Caption */
-        .carousel-caption { bottom: 35%; text-align: left; left: 5%; right: 5%; }
-        .carousel-caption h1 { font-size: 2.5rem; }
+        .carousel-caption { bottom: 40%; text-align: left; left: 10%; right: 10%; }
 
-        /* Responsive Search Engine */
         .search-engine-wrapper {
             position: absolute;
-            bottom: -50px;
+            bottom: -40px;
             left: 50%;
             transform: translateX(-50%);
-            width: 95%;
+            width: 90%;
             max-width: 1100px;
             z-index: 100;
         }
         .search-engine {
             background: var(--accent-gold);
-            padding: 8px;
+            padding: 4px;
             border-radius: 8px;
             display: grid;
             grid-template-columns: 3fr 2fr 2fr 1fr;
-            gap: 8px;
+            gap: 4px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .search-input-group { background: white; padding: 12px; border-radius: 4px; display: flex; align-items: center; }
@@ -69,93 +65,72 @@
         .search-input-group input { border: none; outline: none; width: 100%; font-size: 14px; }
 
         /* Value Props */
-        .value-props { padding: 100px 0 40px; background: #fff; }
-        .prop-card { display: flex; align-items: center; gap: 15px; padding: 10px; margin-bottom: 15px; }
-        .prop-icon { background: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 50%; color: var(--primary-green); flex-shrink: 0; }
+        .value-props { padding: 80px 0 40px; background: #fff; }
+        .prop-card { display: flex; align-items: center; gap: 15px; padding: 15px; }
+        .prop-icon { background: rgba(40, 167, 69, 0.1); padding: 15px; border-radius: 50%; color: var(--primary-green); }
 
         /* General Styling */
-        .section-padding { padding: 50px 0; }
+        .section-padding { padding: 60px 0; }
         .btn-green { background: var(--primary-green); color: white; border: none; font-weight: bold; padding: 10px 25px; border-radius: 4px; transition: 0.3s; text-decoration: none; display: inline-block; }
         .btn-green:hover { background: var(--dark-green); color: white; }
         
-        /* Property Cards */
+        /* Property Cards (STA Travel Style) */
         .property-card { border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; transition: 0.3s; height: 100%; }
+        .property-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .rating-box { background: var(--navy-blue); color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 14px; }
         .badge-genius { background: #003580; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
 
-        /* Mobile Adjustments (Media Queries) */
-        @media (max-width: 991px) {
-            .search-engine {
-                grid-template-columns: 1fr; /* Stack search inputs vertically on tablets/phones */
-                bottom: -150px;
-            }
-            .search-engine-wrapper {
-                position: relative;
-                bottom: 0;
-                transform: none;
-                left: 0;
-                width: 100%;
-                padding: 20px;
-                background: var(--accent-gold);
-            }
-            .value-props { padding: 40px 0; }
-            .carousel-item { height: 40vh; min-height: 300px; }
-            .carousel-caption h1 { font-size: 1.8rem; }
-            .carousel-caption p { font-size: 1rem; }
-            .navbar-nav { padding-top: 20px; }
-            .nav-item .btn { width: 100%; margin-bottom: 10px; }
-        }
+        /* Heading Redirect Styles */
+        .redirect-heading { text-decoration: none; color: inherit; transition: 0.2s; }
+        .redirect-heading:hover { color: var(--primary-green); }
 
-        @media (max-width: 576px) {
-            .carousel-caption { bottom: 20%; }
-            .section-padding { padding: 30px 0; }
-        }
-
-        /* Footer Responsive */
+        /* Footer (Mega Style) */
         footer { background: #00224f; color: white; padding-top: 50px; }
         .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
         .footer-col ul { list-style: none; padding: 0; }
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
+        .footer-col ul li a:hover { color: var(--primary-green); }
         .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
     </style>
 </head>
 <body>
 
-    <!-- Topbar (Hidden on mobile for cleaner look) -->
+    <!-- Topbar -->
     <div class="topbar d-none d-lg-block">
         <div class="container d-flex justify-content-between">
             <div>
-                <span><i class="fas fa-phone-alt me-2"></i>+27 75 104 9048</span>
+                <span><i class="fas fa-phone-alt me-2"></i>+27</span>
                 <span class="ms-4"><i class="fas fa-envelope me-2"></i>info@STA Travel.co.za</span>
             </div>
             <div>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/27685994478"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <span style="color: var(--primary-green);">STA Travel</span>.co.za
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Cars</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="accommodation/stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flights/Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars/cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accommodation/packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a href="#" class="btn btn-outline-light btn-sm mt-lg-1">List Property</a>
+                        <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a href="#" class="btn btn-green btn-sm mt-lg-1">Login</a>
+                        <a href="login.html" class="btn btn-green btn-sm mt-1"></a>
                     </li>
                 </ul>
             </div>
@@ -167,16 +142,16 @@
         <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="South Africa Safari">
+                    <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=1920&q=80" class="d-block w-100" alt="South Africa Safari">
                     <div class="carousel-caption">
-                        <h1 class="">Find your next stay in Mzansi</h1>
-                        <p class="lead d-none d-md-block">Search deals on hotels, homes, and wild adventures...</p>
+                        <h1 class="display-3">Find your next stay in Mzansi</h1>
+                        <p class="lead">Search deals on hotels, homes, and wild adventures...</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Integrated Search Bar (Stays blocky on mobile) -->
+        <!-- Integrated Search Bar -->
         <div class="search-engine-wrapper">
             <div class="search-engine">
                 <div class="search-input-group">
@@ -185,13 +160,13 @@
                 </div>
                 <div class="search-input-group">
                     <i class="fas fa-calendar"></i>
-                    <input type="text" placeholder="Dates">
+                    <input type="text" placeholder="Check-in — Check-out">
                 </div>
                 <div class="search-input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Guests" readonly>
+                    <input type="text" placeholder="2 adults · 1 room" readonly>
                 </div>
-                <button class="btn btn-dark fw-bold">SEARCH</button>
+                <a href="search-results.html" class="btn btn-dark w-100 fw-bold d-flex align-items-center justify-content-center">SEARCH</a>
             </div>
         </div>
     </div>
@@ -199,29 +174,29 @@
     <!-- Value Props Section -->
     <section class="value-props">
         <div class="container">
-            <div class="row g-2">
-                <div class="col-6 col-lg-3">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
                     <div class="prop-card">
-                        <div class="prop-icon d-none d-sm-block"><i class="fas fa-shield-alt"></i></div>
-                        <div><h6 class="mb-0 small fw-bold">Trusted</h6><small class="text-muted">Verified Reviews</small></div>
+                        <div class="prop-icon"><i class="fas fa-shield-alt fa-lg"></i></div>
+                        <div><h6 class="mb-0">Trusted Reviews</h6><small class="text-muted">Verified SA guests</small></div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="prop-card">
-                        <div class="prop-icon d-none d-sm-block"><i class="fas fa-bolt"></i></div>
-                        <div><h6 class="mb-0 small fw-bold">Power On</h6><small class="text-muted">Backup Power</small></div>
+                        <div class="prop-icon"><i class="fas fa-bolt fa-lg"></i></div>
+                        <div><h6 class="mb-0">Load-Shedding Ready</h6><small class="text-muted">Backup power filters</small></div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="prop-card">
-                        <div class="prop-icon d-none d-sm-block"><i class="fas fa-headset"></i></div>
-                        <div><h6 class="mb-0 small fw-bold">24/7 Support</h6><small class="text-muted">Local Help</small></div>
+                        <div class="prop-icon"><i class="fas fa-headset fa-lg"></i></div>
+                        <div><h6 class="mb-0">Local Support</h6><small class="text-muted">24/7 ZAR Assistance</small></div>
                     </div>
                 </div>
-                <div class="col-6 col-lg-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="prop-card">
-                        <div class="prop-icon d-none d-sm-block"><i class="fas fa-leaf"></i></div>
-                        <div><h6 class="mb-0 small fw-bold">Eco Stays</h6><small class="text-muted">Sustainable</small></div>
+                        <div class="prop-icon"><i class="fas fa-leaf fa-lg"></i></div>
+                        <div><h6 class="mb-0">Sustainable Travel</h6><small class="text-muted">Eco-friendly stays</small></div>
                     </div>
                 </div>
             </div>
@@ -232,107 +207,203 @@
     <section class="section-padding bg-light">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-5 mb-4 mb-lg-0 text-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
                     <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded shadow" alt="About South Africa">
                 </div>
                 <div class="col-lg-7 ps-lg-5">
-                    <h5 class="text-primary text-uppercase small fw-bold">About Us</h5>
-                    <h2 class="mb-3">Welcome to <span style="color:var(--primary-green)">STA Travel</span></h2>
-                    <p>We are the premier tourism agency for South African adventures. From the bushveld to the beach, we take you there.</p>
-                    <div class="row g-2 mb-4">
-                        <div class="col-6"><i class="fa fa-check text-success me-2"></i>Big 5 Safaris</div>
-                        <div class="col-6"><i class="fa fa-check text-success me-2"></i>Cape Town Tours</div>
-                        <div class="col-6"><i class="fa fa-check text-success me-2"></i>Wine Tasting</div>
-                        <div class="col-6"><i class="fa fa-check text-success me-2"></i>SATSA Accredited</div>
+                    <h5 class="text-primary text-uppercase">About Us</h5>
+                    <h2 class="mb-4">Welcome to <span style="color:var(--primary-green)">STA Travel</span></h2>
+                    <p>We are the premier tourism agency for South African adventures. From the bushveld to the beach, we take you there. We specialize in blending luxury accommodation with authentic local experiences.</p>
+                    <div class="row g-3">
+                        <div class="col-sm-6"><i class="fa fa-check text-success me-2"></i>Big 5 Safaris</div>
+                        <div class="col-sm-6"><i class="fa fa-check text-success me-2"></i>Cape Town Tours</div>
+                        <div class="col-sm-6"><i class="fa fa-check text-success me-2"></i>Wine Tasting</div>
+                        <div class="col-sm-6"><i class="fa fa-check text-success me-2"></i>SATSA Accredited</div>
                     </div>
-                    <a href="#" class="btn btn-green w-100 w-md-auto">Read More About Mzansi</a>
+                    <a href="about-mzansi.html" class="btn btn-green mt-4">Read More About Mzansi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exclusive Features -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="mb-0">Exclusive Bus & Boat Tours</h2>
+                <p class="text-muted">Unique ways to see our beautiful country</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80" class="img-fluid h-100" style="object-fit:cover" alt="City Bus">
+                            </div>
+                            <div class="col-md-7 p-4">
+                                <h4 class="text-success">City Sightseeing</h4>
+                                <p>Hop-on Hop-off double-decker bus tours in Cape Town and Joburg.</p>
+                                <a href="bus/book-bus.html" class="btn btn-outline-dark btn-sm rounded-pill">Book Bus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" class="img-fluid h-100" style="object-fit:cover" alt="Boat Cruise">
+                            </div>
+                            <div class="col-md-7 p-4">
+                                <h4 class="text-success">Sunset Cruises</h4>
+                                <p>Set sail from the V&A Waterfront or Durban Harbor at dusk.</p>
+                                <a href="ship/book-cruise.html" class="btn btn-outline-dark btn-sm rounded-pill">Book Cruise</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Properties / Stays -->
-    <section class="section-padding">
+    <section class="section-padding bg-light">
         <div class="container">
-            <h3 class="mb-4 fs-4">Homes Guests Love</h3>
-            <div class="row g-3">
-                <!-- Property Card 1 -->
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="property-card">
+            <h3 class="mb-4">
+                <a href="accommodation/homesguestslove.html" class="redirect-heading">Homes Guests Love in South Africa <i class="fas fa-chevron-right ms-2" style="font-size: 18px;"></i></a>
+            </h3>
+            <div class="row g-4">
+                <!-- Property Card 1: Cape Town -->
+                <div class="col-md-3">
+                    <div class="property-card bg-white">
                         <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:180px; object-fit:cover;" alt="Camps Bay">
                         <div class="p-3">
                             <div class="d-flex justify-content-between">
-                                <h6 class="mb-1 text-truncate">Camps Bay Retreat</h6>
+                                <h6 class="mb-1">Camps Bay Retreat</h6>
                                 <span class="rating-box">9.4</span>
                             </div>
-                            <p class="text-muted small mb-2">Cape Town • Beachfront</p>
-                            <span class="badge-genius">Genius</span>
-                            <div class="mt-3">
+                            <p class="text-muted small mb-2">Cape Town • 2.5km from center</p>
+                            <span class="badge-genius"><i class="fas fa-lightbulb"></i> Genius</span>
+                            <div class="mt-3 text-end">
+                                <p class="mb-0 text-danger text-decoration-line-through small">ZAR 4,200</p>
                                 <h5 class="mb-0 fw-bold">ZAR 3,550</h5>
-                                <a href="#" class="btn btn-green btn-sm w-100 mt-2">View Property</a>
+                                <a href="property-details-1.html" class="btn btn-green btn-sm w-100 mt-2">See Availability</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Card 2 -->
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="property-card">
-                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:180px; object-fit:cover;" alt="Durban">
+
+                <!-- Property Card 2: Durban/Umhlanga -->
+                <div class="col-md-3">
+                    <div class="property-card bg-white">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:180px; object-fit:cover;" alt="The Oyster Box">
                         <div class="p-3">
                             <div class="d-flex justify-content-between">
-                                <h6 class="mb-1 text-truncate">The Oyster Box</h6>
+                                <h6 class="mb-1">The Oyster Box</h6>
                                 <span class="rating-box">9.6</span>
                             </div>
-                            <p class="text-muted small mb-2">Umhlanga • Durban</p>
-                            <span class="badge-genius">Genius</span>
-                            <div class="mt-3">
+                            <p class="text-muted small mb-2">Umhlanga • Beachfront</p>
+                            <span class="badge-genius"><i class="fas fa-lightbulb"></i> Genius</span>
+                            <div class="mt-3 text-end">
+                                <p class="mb-0 text-muted small">&nbsp;</p> <!-- Spacer -->
                                 <h5 class="mb-0 fw-bold">ZAR 4,800</h5>
-                                <a href="#" class="btn btn-green btn-sm w-100 mt-2">View Property</a>
+                                <a href="property-details-2.html" class="btn btn-green btn-sm w-100 mt-2">See Availability</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Card 3 & 4 would follow same pattern -->
+
+                <!-- Property Card 3: Winelands -->
+                <div class="col-md-3">
+                    <div class="property-card bg-white">
+                        <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:180px; object-fit:cover;" alt="Stellenbosch Estate">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">Lanzerac Wine Estate</h6>
+                                <span class="rating-box">9.2</span>
+                            </div>
+                            <p class="text-muted small mb-2">Stellenbosch • Winelands</p>
+                            <span class="text-success small fw-bold"><i class="fas fa-leaf"></i> Travel Sustainable</span>
+                            <div class="mt-3 text-end">
+                                <p class="mb-0 text-danger text-decoration-line-through small">ZAR 6,100</p>
+                                <h5 class="mb-0 fw-bold">ZAR 5,400</h5>
+                                <a href="property-details-3.html" class="btn btn-green btn-sm w-100 mt-2">See Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 4: Kruger Park -->
+                <div class="col-md-3">
+                    <div class="property-card bg-white">
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=400&q=80" class="w-100" style="height:180px; object-fit:cover;" alt="Kruger Lodge">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-1">Kruger Gate Hotel</h6>
+                                <span class="rating-box">8.9</span>
+                            </div>
+                            <p class="text-muted small mb-2">Mpumalanga • 100m from gate</p>
+                            <span class="text-success small fw-bold"><i class="fas fa-leaf"></i> Travel Sustainable</span>
+                            <div class="mt-3 text-end">
+                                <p class="mb-0 text-muted small">&nbsp;</p> <!-- Spacer -->
+                                <h5 class="mb-0 fw-bold">ZAR 5,100</h5>
+								<a href="property-details-3.html" class="btn btn-green btn-sm w-100 mt-2">See Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="pt-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h3 class="mb-3" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h3>
-                    <p class="small">South Africa's premier booking platform for stays and adventures.</p>
+    <footer>
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h2 class="mb-4" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                    <div class="mt-4">
+                        <h6>Subscribe to our newsletter</h6>
+                        <form action="thanks.html" class="d-flex gap-2">
+                            <input type="email" class="form-control" placeholder="Email address" required>
+                            <button type="submit" class="btn btn-green">Join</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-6 col-lg-2">
+                <div class="col-lg-2 col-6 footer-col">
                     <h4>Support</h4>
-                    <ul class="small">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Safety</a></li>
-                        <li><a href="#">Cancellation</a></li>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="partner-help.html">Partner Help</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
                     </ul>
                 </div>
-                <div class="col-6 col-lg-2">
+                <div class="col-lg-2 col-6 footer-col">
                     <h4>Discover</h4>
-                    <ul class="small">
-                        <li><a href="#">Safaris</a></li>
-                        <li><a href="#">Deals</a></li>
-                        <li><a href="#">Loyalty</a></li>
+                    <ul>
+                        <li><a href="genius.html">Genius Loyalty</a></li>
+                        <li><a href="articles.html">Travel Articles</a></li>
+                        <li><a href="deals.html">Holiday Deals</a></li>
+                        <li><a href="safari-packages.html">Safari Packages</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4">
-                    <h4>Newsletter</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Email">
-                        <button class="btn btn-green">Join</button>
+                <div class="col-lg-4 footer-col">
+                    <h4>Mzansi Secure Payments</h4>
+                    <p>We accept all major South African payment methods.</p>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
+                        <span class="fs-6 badge bg-light text-dark align-middle">PayFast</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom text-center mt-5">
+        <div class="footer-bottom text-center">
             <div class="container">
-                <p class="mb-0 small px-3">&copy; 2026 STA Travel.co.za™. All rights reserved.</p>
+                <p class="mb-0">&copy; 1996–2026 STA Travel.co.za™. All rights reserved. Your Premier South African Travel Partner.</p>
             </div>
         </div>
     </footer>

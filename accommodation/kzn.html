@@ -73,15 +73,27 @@
 </head>
 <body>
 
+     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><span style="color: var(--primary);">STA Travel</span>.co.za</a>
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">STA Travel</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="#">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
-                    <li class="nav-item ms-lg-3"><a href="my-bookings.html" class="nav-link text-warning fw-bold"><i class="fa fa-user-circle me-1"></i> My Bookings</a></li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="accommodation/stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="flights/Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars/cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accommodation/packages.html">Packages</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="login.html" class="btn btn-green btn-sm mt-1"></a>
+                    </li>
                 </ul>
             </div>
         </div>
