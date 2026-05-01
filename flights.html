@@ -3,54 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cheap Flights South Africa | STA Travel.co.za</title>
+    <title>Transport & Tours | STA Travel South Africa</title>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Frameworks -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
     <style>
-         :root {
+        :root {
             --navy-blue: #1e272e;
             --primary-green: #28a745;
             --dark-green: #1e7e34;
-            --accent-gold: #1e7e34;
+            --accent-gold: #fbc531;
             --light-bg: #f5f6fa;
             --border-color: #dcdde1;
             --text-main: #2f3640;
             --text-muted: #7f8c8d;
+            --ocean-blue: #0984e3;
+            --bus-red: #d63031;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
-        h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: var(--light-bg); }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
-        /* Topbar */
+        /* Navigation */
         .topbar { background: var(--navy-blue); color: white; font-size: 13px; padding: 8px 0; }
         .topbar a { color: white; text-decoration: none; margin-left: 15px; }
-
-        /* Header/Nav */
-        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
         .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
         .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
-        
-        /* Hero Carousel & Search */
-        .hero-container { position: relative; }
-        .carousel-item { height: 70vh; min-height: 500px; }
-        .carousel-item img { object-fit: cover; height: 100%; filter: brightness(0.6); }
-        .carousel-caption { bottom: 40%; text-align: left; left: 10%; right: 10%; } { background: var(--navy-blue) !important; padding: 15px 0; }
-        .hero-flights { 
 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover; padding: 100px 0; color: white; text-align: center;
+        /* Hero Section */
+        .transport-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center 70%;
+            padding: 100px 0 150px;
+            color: white;
+            text-align: center;
+            position: relative;
         }
-		
-        .flight-search-container { background: #fff; border-radius: 8px; padding: 30px; margin-top: -60px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); color: #333; }
-        .route-card { border: 1px solid #eee; padding: 15px; border-radius: 8px; transition: 0.3s; }
-        .route-card:hover { background: var(--light-bg); border-color: var(--primary-green); cursor: pointer; }
-        .btn-green { background: var(--primary-green); color: white; font-weight: 600; }
-        footer { background: #00224f; color: white; padding: 40px 0; margin-top: 60px; }
+
+        /* Transport Search Engine */
+        .search-engine-wrapper {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            z-index: 100;
+        }
+        .search-engine {
+            background: var(--accent-gold);
+            padding: 5px;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1.5fr 2fr 2fr 1.5fr 1.2fr;
+            gap: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .search-input-group { background: white; padding: 15px; border-radius: 8px; display: flex; align-items: center; position: relative;}
+        .search-input-group i { color: var(--primary-green); font-size: 1.2rem; margin-right: 12px; width: 20px; text-align: center;}
+        .search-input-group input, .search-input-group select { border: none; outline: none; width: 100%; font-size: 15px; font-weight: 600; color: var(--text-main); background: transparent; cursor: pointer;}
+        .search-input-group input::placeholder { color: var(--text-muted); font-weight: 400; }
+        
+        .btn-search-main { background: var(--primary-green); color: white; border: none; font-weight: 800; font-size: 1.1rem; border-radius: 8px; transition: 0.3s; }
+        .btn-search-main:hover { background: var(--navy-blue); }
+
+        /* Section Styling */
+        .section-title { border-left: 5px solid var(--primary-green); padding-left: 15px; margin-bottom: 20px; font-weight: 700; color: var(--navy-blue); }
+        
+        /* Tour & Transport Cards */
+        .tour-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
+        .tour-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: var(--primary-green);}
+        
+        .img-container { position: relative; height: 220px; background: #2f3640; overflow: hidden; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .tour-card:hover .img-container img { transform: scale(1.05); }
+        
+        .badge-top { position: absolute; top: 12px; left: 12px; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; color: white;}
+        .badge-bus { background: var(--bus-red); }
+        .badge-boat { background: var(--ocean-blue); }
+        .badge-transfer { background: var(--navy-blue); }
+        
+        .tour-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .tour-title { font-size: 19px; font-weight: 700; color: var(--navy-blue); margin-bottom: 5px; }
+        .tour-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; }
+        
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--navy-blue); display: block; }
+        .btn-book { background: white; color: var(--primary-green); border: 2px solid var(--primary-green); font-weight: 700; width: 100%; padding: 12px; border-radius: 6px; margin-top: auto; transition: 0.2s; text-decoration: none; text-align: center; display: block;}
+        .btn-book:hover { background: var(--primary-green); color: white; }
+
+        /* Intercity List Styling */
+        .route-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 15px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; transition: 0.3s; }
+        .route-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: var(--primary-green); }
+        .route-time { font-size: 1.2rem; font-weight: 700; color: var(--navy-blue); }
+        .route-city { font-weight: 600; color: var(--text-muted); }
+        .operator-logo { max-height: 30px; object-fit: contain; }
+
+        /* Footer */
+        footer { background: var(--navy-blue); color: white; padding-top: 60px; margin-top: 80px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; transition: 0.2s;}
+        .footer-col ul li a:hover { color: var(--primary-green); padding-left: 5px;}
+        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+
+        /* MOBILE FIXES */
+        @media (max-width: 992px) {
+            .transport-hero { padding: 80px 0 60px; }
+            .search-engine { grid-template-columns: 1fr; padding: 15px; gap: 10px; background: #f5f6fa; border: 1px solid var(--border-color); border-radius: 12px;}
+            .search-engine-wrapper { position: static; transform: none; width: 100%; margin-top: 20px; padding: 0 15px; }
+            .search-input-group { padding: 12px 15px; border: 1px solid var(--border-color); }
+            .btn-search-main { padding: 15px; }
+            .route-card { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .route-price-btn { width: 100%; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px; }
+        }
     </style>
 </head>
 <body>
-      <!-- Navigation -->
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -61,76 +139,351 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="stays.html">Stays</a></li>
                     <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
                     <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="transport-tours.html">Transport & Tours</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="hero-flights">
+    <!-- Hero Section -->
+    <header class="transport-hero">
         <div class="container">
-            <h1 class="display-4 fw-bold">Fly Across Mzansi</h1>
-            <p class="lead">Compare local airlines and save on your next trip</p>
+            <h1 class="display-4 fw-bold">Exclusive Bus & Boat Tours</h1>
+            <p class="lead fw-bold">Unique ways to see our beautiful country, plus national transport bookings.</p>
+        </div>
+
+        <!-- TRANSPORT SEARCH ENGINE -->
+        <div class="search-engine-wrapper">
+            <div class="search-engine">
+                <!-- Transport Type -->
+                <div class="search-input-group">
+                    <i class="fas fa-route"></i>
+                    <select id="transportType">
+                        <option value="intercity">Intercity Bus</option>
+                        <option value="shuttle">Airport Shuttle</option>
+                        <option value="sightseeing">City Sightseeing</option>
+                        <option value="cruise">Boat & Cruise</option>
+                    </select>
+                </div>
+
+                <!-- From Input -->
+                <div class="search-input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="searchFrom" placeholder="Leaving from..." list="saCities">
+                    <datalist id="saCities">
+                        <option value="Johannesburg (JNB)">
+                        <option value="Cape Town (CPT)">
+                        <option value="Durban (DUR)">
+                        <option value="Pretoria">
+                        <option value="Port Elizabeth (PLZ)">
+                        <option value="Bloemfontein">
+                    </datalist>
+                </div>
+                
+                <!-- To Input -->
+                <div class="search-input-group">
+                    <i class="fas fa-location-arrow"></i>
+                    <input type="text" id="searchTo" placeholder="Going to..." list="saCities">
+                </div>
+
+                <!-- Date -->
+                <div class="search-input-group">
+                    <i class="fas fa-calendar-day"></i>
+                    <input type="date" id="searchDate" title="Travel Date">
+                </div>
+
+                <button class="btn-search-main" onclick="alert('Searching live schedules and availability...')">SEARCH</button>
+            </div>
         </div>
     </header>
 
-    <main class="container">
-        <div class="flight-search-container">
-            <div class="row g-3">
-                <div class="col-md-3">
-                    <label class="small fw-bold">From</label>
-                    <input type="text" class="form-control" placeholder="Johannesburg (JNB)">
-                </div>
-                <div class="col-md-3">
-                    <label class="small fw-bold">To</label>
-                    <input type="text" class="form-control" placeholder="Cape Town (CPT)">
-                </div>
-                <div class="col-md-3">
-                    <label class="small fw-bold">Dates</label>
-                    <input type="text" class="form-control" placeholder="Departure - Return">
-                </div>
-                <div class="col-md-3 d-flex align-items-end">
-                    <button class="btn btn-dark w-100 fw-bold p-2">FIND FLIGHTS</button>
-                </div>
-            </div>
-        </div>
+    <main class="container mt-5 pt-lg-5">
 
-        <section class="mt-5">
-            <h4 class="mb-4">Popular Domestic Routes</h4>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="route-card d-flex justify-content-between align-items-center">
-                        <div><strong>JHB <i class="fas fa-plane text-success mx-2"></i> CPT</strong><br><small class="text-muted">Direct, 2h 10m</small></div>
-                        <div class="text-end"><small>From</small><br><span class="fw-bold text-success">ZAR 899</span></div>
+        <!-- SIGHTSEEING & CRUISES SECTION -->
+        <section class="mb-5 pb-4 mt-4">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--navy-blue);">Experience South Africa Differently</h2>
+                <p class="text-muted">Top-rated exclusive sightseeing tours and sunset cruises.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Cape Town Red Bus -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="tour-card">
+                        <div class="img-container">
+                            <span class="badge-top badge-bus"><i class="fas fa-bus-alt me-1"></i> City Sightseeing</span>
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=600&q=80" alt="Cape Town Red Bus">
+                        </div>
+                        <div class="tour-body">
+                            <h3 class="tour-title">Hop-On Hop-Off Cape Town</h3>
+                            <p class="tour-meta"><i class="fas fa-map-pin text-danger me-1"></i> V&A Waterfront, Camps Bay, Table Mountain</p>
+                            <p class="small text-muted mb-3">Explore the Mother City at your own pace with our iconic double-decker open-top buses.</p>
+                            <div class="mt-auto">
+                                <span class="small fw-bold text-muted text-uppercase">1-Day Ticket</span>
+                                <span class="price-tag mb-3">ZAR 290</span>
+                                <a href="#" class="btn-book">Book Tickets</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="route-card d-flex justify-content-between align-items-center">
-                        <div><strong>JHB <i class="fas fa-plane text-success mx-2"></i> DUR</strong><br><small class="text-muted">Direct, 1h 05m</small></div>
-                        <div class="text-end"><small>From</small><br><span class="fw-bold text-success">ZAR 649</span></div>
+
+                <!-- Joburg Red Bus -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="tour-card">
+                        <div class="img-container">
+                            <span class="badge-top badge-bus"><i class="fas fa-bus-alt me-1"></i> City Sightseeing</span>
+                            <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=600&q=80" alt="Joburg Bus">
+                        </div>
+                        <div class="tour-body">
+                            <h3 class="tour-title">Joburg Green Tour</h3>
+                            <p class="tour-meta"><i class="fas fa-map-pin text-danger me-1"></i> Rosebank, Zoo Lake, Constitution Hill</p>
+                            <p class="small text-muted mb-3">Discover the vibrant history and culture of Johannesburg's leafy suburbs and historical sites.</p>
+                            <div class="mt-auto">
+                                <span class="small fw-bold text-muted text-uppercase">1-Day Ticket</span>
+                                <span class="price-tag mb-3">ZAR 250</span>
+                                <a href="#" class="btn-book">Book Tickets</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="route-card d-flex justify-content-between align-items-center">
-                        <div><strong>CPT <i class="fas fa-plane text-success mx-2"></i> PLZ</strong><br><small class="text-muted">Direct, 1h 15m</small></div>
-                        <div class="text-end"><small>From</small><br><span class="fw-bold text-success">ZAR 950</span></div>
+
+                <!-- V&A Sunset Cruise -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="tour-card">
+                        <div class="img-container">
+                            <span class="badge-top badge-boat"><i class="fas fa-ship me-1"></i> Sunset Cruises</span>
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Cape Town Cruise">
+                        </div>
+                        <div class="tour-body">
+                            <h3 class="tour-title">Champagne Sunset Cruise</h3>
+                            <p class="tour-meta"><i class="fas fa-map-pin text-danger me-1"></i> V&A Waterfront, Cape Town</p>
+                            <p class="small text-muted mb-3">Set sail from the V&A Waterfront at dusk. Includes two complimentary glasses of sparkling wine.</p>
+                            <div class="mt-auto">
+                                <span class="small fw-bold text-muted text-uppercase">90 Min Cruise</span>
+                                <span class="price-tag mb-3">ZAR 450</span>
+                                <a href="#" class="btn-book">Book Cruise</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Durban Harbor Cruise -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="tour-card">
+                        <div class="img-container">
+                            <span class="badge-top badge-boat"><i class="fas fa-ship me-1"></i> Sunset Cruises</span>
+                            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Durban Cruise">
+                        </div>
+                        <div class="tour-body">
+                            <h3 class="tour-title">Durban Harbor Catamaran</h3>
+                            <p class="tour-meta"><i class="fas fa-map-pin text-danger me-1"></i> Wilson's Wharf, Durban</p>
+                            <p class="small text-muted mb-3">Experience the magic of the Durban skyline lighting up from the warm Indian Ocean at sunset.</p>
+                            <div class="mt-auto">
+                                <span class="small fw-bold text-muted text-uppercase">2 Hour Cruise</span>
+                                <span class="price-tag mb-3">ZAR 300</span>
+                                <a href="#" class="btn-book">Book Cruise</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <hr class="my-5">
+
+        <!-- INTERCITY & SHUTTLE TRANSPORT SECTION -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h3 class="section-title mb-1">National Transport & Shuttles</h3>
+                    <p class="text-muted m-0">Book luxury coaches and private transfers across South Africa.</p>
+                </div>
+                <div class="d-none d-md-block">
+                    <span class="badge bg-success px-3 py-2 fs-6"><i class="fas fa-check-circle me-1"></i> Instant Confirmation</span>
+                </div>
+            </div>
+
+            <!-- List of Transport Routes -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Route 1 -->
+                    <div class="route-card">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="text-center">
+                                <div class="route-time">08:00</div>
+                                <div class="route-city">Johannesburg</div>
+                            </div>
+                            <div class="text-center text-muted px-2" style="border-bottom: 2px dashed #ccc;">
+                                <i class="fas fa-bus text-success mb-1"></i><br>
+                                <small>7h 30m • Direct</small>
+                            </div>
+                            <div class="text-center">
+                                <div class="route-time">15:30</div>
+                                <div class="route-city">Durban</div>
+                            </div>
+                        </div>
+                        <div class="route-price-btn">
+                            <div class="text-md-end me-md-4">
+                                <span class="badge bg-light text-dark border mb-1">Luxury Coach</span>
+                                <h4 class="mb-0 fw-bold" style="color: var(--navy-blue);">ZAR 450</h4>
+                            </div>
+                            <button class="btn btn-green">Select Seat</button>
+                        </div>
+                    </div>
+
+                    <!-- Route 2 -->
+                    <div class="route-card">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="text-center">
+                                <div class="route-time">09:15</div>
+                                <div class="route-city">Cape Town</div>
+                            </div>
+                            <div class="text-center text-muted px-2" style="border-bottom: 2px dashed #ccc;">
+                                <i class="fas fa-shuttle-van text-success mb-1"></i><br>
+                                <small>6h 00m • Stops: 2</small>
+                            </div>
+                            <div class="text-center">
+                                <div class="route-time">15:15</div>
+                                <div class="route-city">George</div>
+                            </div>
+                        </div>
+                        <div class="route-price-btn">
+                            <div class="text-md-end me-md-4">
+                                <span class="badge bg-light text-dark border mb-1">Garden Route Shuttle</span>
+                                <h4 class="mb-0 fw-bold" style="color: var(--navy-blue);">ZAR 850</h4>
+                            </div>
+                            <button class="btn btn-green">Select Seat</button>
+                        </div>
+                    </div>
+
+                    <!-- Route 3 -->
+                    <div class="route-card">
+                        <div class="d-flex align-items-center gap-4">
+                            <div class="text-center">
+                                <div class="route-time">18:00</div>
+                                <div class="route-city">Pretoria</div>
+                            </div>
+                            <div class="text-center text-muted px-2" style="border-bottom: 2px dashed #ccc;">
+                                <i class="fas fa-bus text-success mb-1"></i><br>
+                                <small>18h 30m • Sleeper</small>
+                            </div>
+                            <div class="text-center">
+                                <div class="route-time">12:30 <small class="text-danger">+1d</small></div>
+                                <div class="route-city">Cape Town</div>
+                            </div>
+                        </div>
+                        <div class="route-price-btn">
+                            <div class="text-md-end me-md-4">
+                                <span class="badge bg-light text-dark border mb-1">Sleeper Coach</span>
+                                <h4 class="mb-0 fw-bold" style="color: var(--navy-blue);">ZAR 980</h4>
+                            </div>
+                            <button class="btn btn-green">Select Seat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Sidebar -->
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="bg-white p-4 border rounded" style="border-color: var(--border-color);">
+                        <h5 class="fw-bold mb-4">Why book transport with us?</h5>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <i class="fas fa-ticket-alt fs-4 text-success me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">E-Tickets Accepted</h6>
+                                <p class="small text-muted">No need to print. Just show the QR code on your phone to the driver.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start mb-3">
+                            <i class="fas fa-suitcase-rolling fs-4 text-success me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Generous Luggage</h6>
+                                <p class="small text-muted">Up to 2 pieces of checked luggage included on all long-distance coach routes.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-shield-alt fs-4 text-success me-3 mt-1"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Verified Operators</h6>
+                                <p class="small text-muted m-0">We only partner with top-rated, safety-certified transport companies.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="text-center">
-        <p>&copy; 197-2026 STA Travel.co.za - Fast & Secure Flight Bookings</p>
+    <!-- Footer -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="mb-3" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                    <div class="mt-4">
+                        <h6 class="mb-3">Subscribe to our newsletter</h6>
+                        <form action="thanks.html" class="d-flex gap-2">
+                            <input type="email" class="form-control border-0" placeholder="Email address" required>
+                            <button type="submit" class="btn btn-success fw-bold">Join</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="partner-help.html">Partner Help</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="genius.html">Genius Loyalty</a></li>
+                        <li><a href="articles.html">Travel Articles</a></li>
+                        <li><a href="deals.html">Holiday Deals</a></li>
+                        <li><a href="safari-packages.html">Safari Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col text-lg-end">
+                    <h4>Mzansi Secure Payments</h4>
+                    <p class="small text-muted mb-2">We accept all major South African payment methods.</p>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">Ozow</span>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">PayFast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0 text-white-50">&copy; 1976–2026 STA Travel South Africa. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Set default date to tomorrow for the transport search
+        window.onload = () => {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('searchDate').valueAsDate = tomorrow;
+        };
+    </script>
 </body>
 </html>

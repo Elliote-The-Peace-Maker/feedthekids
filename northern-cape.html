@@ -1,117 +1,101 @@
-<!-- Save as kzn-stays.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KZN Stays | Durban & Coastline Stays | STA Travel</title>
+    <title>Northern Cape Stays | 160 Verified Properties | STA Travel</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
     <style>
-        :root { --kzn-blue: #0984e3; --kzn-dark: #00224f; --accent: #00cec9; }
-        body { font-family: 'Open Sans', sans-serif; background-color: #f0f7ff; }
-        .navbar { background: var(--kzn-dark) !important; }
-        .hero-kzn { 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover; padding: 100px 0; color: white; text-align: center;
-        }
-        .beach-card { 
-            border: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.3s; background: white; height: 100%;
-        }
-        .beach-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(9, 132, 227, 0.2); }
-        .rating-badge { background: var(--kzn-blue); color: white; padding: 4px 10px; border-radius: 50px; font-weight: bold; }
-        .btn-kzn { background: var(--kzn-blue); color: white; border-radius: 50px; font-weight: 600; padding: 10px 25px; transition: 0.3s; text-decoration: none; display: inline-block; }
-        .btn-kzn:hover { background: var(--kzn-dark); color: white; }
-		:root {
+        :root {
             --navy-blue: #1e272e;
             --primary-green: #28a745;
             --dark-green: #1e7e34;
             --accent-gold: #fbc531;
+            --nc-orange: #d35400; /* Subtle desert tone for Northern Cape specific badges */
+            --light-bg: #f5f6fa;
             --border-color: #dcdde1;
+            --text-main: #2f3640;
+            --text-muted: #7f8c8d;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: #2f3640; }
-        h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: #f8f9fa; }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
         /* Navigation */
-        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
-        .nav-link { color: white !important; font-weight: 600; }
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+
+        /* Province Cross-Navigation */
+        .province-nav { overflow-x: auto; white-space: nowrap; padding: 15px 0; background: white; border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .province-link { display: inline-block; padding: 8px 20px; border: 1px solid var(--border-color); border-radius: 50px; text-decoration: none; color: var(--text-main); margin-right: 10px; font-weight: 600; transition: 0.3s; font-size: 13px; }
+        .province-link:hover, .province-link.active { border-color: var(--primary-green); color: var(--primary-green); background: rgba(40, 167, 69, 0.05); }
+        .province-link.active { pointer-events: none; }
+
+        /* Hero Region - Quiver Tree / Karoo Vibe */
+        .hero-nc { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1518182170546-076616fdcb14?auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover; background-position: center 70%; padding: 80px 0; color: white; 
+        }
+
+        /* Search Bar */
+        .filter-bar { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-top: -50px; position: relative; z-index: 10; border: 1px solid var(--border-color); }
+        .search-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .form-control, .form-select { font-weight: 600; color: var(--navy-blue); }
+
+        .dynamic-map { width: 100%; height: 250px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .dynamic-map iframe { width: 100%; height: 100%; border: none; }
+
+        /* Property Cards */
+        .stay-card { background: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; }
+        .stay-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: var(--primary-green); }
         
-        /* Property Card Styles */
-        .property-card { 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            overflow: hidden; 
-            transition: transform 0.3s, box-shadow 0.3s; 
-            height: 100%;
-            background: #fff;
-        }
-        .property-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-        }
-        .img-container { height: 200px; position: relative; }
+        .img-container { position: relative; height: 240px; background: #2f3640; }
+        .img-container .carousel, .img-container .carousel-inner, .img-container .carousel-item { height: 100%; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
         
-        .rating-box { 
-            background: var(--navy-blue); 
-            color: white; 
-            padding: 4px 8px; 
-            border-radius: 4px; 
-            font-weight: bold; 
-            font-size: 14px; 
-        }
-        .category-header {
-            border-left: 5px solid var(--primary-green);
-            padding-left: 15px;
-            margin: 40px 0 20px;
-            color: var(--navy-blue);
-        }
-        .btn-availability {
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-availability:hover {
-            background: var(--dark-green);
-            color: white;
-        }
-        .price-tag { color: var(--navy-blue); font-weight: 700; font-size: 1.2rem; }
-        .badge-type {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-        }     
-		/* Heading Redirect Styles */
-        .redirect-heading { text-decoration: none; color: inherit; transition: 0.2s; }
-        .redirect-heading:hover { color: var(--primary-green); }
+        .carousel-control-prev, .carousel-control-next { width: 40px; opacity: 0; transition: opacity 0.2s; background: rgba(0,0,0,0.3); }
+        .img-container:hover .carousel-control-prev, .img-container:hover .carousel-control-next { opacity: 1; }
+        
+        .badge-top { position: absolute; top: 12px; left: 12px; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; letter-spacing: 0.5px;}
+        .badge-power { background: var(--accent-gold); color: var(--navy-blue); }
+        .badge-deal { background: #d63031; color: white; }
+        .badge-karoo { background: var(--nc-orange); color: white; }
+        
+        .stay-body { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+        .rating-pill { background: var(--navy-blue); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .stay-title { font-size: 19px; font-weight: 700; color: var(--navy-blue); margin-bottom: 5px; line-height: 1.2; }
+        .stay-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; }
+        
+        .price-tag { font-size: 24px; font-weight: 800; color: var(--navy-blue); display: block; }
+        .amenities-list { font-size: 13px; color: #4a4a4a; margin-bottom: 15px; font-weight: 600; line-height: 1.8;}
+        .amenities-list i { color: var(--primary-green); width: 18px; text-align: center; margin-right: 5px;}
 
-        /* Footer (Mega Style) */
-        footer { background: #00224f; color: white; padding-top: 50px; }
-        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
-        .footer-col ul li a:hover { color: var(--primary-green); }
-        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+        .btn-book { background: var(--primary-green); color: white; border: none; font-weight: 700; width: 100%; padding: 14px; border-radius: 6px; margin-top: auto; transition: 0.2s; text-decoration: none; text-align: center; display: block; font-size: 15px;}
+        .btn-book:hover { background: var(--navy-blue); color: white; }
+
+        /* Sidebar Filters */
+        .sticky-sidebar { position: sticky; top: 100px; }
+        .filter-box { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
+        .filter-header { font-weight: 700; font-size: 15px; text-transform: uppercase; margin-bottom: 15px; display: block; border-left: 4px solid var(--primary-green); padding-left: 10px; color: var(--navy-blue); }
+        .loc-link { cursor: pointer; transition: 0.2s; font-weight: 600; color: #4a4a4a; padding: 8px 0; border-bottom: 1px solid #f8f9fa; display: block; text-decoration: none; }
+        .loc-link:hover, .loc-link.active { color: var(--primary-green); padding-left: 5px; }
+
+        /* Mobile specific fixes */
+        .mobile-filter-btn { background: var(--navy-blue); color: white; width: 100%; font-weight: bold; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+        
+        footer { background: var(--navy-blue); color: white; padding: 60px 0 30px; margin-top: 60px; }
+        .footer-links a { color: #bdc3c7; text-decoration: none; display: block; margin-bottom: 8px; font-size: 14px;}
+        .footer-links a:hover { color: var(--primary-green); }
     </style>
 </head>
 <body>
-      <!-- Navigation -->
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -122,155 +106,420 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="accommodation/stays.html">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="flights/Flights.html">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cars/cars.html">Car Rentals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="accommodation/packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <a href="login.html" class="btn btn-green btn-sm mt-1"></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="hero-kzn">
-        <h1 class="display-3 fw-bold">KwaZulu-Natal</h1>
-        <p class="lead">From the Golden Mile to the Luxury of Umhlanga</p>
-    </header>
-
-    <div class="container my-5">
-        <div class="row g-4">
-            <!-- Featured: The Oyster Box -->
-            <div class="col-md-6">
-                <div class="beach-card">
-                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" class="w-100" style="height:300px; object-fit:cover;">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="badge bg-warning text-dark">Iconic Luxury</span>
-                            <span class="rating-badge">9.8</span>
-                        </div>
-                        <h3>The Oyster Box</h3>
-                        <p class="text-muted">Umhlanga Rocks • 5-Star Hotel</p>
-                        <p>Experience South Africa's most cherished hotel, overlooking the Indian Ocean and the iconic lighthouse.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <h4 class="mb-0">ZAR 4,800 <small class="fs-6 text-muted">/pn</small></h4>
-                            <a href="#" class="btn-kzn">Book Luxury</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Boutique Selection Grid -->
-            <div class="col-md-6">
-                <div class="row g-3">
-                    <!-- Sanchia -->
-                    <div class="col-12">
-                        <div class="beach-card p-3 d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=150&q=80" class="rounded" style="width:100px; height:100px; object-fit:cover;">
-                            <div class="ms-3">
-                                <h5 class="mb-1">Sanchia Luxury Guesthouse</h5>
-                                <p class="small text-muted mb-2">Durban North • Ocean Views</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Cowrie Cove -->
-                    <div class="col-12">
-                        <div class="beach-card p-3 d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=150&q=80" class="rounded" style="width:100px; height:100px; object-fit:cover;">
-                            <div class="ms-3">
-                                <h5 class="mb-1">Cowrie Cove Guest House</h5>
-                                <p class="small text-muted mb-2">La Lucia • Beachfront</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Zimbali -->
-                    <div class="col-12">
-                        <div class="beach-card p-3 d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=150&q=80" class="rounded" style="width:100px; height:100px; object-fit:cover;">
-                            <div class="ms-3">
-                                <h5 class="mb-1">Zimbali Lodge</h5>
-                                <p class="small text-muted mb-2">Ballito • Eco Estate</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Comprehensive KZN Directory -->
-        <h4 class="mt-5 mb-4 border-bottom pb-2">Full Coastal Directory</h4>
-        <div class="row row-cols-2 row-cols-md-4 g-3">
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Ridgeview Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• African Sun Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Bentley Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Saint James on Venice</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Durban Manor Hotel</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Laletsa Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Blue Waters Hotel</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Teremok Marine</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Coastlands Umhlanga</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Endless Horizons</a></div>
+    <!-- Cross-Province Navigation (Mobile Scrollable) -->
+    <div class="province-nav">
+        <div class="container text-center text-lg-start">
+            <a href="gauteng.html" class="province-link">Gauteng</a>
+            <a href="western-cape.html" class="province-link">Western Cape</a>
+            <a href="kzn.html" class="province-link">KwaZulu-Natal</a>
+            <a href="eastern-cape.html" class="province-link">Eastern Cape</a>
+            <a href="limpopo.html" class="province-link">Limpopo</a>
+            <a href="northern-cape.html" class="province-link active">Northern Cape</a>
         </div>
     </div>
-	<!-- Footer -->
-    <footer>
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-4 mb-5">
-                    <h2 class="mb-4" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h2>
-                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
-                    <div class="mt-4">
-                        <h6>Subscribe to our newsletter</h6>
-                        <form action="thanks.html" class="d-flex gap-2">
-                            <input type="email" class="form-control" placeholder="Email address" required>
-                            <button type="submit" class="btn btn-green">Join</button>
-                        </form>
+
+    <!-- Hero Section -->
+    <header class="hero-nc text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Stays in the Northern Cape</h1>
+            <p class="lead">Discover <span id="totalPropCount">0</span> verified Desert Retreats, Star-Gazing Lodges, and Farm Stays</p>
+        </div>
+    </header>
+
+    <div class="container mb-5">
+        <!-- Search Bar -->
+        <div class="filter-bar">
+            <div class="row g-3 align-items-end">
+                <div class="col-lg-3 col-md-6">
+                    <span class="search-label">Location</span>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="fa fa-search text-muted"></i></span>
+                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="e.g. Upington..." onkeyup="filterData(true)">
                     </div>
                 </div>
-                <div class="col-lg-2 col-6 footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="customer-service.html">Customer Service</a></li>
-                        <li><a href="partner-help.html">Partner Help</a></li>
-                        <li><a href="safety.html">Safety Centre</a></li>
-                        <li><a href="cancel.html">Cancel Booking</a></li>
-                    </ul>
+                <div class="col-lg-2 col-6">
+                    <span class="search-label">Check-in</span>
+                    <input type="date" id="checkInDate" class="form-control" onchange="calculateNights()">
                 </div>
-                <div class="col-lg-2 col-6 footer-col">
-                    <h4>Discover</h4>
-                    <ul>
-                        <li><a href="genius.html">Genius Loyalty</a></li>
-                        <li><a href="articles.html">Travel Articles</a></li>
-                        <li><a href="deals.html">Holiday Deals</a></li>
-                        <li><a href="safari-packages.html">Safari Packages</a></li>
-                    </ul>
+                <div class="col-lg-2 col-6">
+                    <span class="search-label">Check-out</span>
+                    <input type="date" id="checkOutDate" class="form-control" onchange="calculateNights()">
                 </div>
-                <div class="col-lg-4 footer-col">
-                    <h4>Mzansi Secure Payments</h4>
-                    <p>We accept all major South African payment methods.</p>
-                    <div class="fs-2">
-                        <i class="fab fa-cc-visa me-2"></i>
-                        <i class="fab fa-cc-mastercard me-2"></i>
-                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
-                        <span class="fs-6 badge bg-light text-dark align-middle">PayFast</span>
-                    </div>
+                <div class="col-lg-3 col-md-6">
+                    <span class="search-label">Property Type</span>
+                    <select id="typeFilter" class="form-select" onchange="filterData(true)">
+                        <option value="All">All Properties</option>
+                        <option value="Guest House">Guest Houses</option>
+                        <option value="Farm Stay">Farm Stays & Lodges</option>
+                        <option value="Self-Catering">Self-Catering</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <span class="search-label">Sort By</span>
+                    <select id="sortFilter" class="form-select" onchange="filterData(true)">
+                        <option value="recommended">Recommended</option>
+                        <option value="price_asc">Lowest Price</option>
+                        <option value="rating_desc">Top Rated</option>
+                    </select>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom text-center">
-            <div class="container">
-                <p class="mb-0">&copy; 1979–2026 STA Travel.co.za™. All rights reserved. Your Premier South African Travel Partner.</p>
+
+        <div class="row mt-5">
+            <!-- Mobile Filter Toggle -->
+            <div class="col-12 d-lg-none">
+                <button class="btn mobile-filter-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarFilters" aria-expanded="false" aria-controls="sidebarFilters">
+                    <i class="fa fa-sliders-h me-2"></i> Show Filters & Map
+                </button>
+            </div>
+
+            <!-- Sidebar (Collapsible on mobile) -->
+            <div class="col-lg-3 collapse d-lg-block" id="sidebarFilters">
+                <div class="sticky-sidebar">
+                    <div class="filter-box">
+                        <span class="filter-header"><i class="fa fa-map-marker-alt me-2"></i> Area Quick-Jump</span>
+                        <div class="small" id="quickJumpList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="filter-box">
+                        <span class="filter-header"><i class="fa fa-concierge-bell me-2"></i> NC Amenities</span>
+                        <div class="form-check small mb-3">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="ac" id="chkAc" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkAc">Air Conditioning <i class="fa fa-snowflake text-info ms-1"></i></label>
+                        </div>
+                        <div class="form-check small mb-3">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="stars" id="chkStars" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkStars">Star Gazing Area <i class="fa fa-star text-warning ms-1"></i></label>
+                        </div>
+                        <div class="form-check small mb-3">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="pool" id="chkPool" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkPool">Swimming Pool</label>
+                        </div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="braai" id="chkBraai" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkBraai">Private Braai Area</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Results Column -->
+            <div class="col-lg-9">
+                <!-- Map dynamically updates based on region -->
+                <div id="mapView" class="dynamic-map d-none d-md-block">
+                    <iframe id="mapIframe" src="" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="alert alert-success border-0 py-3 px-4 small mb-4 fw-bold d-flex flex-column flex-md-row justify-content-between align-items-md-center" style="background: #f0f9f0; color: #008009; border-radius: 8px;">
+                    <span class="mb-2 mb-md-0"><i class="fa fa-info-circle me-2 fs-5 align-middle"></i> All taxes and local tourism levies are included.</span>
+                    <span id="rentalNotice" class="badge bg-success py-2 px-3 fs-6">Showing totals for 2 nights</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="h5 m-0 fw-bold" style="color: var(--navy-blue);"><span id="stayCount">0</span> properties found</h3>
+                </div>
+
+                <!-- Property Grid -->
+                <div class="row g-4" id="stayList"></div>
+                
+                <!-- Load More -->
+                <div class="text-center mt-5 mb-3" id="loadMoreContainer" style="display: none;">
+                    <button class="btn btn-outline-success px-5 py-2 fw-bold" onclick="loadMore()">Load 20 More Properties</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container pb-4">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="mb-3" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h3>
+                    <p class="text-white-50">Connecting you to the raw beauty of the Northern Cape and beyond. Authentic stays, guaranteed.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h5 class="mb-3">Explore</h5>
+                    <a href="stays.html">All Stays</a>
+                    <a href="Flights.html">Flights</a>
+                    <a href="cars.html">Car Rentals</a>
+                    <a href="packages.html">Packages</a>
+                </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h5 class="mb-3">Support</h5>
+                    <a href="#">Help Centre</a>
+                    <a href="#">Cancellation Options</a>
+                    <a href="#">Safety Information</a>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <h5 class="mb-3">Secure Payments</h5>
+                    <div class="fs-2 text-white-50">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">Ozow</span>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top border-secondary mt-5 pt-4 text-center text-white-50 small">
+                © 1976–2026 STA Travel South Africa. All Rights Reserved.
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ==========================================
+        // DATA GENERATION: NORTHERN CAPE
+        // ==========================================
+        const defaultSearchMap = "Northern Cape, South Africa";
+        
+        // Quotas adjusted for Northern Cape populations/tourism spots
+        const locationQuotas = { 
+            "Kimberley": 50, 
+            "Upington": 45, 
+            "Springbok": 30, 
+            "Sutherland": 20, 
+            "Calvinia": 15 
+        };
+
+        const propertyTypes = ["Guest House", "Farm Stay", "Self-Catering", "Guest House"];
+        const namePrefixes = ["Kalahari", "Karoo", "Desert", "Orange River", "Diamond", "Starry Night", "Oasis", "Quiver Tree"];
+        const nameSuffixes = ["Lodge", "Farm", "Guest House", "Retreat", "Cottages", "Manor"];
+        
+        // High quality Northern Cape style images (Desert, Karoo, Stars, Farm)
+        const imageLibrary = {
+            exterior: [
+                "https://images.unsplash.com/photo-1549412650-ef3bb78330c0?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80"
+            ],
+            interior: [
+                "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&w=600&q=80"
+            ],
+            scenery: [
+                "https://images.unsplash.com/photo-1505577058444-a3dab90d4253?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1518182170546-076616fdcb14?auto=format&fit=crop&w=600&q=80"
+            ]
+        };
+
+        let allStays = [];
+        let displayLimit = 20;
+        let activeLocation = "All";
+        let stayNights = 2;
+
+        window.onload = () => {
+            // Set default dates
+            const today = new Date();
+            const checkIn = new Date(today); checkIn.setDate(today.getDate() + 1);
+            const checkOut = new Date(today); checkOut.setDate(today.getDate() + 3); 
+            
+            document.getElementById('checkInDate').valueAsDate = checkIn;
+            document.getElementById('checkOutDate').valueAsDate = checkOut;
+            
+            initData();
+        };
+
+        function calculateNights() {
+            const inDate = new Date(document.getElementById('checkInDate').value);
+            const outDate = new Date(document.getElementById('checkOutDate').value);
+            if (outDate <= inDate) { 
+                outDate.setDate(inDate.getDate() + 1); 
+                document.getElementById('checkOutDate').valueAsDate = outDate; 
+            }
+            stayNights = Math.ceil(Math.abs(outDate - inDate) / (1000 * 60 * 60 * 24)); 
+            document.getElementById('rentalNotice').innerText = `Showing totals for ${stayNights} nights`;
+            filterData(false); 
+        }
+
+        function initData() {
+            let idCounter = 1;
+            let totalProps = 0;
+            
+            let quickJumpHTML = `<a class="loc-link active" id="loc-All" onclick="setLocFilter('All')">All NC Locations</a>`;
+
+            for (const [loc, count] of Object.entries(locationQuotas)) {
+                totalProps += count;
+                quickJumpHTML += `<a class="loc-link" id="loc-${loc.replace(/\s+/g, '')}" onclick="setLocFilter('${loc}')">${loc} (${count})</a>`;
+
+                for (let i = 0; i < count; i++) {
+                    const type = propertyTypes[Math.floor(Math.random() * propertyTypes.length)];
+                    const name = `${namePrefixes[Math.floor(Math.random() * namePrefixes.length)]} ${nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)]}`;
+                    
+                    const propertyImages = [
+                        imageLibrary.exterior[Math.floor(Math.random() * imageLibrary.exterior.length)],
+                        imageLibrary.interior[Math.floor(Math.random() * imageLibrary.interior.length)],
+                        imageLibrary.scenery[Math.floor(Math.random() * imageLibrary.scenery.length)]
+                    ];
+
+                    // Northern Cape is generally more affordable than WC/Gauteng
+                    const pricePerNight = Math.floor(Math.random() * 1200) + 600; 
+                    const rating = (Math.random() * (9.8 - 7.5) + 7.5).toFixed(1);
+                    
+                    // Logic for specific amenities
+                    const isSutherland = loc === "Sutherland";
+                    const isUpington = loc === "Upington";
+
+                    allStays.push({
+                        id: idCounter++, 
+                        name, 
+                        location: loc, 
+                        type, 
+                        pricePerNight, 
+                        rating, 
+                        images: propertyImages,
+                        amenities: { 
+                            ac: true, // Crucial in NC
+                            stars: isSutherland || Math.random() > 0.5, 
+                            pool: isUpington || Math.random() > 0.4, 
+                            braai: true 
+                        },
+                        badges: { 
+                            karoo: name.includes("Karoo") || loc === "Calvinia", 
+                            deal: Math.random() > 0.85 
+                        }
+                    });
+                }
+            }
+
+            document.getElementById('totalPropCount').innerText = totalProps;
+            document.getElementById('quickJumpList').innerHTML = quickJumpHTML;
+
+            allStays.sort(() => Math.random() - 0.5); // Shuffle initial view
+            updateMap(defaultSearchMap);
+            filterData(true);
+        }
+
+        function setLocFilter(loc) {
+            activeLocation = loc;
+            document.querySelectorAll('.loc-link').forEach(el => el.classList.remove('active'));
+            const safeLocId = loc === "All" ? "All" : loc.replace(/\s+/g, '');
+            document.getElementById(`loc-${safeLocId}`).classList.add('active');
+            
+            // Mobile: Close the offcanvas/collapse if open
+            const sidebar = document.getElementById('sidebarFilters');
+            if(sidebar.classList.contains('show') && window.innerWidth < 992) {
+                bootstrap.Collapse.getInstance(sidebar).hide();
+            }
+
+            const mapQuery = loc === "All" ? defaultSearchMap : `${loc}, Northern Cape, South Africa`;
+            updateMap(mapQuery);
+            filterData(true);
+        }
+
+        function updateMap(location) {
+            const encodedLoc = encodeURIComponent(location);
+            // Zoomed out slightly more for NC given vast distances
+            document.getElementById('mapIframe').src = `https://maps.google.com/maps?q=${encodedLoc}&t=&z=8&ie=UTF8&iwloc=&output=embed`;
+        }
+
+        function filterData(resetLimit = true) {
+            if (resetLimit) displayLimit = 20; 
+            const searchTxt = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const sortVal = document.getElementById('sortFilter').value;
+            const requiredAmenities = Array.from(document.querySelectorAll('.filter-amenity:checked')).map(cb => cb.value);
+
+            let filtered = allStays.filter(stay => {
+                if (activeLocation !== "All" && stay.location !== activeLocation) return false;
+                if (searchTxt && !stay.name.toLowerCase().includes(searchTxt) && !stay.location.toLowerCase().includes(searchTxt)) return false;
+                if (typeFilter !== "All" && stay.type !== typeFilter) return false;
+                for (let amenity of requiredAmenities) if (!stay.amenities[amenity]) return false;
+                return true;
+            });
+
+            if(sortVal === "price_asc") filtered.sort((a,b) => a.pricePerNight - b.pricePerNight);
+            else if (sortVal === "rating_desc") filtered.sort((a,b) => b.rating - a.rating);
+
+            document.getElementById('stayCount').innerText = filtered.length;
+            renderStays(filtered);
+        }
+
+        function renderStays(data) {
+            const list = document.getElementById('stayList');
+            const toShow = data.slice(0, displayLimit);
+
+            list.innerHTML = toShow.map(stay => {
+                const totalStayPrice = stay.pricePerNight * stayNights;
+
+                let badgeHTML = '';
+                if (stay.badges.deal) badgeHTML = `<span class="badge-top badge-deal"><i class="fa fa-fire me-1"></i> Special Rate</span>`;
+                else if (stay.badges.karoo) badgeHTML = `<span class="badge-top badge-karoo"><i class="fa fa-sun me-1"></i> Authentic Karoo</span>`;
+
+                let amenHTML = ``;
+                if(stay.amenities.ac) amenHTML += `<span><i class="fa fa-snowflake"></i> Air Con</span><br>`;
+                if(stay.amenities.stars) amenHTML += `<span><i class="fa fa-star"></i> Dark Sky / Star Gazing</span><br>`;
+                if(stay.amenities.braai) amenHTML += `<span><i class="fa fa-fire-alt"></i> Private Braai</span><br>`;
+                if(stay.amenities.pool) amenHTML += `<span><i class="fa fa-swimming-pool"></i> Pool</span><br>`;
+
+                let priceHTML = `ZAR ${totalStayPrice.toLocaleString()}`;
+                let ratingText = stay.rating >= 9.0 ? "Exceptional" : (stay.rating >= 8.0 ? "Very Good" : "Good");
+
+                const carouselId = `carousel-${stay.id}`;
+                const carouselItems = stay.images.map((imgUrl, index) => `
+                    <div class="carousel-item ${index === 0 ? 'active' : ''}"><img src="${imgUrl}" class="d-block w-100 stay-img"></div>
+                `).join('');
+
+                return `
+                <div class="col-md-6">
+                    <div class="stay-card">
+                        <div class="img-container">
+                            ${badgeHTML}
+                            <div id="${carouselId}" class="carousel slide h-100" data-bs-ride="false">
+                                <div class="carousel-inner h-100">${carouselItems}</div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                            </div>
+                        </div>
+                        <div class="stay-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h3 class="stay-title m-0 pe-2">${stay.name}</h3>
+                                <div class="text-end">
+                                    <span class="rating-pill">${stay.rating}</span>
+                                    <div class="small fw-bold mt-1 text-success" style="font-size: 11px;">${ratingText}</div>
+                                </div>
+                            </div>
+                            <div class="stay-meta"><i class="fa fa-map-marker-alt text-danger me-1"></i> ${stay.location} • ${stay.type}</div>
+                            
+                            <div class="amenities-list">${amenHTML}</div>
+                            
+                            <div class="mt-auto pt-3 border-top">
+                                <div class="d-flex justify-content-between align-items-end mb-3">
+                                    <div>
+                                        <div class="small text-muted fw-bold mb-1 text-uppercase" style="font-size: 10px; letter-spacing: 0.5px;">Total for ${stayNights} nights</div>
+                                        <span class="price-tag">${priceHTML}</span>
+                                    </div>
+                                    <div class="text-end text-muted small">
+                                        Includes Taxes
+                                    </div>
+                                </div>
+                                <button onclick="alert('Redirecting to checkout for ${stay.name} in ${stay.location}')" class="btn-book">Check Availability</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('loadMoreContainer').style.display = data.length > displayLimit ? 'block' : 'none';
+        }
+
+        function loadMore() { displayLimit += 20; filterData(false); }
+    </script>
 </body>
 </html>
