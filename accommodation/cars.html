@@ -132,7 +132,7 @@
             <div class="search-engine">
                 <div class="search-input-group d-block">
                     <span class="search-label">Location / Address</span>
-                    <input type="text" id="locInput" value="OR Tambo International Airport" placeholder="City, Airport, or Address" onkeyup="searchLoc(this.value)" autocomplete="off">
+                    <input type="text" id="locInput" value="OR Tambo International Airport, Johannesburg" placeholder="City, Airport, or Address" onkeyup="searchLoc(this.value)" autocomplete="off">
                     <div id="locDropdown" class="location-dropdown"></div>
                 </div>
                 <div class="search-input-group d-block">
@@ -248,15 +248,13 @@
         };
         const companies = Object.keys(companyLogos);
         
-        // EXPANDED BRANCH LOCATIONS
         const branchLocations = [
-            "OR Tambo International Airport", "Lanseria International Airport", "Sandton Gautrain Station", 
-            "Pretoria Station", "Menlyn Maine, Pretoria", "Centurion Gautrain Station", "Wonderboom Airport",
-            "Cape Town International Airport", "V&A Waterfront", "Cape Town Station", "Century City, Cape Town",
-            "King Shaka International Airport", "Umhlanga Ridge", "Durban Central",
-            "Chief Dawid Stuurman Int. Airport, Gqeberha", "Walmer, Gqeberha",
-            "Kruger Mpumalanga International Airport", "Nelspruit CBD",
-            "George Airport", "Bloemfontein Airport", "Kimberley Airport", "East London Airport"
+            "OR Tambo International Airport", "Lanseria International Airport", "Sandton Gautrain Station",
+            "Cape Town International Airport", "V&A Waterfront", 
+            "King Shaka International Airport", "Umhlanga Ridge",
+            "Chief Dawid Stuurman Int. Airport, Gqeberha",
+            "Kruger Mpumalanga International Airport",
+            "George Airport", "Bloemfontein Airport"
         ];
         
         let allCars = [];
@@ -266,8 +264,6 @@
         function searchLoc(query) {
             const drop = document.getElementById('locDropdown');
             const type = document.querySelector('input[name="serviceType"]:checked').value;
-            
-            // Allow them to type anything for delivery without autocomplete getting in the way
             if (type === 'Delivery') { drop.style.display = 'none'; return; }
             if (query.length < 2) { drop.style.display = 'none'; return; }
 
@@ -288,19 +284,14 @@
             if (!e.target.closest('.search-input-group')) { document.getElementById('locDropdown').style.display = 'none'; }
         });
 
-        // UPDATED MAP LOGIC FOR DELIVERY
         function updateServiceUI() {
             const type = document.querySelector('input[name="serviceType"]:checked').value;
             const locInput = document.getElementById('locInput');
             if (type === 'Delivery') {
-                locInput.placeholder = "Enter Address (e.g. 123 Vilakazi St, or Soshanguve)"; 
-                locInput.value = "";
-                document.getElementById('locDropdown').style.display = 'none'; 
-                // Show a generic zoomed out map of South Africa until they search
-                updateMap("South Africa"); 
+                locInput.placeholder = "Enter ANY South African Address (e.g. 123 Vilakazi St, Soweto)"; locInput.value = "";
+                document.getElementById('locDropdown').style.display = 'none'; document.getElementById('mapView').style.display = 'none';
             } else {
-                locInput.placeholder = "Search Branches & Airports"; 
-                locInput.value = "OR Tambo International Airport";
+                locInput.placeholder = "Search Branches & Airports"; locInput.value = "OR Tambo International Airport";
                 updateMap("OR Tambo International Airport");
             }
         }
@@ -308,19 +299,15 @@
         function triggerSearch() {
             const loc = document.getElementById('locInput').value;
             if (loc.trim() === "") { alert("Please enter a location first."); return; }
-            // This will now update the map for BOTH Branches and Delivery Addresses
-            updateMap(loc); 
-            filterData();
+            updateMap(loc); filterData();
         }
 
         function updateMap(location) {
             const mapContainer = document.getElementById('mapView');
             const mapIframe = document.getElementById('mapIframe');
             if(location && location.length > 3) {
-                // If it's just "South Africa", zoom out a bit more
-                const zoom = location === "South Africa" ? "6" : "14";
-                const query = encodeURIComponent(location + (location === "South Africa" ? "" : ", South Africa"));
-                mapIframe.src = `https://maps.google.com/maps?q=${query}&t=&z=${zoom}&ie=UTF8&iwloc=&output=embed`;
+                const query = encodeURIComponent(location + ", South Africa");
+                mapIframe.src = `https://maps.google.com/maps?q=${query}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
                 mapContainer.style.display = 'block';
             } else { mapContainer.style.display = 'none'; }
         }
@@ -332,8 +319,7 @@
             const pickup = new Date(today); pickup.setDate(today.getDate() + 1);
             const dropoff = new Date(today); dropoff.setDate(today.getDate() + 4);
             document.getElementById('pickupDate').valueAsDate = pickup; document.getElementById('dropoffDate').valueAsDate = dropoff;
-            initData(); 
-            updateMap(document.getElementById('locInput').value);
+            initData(); updateMap(document.getElementById('locInput').value);
         };
 
         function calculateDays() {
@@ -350,7 +336,13 @@
             filterData();
         }
 
+        // ==============================================================================
+        // MASTER IMAGE DICTIONARY
+        // These use exact Wikipedia Commons image paths. They will automatically load
+        // the correct real-world photo for every car you generate!
+        // ==============================================================================
         function initData() {
+
             const modelImages = {
                 "VW Polo Vivo": "https://commons.wikimedia.org/wiki/Special:FilePath/2018_Volkswagen_Polo_SE_TSI_1.0_Front.jpg?width=600",
                 "Toyota Starlet": "https://commons.wikimedia.org/wiki/Special:FilePath/2020_Toyota_Starlet_1.4_XR_Front.jpg?width=600",
@@ -391,6 +383,7 @@
 
             const cats = Object.keys(carModels);
             
+            // This builds all 130 cars and assigns the matching picture from the list above
             for (let i = 0; i < 130; i++) {
                 const cat = cats[Math.floor(Math.random() * cats.length)];
                 const modelArr = carModels[cat];
@@ -427,6 +420,7 @@
             filterData();
         }
 
+        // --- Filtering, Sorting, and Rendering ---
         function filterData() {
             const maxPrice = document.getElementById('priceRange').value;
             const searchModel = document.getElementById('carModelSearch').value.toLowerCase();
@@ -504,6 +498,7 @@
             }).slice(0, 50).join(''); 
         }
 
+        // --- Routing ---
         function goToDeal(name, price, company, cat, img, rating, ratingText, isGenius) {
             const loc = document.getElementById('locInput').value || "Location Pending";
             const pDate = document.getElementById('pickupDate').value;

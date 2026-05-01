@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eastern Cape Stays | 395 Verified Properties | STA Travel</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy: #1e272e; --primary: #28a745; --gold: #fbc531;
+            --text: #2f3640; --border: #dee2e6; --blue-link: #006ce4;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text); background-color: #f8f9fa; }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        .navbar { background: var(--navy) !important; padding: 15px 0; border-bottom: 3px solid var(--primary); }
+        /* Eastern Cape Hero: Features the Wild Coast / Hole in the Wall vibe */
+        .hero-ec { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; padding: 100px 0; color: white; }
+
+        .filter-bar { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-top: -50px; position: relative; z-index: 10; border: 1px solid var(--border); }
+        .search-label { font-size: 11px; font-weight: bold; color: #7f8c8d; text-transform: uppercase; margin-bottom: 2px; display: block; }
+        
+        .dynamic-map { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 25px; }
+        .dynamic-map iframe { width: 100%; height: 100%; border: none; }
+
+        .stay-card { background: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; }
+        .stay-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: var(--primary); }
+        
+        .img-container { position: relative; height: 230px; background: #2f3640; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .carousel-control-prev, .carousel-control-next { width: 40px; opacity: 0; transition: opacity 0.2s; background: rgba(0,0,0,0.3); }
+        .img-container:hover .carousel-control-prev, .img-container:hover .carousel-control-next { opacity: 1; }
+        
+        .badge-top { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; z-index: 10; }
+        .badge-wild { background: #e67e22; color: white; } /* Wild Coast Theme */
+        .badge-deal { background: #d63031; color: white; }
+        .badge-beach { background: #00a8ff; color: white; }
+        
+        .stay-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .rating-pill { background: var(--navy); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+        .stay-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+        
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--navy); display: block; }
+        .btn-book { background: var(--primary); color: white; border: none; font-weight: 700; width: 100%; padding: 12px; border-radius: 6px; margin-top: auto; text-decoration: none; text-align: center; display: block; transition: 0.2s; }
+        .btn-book:hover { background: var(--navy); color: white; }
+
+        .sticky-sidebar { position: sticky; top: 100px; }
+        .filter-box { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); }
+        .filter-header { font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 12px; display: block; border-left: 4px solid var(--primary); padding-left: 10px; }
+        .loc-link { cursor: pointer; transition: 0.2s; font-weight: 600; color: #4a4a4a; padding: 6px 0; display: block; text-decoration: none; font-size: 14px; }
+        .loc-link:hover, .loc-link.active { color: var(--primary); padding-left: 5px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">STA Travel<span class="text-success">.co.za</span></a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Wild Coast Tours</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-ec text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Stays in Eastern Cape</h1>
+            <p class="lead">From the rugged Wild Coast to the surfing mecca of J-Bay</p>
+        </div>
+    </header>
+
+    <div class="container mb-5">
+        <!-- Search Filter Bar -->
+        <div class="filter-bar">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <span class="search-label">Destination</span>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search Eastern Cape..." onkeyup="filterData(true)">
+                </div>
+                <div class="col-md-4">
+                    <span class="search-label">Property Type</span>
+                    <select id="typeFilter" class="form-select" onchange="filterData(true)">
+                        <option value="All">All Types</option>
+                        <option value="Guest House">Guest Houses</option>
+                        <option value="Resort">Resorts & Lodges</option>
+                        <option value="Hotel">Boutique Hotels</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <span class="search-label">Sort By</span>
+                    <select id="sortFilter" class="form-select" onchange="filterData(true)">
+                        <option value="recommended">Best Match</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="rating_desc">Highest Rated</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <!-- Sidebar -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-sidebar">
+                    <div class="filter-box">
+                        <span class="filter-header">Popular Regions</span>
+                        <div id="locationLinks">
+                            <!-- Links injected by JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="filter-box">
+                        <span class="filter-header">Eastern Cape Perks</span>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="ocean" id="chkOcean" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkOcean">Ocean View</label>
+                        </div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="game" id="chkGame" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkGame">Big 5 Nearby</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results -->
+            <div class="col-lg-9">
+                <div id="mapView" class="dynamic-map"><iframe id="mapIframe" src="" allowfullscreen="" loading="lazy"></iframe></div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="h5 m-0 fw-bold"><span id="stayCount">0</span> Properties in Eastern Cape</h3>
+                    <span id="rentalNotice" class="badge bg-light text-dark border p-2">Showing 2-night total</span>
+                </div>
+
+                <div class="row g-4" id="stayList"></div>
+                
+                <div class="text-center mt-5 mb-3" id="loadMoreContainer" style="display: none;">
+                    <button class="btn btn-outline-success px-5 fw-bold" onclick="loadMore()">View More Stays</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // --- 1. Data Definitions for Eastern Cape ---
+        const locationQuotas = { 
+            "Gqeberha (PE)": 142, 
+            "East London": 88, 
+            "Jeffreys Bay": 65, 
+            "Coffee Bay": 25, 
+            "Grahamstown": 40,
+            "Graaff-Reinet": 20,
+            "Hogsback": 15
+        };
+
+        const propertyTypes = ["Guest House", "Resort", "Hotel", "Self-Catering"];
+        const ecNames = {
+            prefix: ["Wild Coast", "Sunshine", "Ocean Breeze", "Karoo", "Amathole", "Blue Water", "Addo", "Mist Mountain", "Surfers"],
+            suffix: ["Lodge", "Manor", "Retreat", "Boutique Stay", "Backpackers", "Suites", "Inn"]
+        };
+
+        // Theme-based Image Engine (Different pictures for different vibes)
+        const imageLibrary = {
+            coastal: [ // PE, EL, J-Bay
+                "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=600&q=80"
+            ],
+            wild: [ // Coffee Bay
+                "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1505144808419-1957a94ca61e?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80"
+            ],
+            karoo: [ // Graaff-Reinet
+                "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1508615070457-7baeba4003ab?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=600&q=80"
+            ],
+            forest: [ // Hogsback, Grahamstown
+                "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=600&q=80",
+                "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&w=600&q=80"
+            ]
+        };
+
+        let allStays = [];
+        let displayLimit = 12;
+        let activeLocation = "All";
+        let stayNights = 2;
+
+        window.onload = () => {
+            initLocationMenu();
+            initData();
+            updateMap("Eastern Cape, South Africa");
+        };
+
+        function initLocationMenu() {
+            const container = document.getElementById('locationLinks');
+            let html = `<a class="loc-link active" id="loc-All" onclick="setLocFilter('All')">All Eastern Cape (395)</a>`;
+            for (const [loc, count] of Object.entries(locationQuotas)) {
+                html += `<a class="loc-link" id="loc-${loc}" onclick="setLocFilter('${loc}')">${loc} (${count})</a>`;
+            }
+            container.innerHTML = html;
+        }
+
+        // --- 2. Data Generation Logic ---
+        function initData() {
+            let idCounter = 1;
+            for (const [loc, count] of Object.entries(locationQuotas)) {
+                for (let i = 0; i < count; i++) {
+                    const type = propertyTypes[Math.floor(Math.random() * propertyTypes.length)];
+                    const name = `${ecNames.prefix[Math.floor(Math.random() * ecNames.prefix.length)]} ${ecNames.suffix[Math.floor(Math.random() * ecNames.suffix.length)]}`;
+                    
+                    // Logic to select unique images based on location name
+                    let category = "coastal";
+                    if(loc === "Coffee Bay") category = "wild";
+                    if(loc === "Graaff-Reinet") category = "karoo";
+                    if(loc === "Hogsback" || loc === "Grahamstown") category = "forest";
+
+                    const price = Math.floor(Math.random() * 2000) + 550;
+                    const rating = (Math.random() * (9.9 - 7.0) + 7.0).toFixed(1);
+
+                    allStays.push({
+                        id: idCounter++,
+                        name: name,
+                        location: loc,
+                        type: type,
+                        pricePerNight: price,
+                        rating: rating,
+                        category: category,
+                        images: [...imageLibrary[category]].sort(() => 0.5 - Math.random()), // Shuffled images
+                        amenities: { ocean: category === "coastal" || category === "wild", game: Math.random() > 0.7, solar: Math.random() > 0.4 },
+                        badges: { deal: Math.random() > 0.9, wild: category === "wild" }
+                    });
+                }
+            }
+            allStays.sort(() => Math.random() - 0.5);
+            filterData(true);
+        }
+
+        function setLocFilter(loc) {
+            activeLocation = loc;
+            document.querySelectorAll('.loc-link').forEach(el => el.classList.remove('active'));
+            document.getElementById(`loc-${loc}`).classList.add('active');
+            updateMap(loc === "All" ? "Eastern Cape" : loc + ", Eastern Cape");
+            filterData(true);
+        }
+
+        function updateMap(loc) {
+            document.getElementById('mapIframe').src = `http://googleusercontent.com/maps.google.com/maps?q=${encodeURIComponent(loc)}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
+        }
+
+        // --- 3. Filtering and Rendering ---
+        function filterData(resetLimit = true) {
+            if (resetLimit) displayLimit = 12;
+            
+            const searchTxt = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const sortVal = document.getElementById('sortFilter').value;
+            const needsOcean = document.getElementById('chkOcean').checked;
+            const needsGame = document.getElementById('chkGame').checked;
+
+            let filtered = allStays.filter(s => {
+                if (activeLocation !== "All" && s.location !== activeLocation) return false;
+                if (searchTxt && !s.name.toLowerCase().includes(searchTxt) && !s.location.toLowerCase().includes(searchTxt)) return false;
+                if (typeFilter !== "All" && s.type !== typeFilter) return false;
+                if (needsOcean && !s.amenities.ocean) return false;
+                if (needsGame && !s.amenities.game) return false;
+                return true;
+            });
+
+            if(sortVal === "price_asc") filtered.sort((a,b) => a.pricePerNight - b.pricePerNight);
+            else if(sortVal === "rating_desc") filtered.sort((a,b) => b.rating - a.rating);
+
+            document.getElementById('stayCount').innerText = filtered.length;
+            renderStays(filtered);
+        }
+
+        function renderStays(data) {
+            const list = document.getElementById('stayList');
+            const toShow = data.slice(0, displayLimit);
+
+            list.innerHTML = toShow.map(stay => {
+                const total = stay.pricePerNight * stayNights;
+                const carouselId = `carousel-${stay.id}`;
+                
+                let badge = '';
+                if(stay.badges.wild) badge = `<span class="badge-top badge-wild">Wild Coast Authentic</span>`;
+                else if(stay.badges.deal) badge = `<span class="badge-top badge-deal">Great Deal</span>`;
+                else if(stay.category === "coastal") badge = `<span class="badge-top badge-beach">Beach Front</span>`;
+
+                return `
+                <div class="col-md-6 col-xl-4">
+                    <div class="stay-card">
+                        <div class="img-container">
+                            ${badge}
+                            <div id="${carouselId}" class="carousel slide h-100" data-bs-interval="false">
+                                <div class="carousel-inner h-100">
+                                    ${stay.images.map((img, i) => `<div class="carousel-item h-100 ${i===0?'active':''}"><img src="${img}"></div>`).join('')}
+                                </div>
+                                <button class="carousel-control-prev" data-bs-target="#${carouselId}" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                                <button class="carousel-control-next" data-bs-target="#${carouselId}" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                            </div>
+                        </div>
+                        <div class="stay-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h3 class="stay-title m-0">${stay.name}</h3>
+                                <span class="rating-pill">${stay.rating}</span>
+                            </div>
+                            <div class="small text-muted mb-3"><i class="fa fa-map-marker-alt text-danger me-1"></i>${stay.location}</div>
+                            
+                            <div class="mb-3 small">
+                                ${stay.amenities.ocean ? '<span><i class="fa fa-tint text-primary me-1"></i>Sea View</span><br>' : ''}
+                                ${stay.amenities.game ? '<span><i class="fa fa-paw text-success me-1"></i>Game Drives</span><br>' : ''}
+                                <span><i class="fa fa-wifi text-muted me-1"></i>Fast WiFi Included</span>
+                            </div>
+
+                            <div class="mt-auto">
+                                <span class="text-muted small fw-bold">TOTAL FOR 2 NIGHTS</span>
+                                <span class="price-tag">ZAR ${total.toLocaleString()}</span>
+                                <a href="#" class="btn-book mt-2">Check Availability</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('loadMoreContainer').style.display = data.length > displayLimit ? 'block' : 'none';
+        }
+
+        function loadMore() {
+            displayLimit += 12;
+            filterData(false);
+        }
+    </script>
+</body>
+</html>
