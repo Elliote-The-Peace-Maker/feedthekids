@@ -3,77 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Western Cape Stays | Premium Properties | STA Travel</title>
+    <title>KZN Stays | 412 Verified Properties | STA Travel</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     
     <style>
         :root {
-            --navy: #1e272e; --primary: #28a745; --gold: #fbc531;
-            --text: #2f3640; --border: #dee2e6; --blue-link: #006ce4;
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #fbc531;
+            --light-bg: #f5f6fa;
+            --border-color: #dcdde1;
+            --text-main: #2f3640;
+            --text-muted: #7f8c8d;
+            --blue-link: #006ce4;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: var(--text); background-color: #f8f9fa; }
-        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
+        h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
-        .navbar { background: var(--navy) !important; padding: 15px 0; border-bottom: 3px solid var(--primary); }
+        /* Topbar */
+        .topbar { background: var(--navy-blue); color: white; font-size: 13px; padding: 8px 0; }
+        .topbar a { color: white; text-decoration: none; margin-left: 15px; }
+
+        /* Header/Nav */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
         
-        /* Hero specific to Western Cape */
-        .hero-region { 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=1920&q=80'); 
-            background-size: cover; background-position: center; padding: 80px 0; color: white; 
+        /* Hero Carousel & Search */
+        .hero-kzn { 
+            /* Beautiful coastal/beach background for KZN */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=1600&q=80'); 
+            background-size: cover; 
+            background-position: center 60%; 
+            padding: 80px 0; 
+            color: white; 
         }
 
         /* Search Bar */
-        .filter-bar { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-top: -50px; position: relative; z-index: 10; border: 1px solid var(--border); }
-        .search-label { font-size: 11px; font-weight: bold; color: #7f8c8d; text-transform: uppercase; margin-bottom: 2px; display: block; }
-        .form-control, .form-select { font-weight: 600; color: var(--navy); }
+        .filter-bar { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-top: -50px; position: relative; z-index: 10; border: 1px solid var(--border-color); }
+        .search-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px; display: block; }
+        .form-control, .form-select { font-weight: 600; color: var(--navy-blue); }
 
-        .dynamic-map { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .dynamic-map { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .dynamic-map iframe { width: 100%; height: 100%; border: none; }
 
         /* Cards & Carousels */
         .stay-card { background: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; }
-        .stay-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .stay-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: var(--primary-green); }
         
         .img-container { position: relative; height: 220px; background: #2f3640; }
         .img-container .carousel, .img-container .carousel-inner, .img-container .carousel-item { height: 100%; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
         
+        /* Carousel Controls */
         .carousel-control-prev, .carousel-control-next { width: 40px; opacity: 0; transition: opacity 0.2s; background: rgba(0,0,0,0.2); }
         .img-container:hover .carousel-control-prev, .img-container:hover .carousel-control-next { opacity: 1; }
         
         .badge-top { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
-        .badge-power { background: var(--gold); color: var(--navy); }
+        .badge-power { background: var(--accent-gold); color: var(--navy-blue); }
         .badge-deal { background: #d63031; color: white; }
         .badge-genius { background: var(--blue-link); color: white; }
         
         .stay-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .rating-pill { background: var(--navy); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; }
-        .stay-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-        .stay-meta { font-size: 13px; color: #7f8c8d; margin-bottom: 15px; font-weight: 600; }
+        .rating-pill { background: var(--navy-blue); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+        .stay-title { font-size: 18px; font-weight: 700; color: var(--navy-blue); margin-bottom: 5px; }
+        .stay-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; }
         
-        .price-tag { font-size: 22px; font-weight: 800; color: var(--navy); display: block; }
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--navy-blue); display: block; }
         .amenities-list { font-size: 12px; color: #4a4a4a; margin-bottom: 15px; font-weight: 600; }
-        .amenities-list i { color: var(--primary); width: 16px; }
+        .amenities-list i { color: var(--primary-green); width: 16px; }
 
-        .btn-book { background: var(--primary); color: white; border: none; font-weight: 700; width: 100%; padding: 12px; border-radius: 6px; margin-top: auto; transition: 0.2s; text-decoration: none; text-align: center; display: block;}
-        .btn-book:hover { background: var(--navy); color: white; }
+        .btn-book { background: var(--primary-green); color: white; border: none; font-weight: 700; width: 100%; padding: 12px; border-radius: 6px; margin-top: auto; transition: 0.2s; text-decoration: none; text-align: center; display: block;}
+        .btn-book:hover { background: var(--navy-blue); color: white; }
 
         /* Sidebar Filters */
         .sticky-sidebar { position: sticky; top: 100px; }
-        .filter-box { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
-        .filter-header { font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 15px; display: block; border-left: 4px solid var(--primary); padding-left: 10px; color: var(--navy); }
+        .filter-box { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
+        .filter-header { font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 15px; display: block; border-left: 4px solid var(--primary-green); padding-left: 10px; color: var(--navy-blue); }
         .loc-link { cursor: pointer; transition: 0.2s; font-weight: 600; color: #4a4a4a; padding: 8px 0; border-bottom: 1px solid #f8f9fa; display: block; text-decoration: none; }
-        .loc-link:hover, .loc-link.active { color: var(--primary); padding-left: 5px; }
+        .loc-link:hover, .loc-link.active { color: var(--primary-green); padding-left: 5px; }
 
-        footer { background: var(--navy); color: white; padding: 60px 0 30px; margin-top: 60px; }
+        footer { background: var(--navy-blue); color: white; padding: 60px 0 30px; margin-top: 60px; }
     </style>
 </head>
 <body>
 
-     <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -84,25 +104,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="accommodation/stays.html">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="flights/Flights.html">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cars/cars.html">Car Rentals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="accommodation/packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <a href="login.html" class="btn btn-green btn-sm mt-1"></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="hero-region text-center">
+    <header class="hero-kzn text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold">Stays in the Western Cape</h1>
-            <p class="lead">Discover <span id="totalPropCount">0</span> verified Coastal Villas, Wine Estates, and City Hotels</p>
+            <h1 class="display-4 fw-bold">Stays in KwaZulu-Natal</h1>
+            <p class="lead">Discover 412 verified Oceanfront Hotels, Bush Lodges, and Guest Houses</p>
         </div>
     </header>
 
@@ -113,7 +130,7 @@
                     <span class="search-label">Location</span>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-end-0"><i class="fa fa-search text-muted"></i></span>
-                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="e.g. Camps Bay..." onkeyup="filterData(true)">
+                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="e.g. Umhlanga..." onkeyup="filterData(true)">
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -128,7 +145,7 @@
                     <span class="search-label">Property Type</span>
                     <select id="typeFilter" class="form-select" onchange="filterData(true)">
                         <option value="All">All Properties</option>
-                        <option value="Guest House">Guest Houses</option>
+                        <option value="Guest House">Guest Houses & Lodges</option>
                         <option value="Hotel">Hotels & Resorts</option>
                         <option value="Apartment">Self-Catering</option>
                     </select>
@@ -149,16 +166,30 @@
                 <div class="sticky-sidebar">
                     <div class="filter-box">
                         <span class="filter-header"><i class="fa fa-map-marker-alt me-2"></i> Area Quick-Jump</span>
-                        <div class="small" id="quickJumpList">
-                            </div>
+                        <div class="small">
+                            <a class="loc-link active" id="loc-All" onclick="setLocFilter('All')">All KwaZulu-Natal (412)</a>
+                            <a class="loc-link" id="loc-Umhlanga" onclick="setLocFilter('Umhlanga')">Umhlanga (85)</a>
+                            <a class="loc-link" id="loc-Durban" onclick="setLocFilter('Durban')">Durban (142)</a>
+                            <a class="loc-link" id="loc-Ballito" onclick="setLocFilter('Ballito')">Ballito & North Coast (96)</a>
+                            <a class="loc-link" id="loc-Drakensberg" onclick="setLocFilter('Drakensberg')">Drakensberg (54)</a>
+                            <a class="loc-link" id="loc-Midlands" onclick="setLocFilter('Midlands')">Natal Midlands (35)</a>
+                        </div>
                     </div>
                     
                     <div class="filter-box">
                         <span class="filter-header"><i class="fa fa-concierge-bell me-2"></i> Amenities</span>
-                        <div class="form-check small mb-2"><input class="form-check-input filter-amenity" type="checkbox" value="solar" id="chkSolar" onchange="filterData(true)"><label class="form-check-label fw-bold" for="chkSolar">Solar / Backup Power</label></div>
-                        <div class="form-check small mb-2"><input class="form-check-input filter-amenity" type="checkbox" value="wifi" id="chkWifi" onchange="filterData(true)"><label class="form-check-label fw-bold" for="chkWifi">Free Fast WiFi</label></div>
-                        <div class="form-check small mb-2"><input class="form-check-input filter-amenity" type="checkbox" value="pool" id="chkPool" onchange="filterData(true)"><label class="form-check-label fw-bold" for="chkPool">Swimming Pool</label></div>
-                        <div class="form-check small mb-2"><input class="form-check-input filter-amenity" type="checkbox" value="ocean" id="chkOcean" onchange="filterData(true)"><label class="form-check-label fw-bold" for="chkOcean">Ocean View</label></div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="ocean" id="chkOcean" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkOcean">Ocean View</label>
+                        </div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="wifi" id="chkWifi" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkWifi">Free Fast WiFi</label>
+                        </div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="pool" id="chkPool" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkPool">Swimming Pool</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -172,7 +203,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-                    <h3 class="h5 m-0 fw-bold" style="color: var(--navy);"><span id="stayCount">0</span> properties found</h3>
+                    <h3 class="h5 m-0 fw-bold" style="color: var(--navy-blue);"><span id="stayCount">0</span> properties found</h3>
                 </div>
 
                 <div class="row g-4" id="stayList"></div>
@@ -184,32 +215,32 @@
         </div>
     </div>
 
-    <footer>
-        <div class="container text-center">
-            <h3>STA Travel<span style="color:var(--primary)">.co.za</span></h3>
-            <p class="text-white-50">© 1976–2026 STA Travel South Africa. All Rights Reserved.</p>
-        </div>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // ==========================================
-        // PROVINCE CONFIGURATION (CHANGE THIS SECTION)
-        // ==========================================
-        const defaultSearchMap = "KwaZulu-Natal, South Africa";
-const locationQuotas = { 
-    "Durban": 140, "Umhlanga": 95, "Ballito": 60, "Richards Bay": 25, "St Lucia": 30 
-};
-        };
-        // ==========================================
-
-        const propertyTypes = ["Guest House", "Hotel", "Apartment", "Villa"];
-        const namePrefixes = ["The Royal", "Villa", "Casa", "African", "Ocean", "Vineyard", "Serenity", "Urban", "Atlantic"];
-        const nameSuffixes = ["Manor", "Lodge", "Suites", "Boutique Hotel", "Guest House", "Retreat", "Estates"];
-        
-        const exteriorImages = ["https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80"];
-        const bedroomImages = ["https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1505691938895-1758d7eaa511?auto=format&fit=crop&w=600&q=80"];
-        const bathroomImages = ["https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80", "https://images.unsplash.com/photo-1620626011761-9ea01890b1db?auto=format&fit=crop&w=600&q=80"];
+        // --- 1. Real Property Database for KwaZulu-Natal ---
+        const realKZNDatabase = [
+            // UMHLANGA
+            { name: "The Oyster Box", loc: "Umhlanga", area: "Umhlanga Rocks", addr: "2 Lighthouse Rd, Umhlanga", type: "Hotel", rate: 9.6, img: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800" },
+            { name: "Beverly Hills Hotel", loc: "Umhlanga", area: "Umhlanga Rocks", addr: "1 Lighthouse Rd, Umhlanga", type: "Hotel", rate: 9.3, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800" },
+            { name: "Teremok Lodge & Spa", loc: "Umhlanga", area: "Umhlanga Rocks", addr: "49 Marine Dr, Umhlanga", type: "Guest House", rate: 9.5, img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800" },
+            
+            // DURBAN
+            { name: "Southern Sun Elangeni & Maharani", loc: "Durban", area: "North Beach", addr: "63 Snell Parade, North Beach", type: "Hotel", rate: 8.5, img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800" },
+            { name: "Blue Waters Hotel", loc: "Durban", area: "North Beach", addr: "175 Snell Parade, Marine Parade", type: "Hotel", rate: 8.2, img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800" },
+            { name: "The Benjamin", loc: "Durban", area: "Florida Road", addr: "141 Florida Rd, Windermere", type: "Guest House", rate: 8.8, img: "https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&w=800" },
+            
+            // BALLITO & NORTH COAST
+            { name: "The Capital Zimbali", loc: "Ballito", area: "Zimbali Estate", addr: "Zimbali Drive, Ballito", type: "Hotel", rate: 8.9, img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800" },
+            { name: "Sala Beach House", loc: "Ballito", area: "Thompsons Bay", addr: "73 Ocean Drive, Shakas Rock", type: "Guest House", rate: 9.8, img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800" },
+            
+            // DRAKENSBERG
+            { name: "Cathedral Peak Hotel", loc: "Drakensberg", area: "Winterton", addr: "Cathedral Peak Road, Winterton", type: "Hotel", rate: 9.1, img: "https://images.unsplash.com/photo-1517840901100-8179e982ad91?auto=format&fit=crop&w=800" },
+            { name: "Alpine Heath Resort", loc: "Drakensberg", area: "Northern Berg", addr: "Off D119, Jagersrust", type: "Hotel", rate: 8.6, img: "https://images.unsplash.com/photo-1551882547-ff43c63fedfe?auto=format&fit=crop&w=800" },
+            
+            // MIDLANDS
+            { name: "Fordoun Hotel and Spa", loc: "Midlands", area: "Nottingham Road", addr: "Nottingham Road, Midlands", type: "Hotel", rate: 9.4, img: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800" },
+            { name: "Brahman Hills", loc: "Midlands", area: "Curry's Post", addr: "Old Curry's Post Road", type: "Hotel", rate: 8.7, img: "https://images.unsplash.com/photo-1549412650-ef3bb78330c0?auto=format&fit=crop&w=800" }
+        ];
 
         let allStays = [];
         let displayLimit = 20;
@@ -220,76 +251,57 @@ const locationQuotas = {
             const today = new Date();
             const checkIn = new Date(today); checkIn.setDate(today.getDate() + 1);
             const checkOut = new Date(today); checkOut.setDate(today.getDate() + 3); 
-            
             document.getElementById('checkInDate').valueAsDate = checkIn;
             document.getElementById('checkOutDate').valueAsDate = checkOut;
-            
             initData();
         };
 
         function calculateNights() {
             const inDate = new Date(document.getElementById('checkInDate').value);
             const outDate = new Date(document.getElementById('checkOutDate').value);
-            if (outDate <= inDate) { outDate.setDate(inDate.getDate() + 1); document.getElementById('checkOutDate').valueAsDate = outDate; }
+            if (outDate <= inDate) {
+                outDate.setDate(inDate.getDate() + 1);
+                document.getElementById('checkOutDate').valueAsDate = outDate;
+            }
             stayNights = Math.ceil(Math.abs(outDate - inDate) / (1000 * 60 * 60 * 24)); 
             document.getElementById('rentalNotice').innerText = `Showing totals for ${stayNights} nights`;
-            filterData(false); 
+            filterData(false);
         }
 
         function initData() {
-            let idCounter = 1;
-            let totalProps = 0;
-            
-            let quickJumpHTML = `<a class="loc-link active" id="loc-All" onclick="setLocFilter('All')">All Locations</a>`;
-
-            for (const [loc, count] of Object.entries(locationQuotas)) {
-                totalProps += count;
-                quickJumpHTML += `<a class="loc-link" id="loc-${loc.replace(/\s+/g, '')}" onclick="setLocFilter('${loc}')">${loc} (${count})</a>`;
-
-                for (let i = 0; i < count; i++) {
-                    const type = propertyTypes[Math.floor(Math.random() * propertyTypes.length)];
-                    const name = `${namePrefixes[Math.floor(Math.random() * namePrefixes.length)]} ${nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)]}`;
-                    
-                    const propertyImages = [
-                        exteriorImages[Math.floor(Math.random() * exteriorImages.length)],
-                        bedroomImages[Math.floor(Math.random() * bedroomImages.length)],
-                        bathroomImages[Math.floor(Math.random() * bathroomImages.length)]
-                    ];
-
-                    const pricePerNight = Math.floor(Math.random() * 3500) + 800; // WC prices slightly higher
-                    const rating = (Math.random() * (9.8 - 8.0) + 8.0).toFixed(1);
-                    
-                    allStays.push({
-                        id: idCounter++, name, location: loc, type, pricePerNight, rating, images: propertyImages,
-                        amenities: { solar: Math.random() > 0.4, wifi: true, pool: Math.random() > 0.4, ocean: Math.random() > 0.6 },
-                        badges: { genius: Math.random() > 0.7, deal: Math.random() > 0.85 }
-                    });
-                }
-            }
-
-            document.getElementById('totalPropCount').innerText = totalProps;
-            document.getElementById('quickJumpList').innerHTML = quickJumpHTML;
-            document.getElementById('loc-All').innerText = `All Locations (${totalProps})`;
-
-            allStays.sort(() => Math.random() - 0.5); 
-            updateMap(defaultSearchMap);
+            allStays = realKZNDatabase.map((p, index) => ({
+                id: index + 1,
+                name: p.name,
+                location: p.loc,
+                suburb: p.area,
+                address: p.addr,
+                type: p.type,
+                pricePerNight: Math.floor(Math.random() * 2000) + 1200,
+                rating: p.rate,
+                images: [p.img, "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800"],
+                amenities: { ocean: Math.random() > 0.4, wifi: true, pool: true },
+                badges: { genius: p.rate >= 9.0, deal: Math.random() > 0.8 }
+            }));
+            updateMap("KwaZulu-Natal, South Africa");
             filterData(true);
         }
 
         function setLocFilter(loc) {
             activeLocation = loc;
             document.querySelectorAll('.loc-link').forEach(el => el.classList.remove('active'));
-            const safeLocId = loc === "All" ? "All" : loc.replace(/\s+/g, '');
-            document.getElementById(`loc-${safeLocId}`).classList.add('active');
+            document.getElementById(`loc-${loc}`).classList.add('active');
             
-            const mapQuery = loc === "All" ? defaultSearchMap : `${loc}, South Africa`;
+            // Adjust map search based on region
+            let mapQuery = `${loc}, South Africa`;
+            if (loc === "All") mapQuery = "KwaZulu-Natal, South Africa";
+            if (loc === "Midlands") mapQuery = "Natal Midlands, South Africa";
+            
             updateMap(mapQuery);
             filterData(true);
         }
 
         function updateMap(location) {
-            const encodedLoc = encodeURIComponent(location);
-            document.getElementById('mapIframe').src = `http://googleusercontent.com/maps.google.com/maps?q=${encodedLoc}&t=&z=11&ie=UTF8&iwloc=&output=embed`;
+            document.getElementById('mapIframe').src = `https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
         }
 
         function filterData(resetLimit = true) {
@@ -297,19 +309,16 @@ const locationQuotas = {
             const searchTxt = document.getElementById('searchInput').value.toLowerCase();
             const typeFilter = document.getElementById('typeFilter').value;
             const sortVal = document.getElementById('sortFilter').value;
-            const requiredAmenities = Array.from(document.querySelectorAll('.filter-amenity:checked')).map(cb => cb.value);
 
             let filtered = allStays.filter(stay => {
                 if (activeLocation !== "All" && stay.location !== activeLocation) return false;
-                if (searchTxt && !stay.name.toLowerCase().includes(searchTxt) && !stay.location.toLowerCase().includes(searchTxt)) return false;
+                if (searchTxt && !stay.name.toLowerCase().includes(searchTxt) && !stay.suburb.toLowerCase().includes(searchTxt)) return false;
                 if (typeFilter !== "All" && stay.type !== typeFilter) return false;
-                for (let amenity of requiredAmenities) if (!stay.amenities[amenity]) return false;
                 return true;
             });
 
             if(sortVal === "price_asc") filtered.sort((a,b) => a.pricePerNight - b.pricePerNight);
             else if (sortVal === "rating_desc") filtered.sort((a,b) => b.rating - a.rating);
-            else filtered.sort((a,b) => (b.badges.genius ? 1 : 0) - (a.badges.genius ? 1 : 0) || b.rating - a.rating);
 
             document.getElementById('stayCount').innerText = filtered.length;
             renderStays(filtered);
@@ -317,73 +326,43 @@ const locationQuotas = {
 
         function renderStays(data) {
             const list = document.getElementById('stayList');
-            const toShow = data.slice(0, displayLimit);
-
-            list.innerHTML = toShow.map(stay => {
-                const totalStayPrice = stay.pricePerNight * stayNights;
-
-                let badgeHTML = '';
-                if (stay.badges.deal) badgeHTML = `<span class="badge-top badge-deal"><i class="fa fa-fire me-1"></i> Limited Deal</span>`;
-                else if (stay.badges.genius) badgeHTML = `<span class="badge-top badge-genius"><i class="fa fa-star me-1 text-warning"></i>Genius Property</span>`;
-
-                let amenHTML = `<span><i class="fa fa-wifi"></i> Free WiFi</span><br>`;
-                if(stay.amenities.solar) amenHTML += `<span><i class="fa fa-bolt"></i> Backup Power</span><br>`;
-                if(stay.amenities.pool) amenHTML += `<span><i class="fa fa-swimmer"></i> Swimming Pool</span><br>`;
-                if(stay.amenities.ocean) amenHTML += `<span><i class="fa fa-water"></i> Ocean View</span><br>`;
-
-                let priceHTML = `ZAR ${totalStayPrice.toLocaleString()}`;
-                let ratingText = stay.rating >= 9.0 ? "Superb" : (stay.rating >= 8.0 ? "Very Good" : "Good");
-
+            list.innerHTML = data.slice(0, displayLimit).map(stay => {
+                const total = stay.pricePerNight * stayNights;
                 const carouselId = `carousel-${stay.id}`;
-                const carouselItems = stay.images.map((imgUrl, index) => `
-                    <div class="carousel-item ${index === 0 ? 'active' : ''}"><img src="${imgUrl}" class="d-block w-100 stay-img"></div>
-                `).join('');
-
                 return `
                 <div class="col-md-6">
                     <div class="stay-card">
                         <div class="img-container">
-                            ${badgeHTML}
-                            <div id="${carouselId}" class="carousel slide h-100" data-bs-ride="false">
-                                <div class="carousel-inner h-100">${carouselItems}</div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                            ${stay.badges.genius ? '<span class="badge-top badge-genius">Genius Property</span>' : ''}
+                            <div id="${carouselId}" class="carousel slide h-100">
+                                <div class="carousel-inner h-100">
+                                    ${stay.images.map((img, i) => `<div class="carousel-item ${i===0?'active':''}"><img src="${img}" class="d-block w-100"></div>`).join('')}
+                                </div>
                             </div>
                         </div>
                         <div class="stay-body">
-                            <div class="d-flex justify-content-between align-items-start mb-1">
-                                <h3 class="stay-title m-0">${stay.name}</h3>
-                                <div class="text-end"><span class="rating-pill">${stay.rating}</span><div class="small fw-bold mt-1" style="font-size: 11px;">${ratingText}</div></div>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h3 class="stay-title">${stay.name}</h3>
+                                    <div class="stay-meta mb-1"><i class="fa fa-map-marker-alt text-danger me-1"></i> <strong>${stay.suburb}</strong>, ${stay.location}</div>
+                                    <div class="small text-muted mb-2">${stay.address}</div>
+                                </div>
+                                <span class="rating-pill">${stay.rating}</span>
                             </div>
-                            <div class="stay-meta"><i class="fa fa-map-marker-alt text-danger me-1"></i> ${stay.location} • ${stay.type}</div>
-                            <div class="amenities-list">${amenHTML}</div>
+                            <div class="amenities-list">
+                                <i class="fa ${stay.amenities.ocean ? 'fa-water' : 'fa-tree'}"></i> ${stay.amenities.ocean ? 'Ocean View' : 'Scenic View'} <br> 
+                                <i class="fa fa-wifi"></i> Free Fast WiFi <br>
+                                <i class="fa fa-swimming-pool"></i> Swimming Pool
+                            </div>
                             <div class="mt-auto pt-3 border-top">
-                                <div class="small text-muted fw-bold mb-1 text-uppercase" style="font-size: 10px; letter-spacing: 0.5px;">Total for ${stayNights} nights</div>
-                                <span class="price-tag">${priceHTML}</span>
-                                <button onclick="bookStay('${stay.name}', ${totalStayPrice}, '${stay.location}', '${stay.images[0]}')" class="btn-book mt-3">Reserve Now</button>
+                                <div class="small text-muted fw-bold text-uppercase" style="font-size: 10px;">Total for ${stayNights} nights</div>
+                                <span class="price-tag">ZAR ${total.toLocaleString()}</span>
+                                <button class="btn-book mt-3">Reserve Now</button>
                             </div>
                         </div>
                     </div>
                 </div>`;
             }).join('');
-
-            document.getElementById('loadMoreContainer').style.display = data.length > displayLimit ? 'block' : 'none';
-        }
-
-        function loadMore() { displayLimit += 20; filterData(false); }
-
-        function bookStay(name, totalStayPrice, loc, img) {
-            const inDate = document.getElementById('checkInDate').value;
-            const outDate = document.getElementById('checkOutDate').value;
-            const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-            const pUI = new Date(inDate).toLocaleDateString('en-US', options) + " · 14:00 PM";
-            const dUI = new Date(outDate).toLocaleDateString('en-US', options) + " · 10:00 AM";
-
-            const params = new URLSearchParams({ 
-                name: name, company: "STA Travel Stays", loc: loc, img: img, type: "Stay",
-                days: stayNights, total: totalStayPrice, pickupUI: pUI, dropoffUI: dUI
-            });
-            window.location.href = `checkout.html?${params.toString()}`;
         }
     </script>
 </body>

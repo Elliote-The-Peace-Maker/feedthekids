@@ -1,117 +1,99 @@
-<!-- Save as kzn-stays.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KZN Stays | Durban & Coastline Stays | SafariStay</title>
+    <title>Limpopo Stays | 284 Verified Properties | STA Travel</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
     <style>
-        :root { --kzn-blue: #0984e3; --kzn-dark: #00224f; --accent: #00cec9; }
-        body { font-family: 'Open Sans', sans-serif; background-color: #f0f7ff; }
-        .navbar { background: var(--kzn-dark) !important; }
-        .hero-kzn { 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover; padding: 100px 0; color: white; text-align: center;
-        }
-        .beach-card { 
-            border: none; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: 0.3s; background: white; height: 100%;
-        }
-        .beach-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(9, 132, 227, 0.2); }
-        .rating-badge { background: var(--kzn-blue); color: white; padding: 4px 10px; border-radius: 50px; font-weight: bold; }
-        .btn-kzn { background: var(--kzn-blue); color: white; border-radius: 50px; font-weight: 600; padding: 10px 25px; transition: 0.3s; text-decoration: none; display: inline-block; }
-        .btn-kzn:hover { background: var(--kzn-dark); color: white; }
-		:root {
+        :root {
             --navy-blue: #1e272e;
             --primary-green: #28a745;
             --dark-green: #1e7e34;
             --accent-gold: #fbc531;
+            --light-bg: #f5f6fa;
             --border-color: #dcdde1;
+            --text-main: #2f3640;
+            --text-muted: #7f8c8d;
+            --blue-link: #006ce4;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: #2f3640; }
-        h2, h3, h4 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
+        h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
-        /* Navigation */
-        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
-        .nav-link { color: white !important; font-weight: 600; }
+        /* Topbar */
+        .topbar { background: var(--navy-blue); color: white; font-size: 13px; padding: 8px 0; }
+        .topbar a { color: white; text-decoration: none; margin-left: 15px; }
+
+        /* Header/Nav */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
         
-        /* Property Card Styles */
-        .property-card { 
-            border: 1px solid var(--border-color); 
-            border-radius: 8px; 
-            overflow: hidden; 
-            transition: transform 0.3s, box-shadow 0.3s; 
-            height: 100%;
-            background: #fff;
+        /* Hero Carousel & Search */
+        .hero-limpopo { 
+            /* Safari/Bushveld background for Limpopo */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1600&q=80'); 
+            background-size: cover; 
+            background-position: center 70%; 
+            padding: 80px 0; 
+            color: white; 
         }
-        .property-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-        }
-        .img-container { height: 200px; position: relative; }
+
+        /* Search Bar */
+        .filter-bar { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-top: -50px; position: relative; z-index: 10; border: 1px solid var(--border-color); }
+        .search-label { font-size: 11px; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-bottom: 2px; display: block; }
+        .form-control, .form-select { font-weight: 600; color: var(--navy-blue); }
+
+        .dynamic-map { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .dynamic-map iframe { width: 100%; height: 100%; border: none; }
+
+        /* Cards & Carousels */
+        .stay-card { background: white; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; }
+        .stay-card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); border-color: var(--primary-green); }
+        
+        .img-container { position: relative; height: 220px; background: #2f3640; }
+        .img-container .carousel, .img-container .carousel-inner, .img-container .carousel-item { height: 100%; }
         .img-container img { width: 100%; height: 100%; object-fit: cover; }
         
-        .rating-box { 
-            background: var(--navy-blue); 
-            color: white; 
-            padding: 4px 8px; 
-            border-radius: 4px; 
-            font-weight: bold; 
-            font-size: 14px; 
-        }
-        .category-header {
-            border-left: 5px solid var(--primary-green);
-            padding-left: 15px;
-            margin: 40px 0 20px;
-            color: var(--navy-blue);
-        }
-        .btn-availability {
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .btn-availability:hover {
-            background: var(--dark-green);
-            color: white;
-        }
-        .price-tag { color: var(--navy-blue); font-weight: 700; font-size: 1.2rem; }
-        .badge-type {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-        }     
-		/* Heading Redirect Styles */
-        .redirect-heading { text-decoration: none; color: inherit; transition: 0.2s; }
-        .redirect-heading:hover { color: var(--primary-green); }
+        /* Carousel Controls */
+        .carousel-control-prev, .carousel-control-next { width: 40px; opacity: 0; transition: opacity 0.2s; background: rgba(0,0,0,0.2); }
+        .img-container:hover .carousel-control-prev, .img-container:hover .carousel-control-next { opacity: 1; }
+        
+        .badge-top { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index: 10; }
+        .badge-power { background: var(--accent-gold); color: var(--navy-blue); }
+        .badge-deal { background: #d63031; color: white; }
+        .badge-genius { background: var(--blue-link); color: white; }
+        
+        .stay-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .rating-pill { background: var(--navy-blue); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+        .stay-title { font-size: 18px; font-weight: 700; color: var(--navy-blue); margin-bottom: 5px; }
+        .stay-meta { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; font-weight: 600; }
+        
+        .price-tag { font-size: 22px; font-weight: 800; color: var(--navy-blue); display: block; }
+        .amenities-list { font-size: 12px; color: #4a4a4a; margin-bottom: 15px; font-weight: 600; }
+        .amenities-list i { color: var(--primary-green); width: 16px; }
 
-        /* Footer (Mega Style) */
-        footer { background: #00224f; color: white; padding-top: 50px; }
-        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
-        .footer-col ul { list-style: none; padding: 0; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; }
-        .footer-col ul li a:hover { color: var(--primary-green); }
-        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+        .btn-book { background: var(--primary-green); color: white; border: none; font-weight: 700; width: 100%; padding: 12px; border-radius: 6px; margin-top: auto; transition: 0.2s; text-decoration: none; text-align: center; display: block;}
+        .btn-book:hover { background: var(--navy-blue); color: white; }
+
+        /* Sidebar Filters */
+        .sticky-sidebar { position: sticky; top: 100px; }
+        .filter-box { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.02);}
+        .filter-header { font-weight: 700; font-size: 14px; text-transform: uppercase; margin-bottom: 15px; display: block; border-left: 4px solid var(--primary-green); padding-left: 10px; color: var(--navy-blue); }
+        .loc-link { cursor: pointer; transition: 0.2s; font-weight: 600; color: #4a4a4a; padding: 8px 0; border-bottom: 1px solid #f8f9fa; display: block; text-decoration: none; }
+        .loc-link:hover, .loc-link.active { color: var(--primary-green); padding-left: 5px; }
+
+        footer { background: var(--navy-blue); color: white; padding: 60px 0 30px; margin-top: 60px; }
     </style>
 </head>
 <body>
-     <!-- Navigation -->
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -122,155 +104,265 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="accommodation/stays.html">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="flights/Flights.html">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cars/cars.html">Car Rentals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="accommodation/packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <a href="login.html" class="btn btn-green btn-sm mt-1"></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="hero-kzn">
-        <h1 class="display-3 fw-bold">KwaZulu-Natal</h1>
-        <p class="lead">From the Golden Mile to the Luxury of Umhlanga</p>
+    <header class="hero-limpopo text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Stays in Limpopo</h1>
+            <p class="lead">Discover 284 verified Safari Lodges, Bush Camps, and Resorts</p>
+        </div>
     </header>
 
-    <div class="container my-5">
-        <div class="row g-4">
-            <!-- Featured: The Oyster Box -->
-            <div class="col-md-6">
-                <div class="beach-card">
-                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" class="w-100" style="height:300px; object-fit:cover;">
-                    <div class="p-4">
-                        <div class="d-flex justify-content-between mb-2">
-                            <span class="badge bg-warning text-dark">Iconic Luxury</span>
-                            <span class="rating-badge">9.8</span>
-                        </div>
-                        <h3>The Oyster Box</h3>
-                        <p class="text-muted">Umhlanga Rocks • 5-Star Hotel</p>
-                        <p>Experience South Africa's most cherished hotel, overlooking the Indian Ocean and the iconic lighthouse.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-4">
-                            <h4 class="mb-0">ZAR 4,800 <small class="fs-6 text-muted">/pn</small></h4>
-                            <a href="#" class="btn-kzn">Book Luxury</a>
-                        </div>
+    <div class="container mb-5">
+        <div class="filter-bar">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <span class="search-label">Location</span>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="fa fa-search text-muted"></i></span>
+                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="e.g. Hoedspruit..." onkeyup="filterData(true)">
                     </div>
                 </div>
-            </div>
-
-            <!-- Boutique Selection Grid -->
-            <div class="col-md-6">
-                <div class="row g-3">
-                    <!-- Sanchia -->
-                    <div class="col-12">
-                        <div class="beach-card p-3 d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=150&q=80" class="rounded" style="width:100px; height:100px; object-fit:cover;">
-                            <div class="ms-3">
-                                <h5 class="mb-1">Sanchia Luxury Guesthouse</h5>
-                                <p class="small text-muted mb-2">Durban North • Ocean Views</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Cowrie Cove -->
-                    <div class="col-12">
-                        <div class="beach-card p-3 d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=150&q=80" class="rounded" style="width:100px; height:100px; object-fit:cover;">
-                            <div class="ms-3">
-                                <h5 class="mb-1">Cowrie Cove Guest House</h5>
-                                <p class="small text-muted mb-2">La Lucia • Beachfront</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Zimbali -->
-                    <div class="col-12">
-                        <div class="beach-card p-3 d-flex align-items-center">
-                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=150&q=80" class="rounded" style="width:100px; height:100px; object-fit:cover;">
-                            <div class="ms-3">
-                                <h5 class="mb-1">Zimbali Lodge</h5>
-                                <p class="small text-muted mb-2">Ballito • Eco Estate</p>
-                                <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-md-2">
+                    <span class="search-label">Check-in</span>
+                    <input type="date" id="checkInDate" class="form-control" onchange="calculateNights()">
+                </div>
+                <div class="col-md-2">
+                    <span class="search-label">Check-out</span>
+                    <input type="date" id="checkOutDate" class="form-control" onchange="calculateNights()">
+                </div>
+                <div class="col-md-3">
+                    <span class="search-label">Property Type</span>
+                    <select id="typeFilter" class="form-select" onchange="filterData(true)">
+                        <option value="All">All Properties</option>
+                        <option value="Lodge">Safari Lodges & Camps</option>
+                        <option value="Hotel">Hotels & Resorts</option>
+                        <option value="Apartment">Self-Catering</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <span class="search-label">Sort By</span>
+                    <select id="sortFilter" class="form-select" onchange="filterData(true)">
+                        <option value="recommended">Recommended</option>
+                        <option value="price_asc">Lowest Price</option>
+                        <option value="rating_desc">Top Rated</option>
+                    </select>
                 </div>
             </div>
         </div>
 
-        <!-- Comprehensive KZN Directory -->
-        <h4 class="mt-5 mb-4 border-bottom pb-2">Full Coastal Directory</h4>
-        <div class="row row-cols-2 row-cols-md-4 g-3">
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Ridgeview Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• African Sun Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Bentley Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Saint James on Venice</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Durban Manor Hotel</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Laletsa Lodge</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Blue Waters Hotel</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Teremok Marine</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Coastlands Umhlanga</a></div>
-            <div class="col"><a href="#" class="text-dark text-decoration-none small">• Endless Horizons</a></div>
+        <div class="row mt-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-sidebar">
+                    <div class="filter-box">
+                        <span class="filter-header"><i class="fa fa-map-marker-alt me-2"></i> Area Quick-Jump</span>
+                        <div class="small">
+                            <a class="loc-link active" id="loc-All" onclick="setLocFilter('All')">All Limpopo (284)</a>
+                            <a class="loc-link" id="loc-Hoedspruit" onclick="setLocFilter('Hoedspruit')">Hoedspruit & Surrounds (98)</a>
+                            <a class="loc-link" id="loc-Waterberg" onclick="setLocFilter('Waterberg')">Waterberg & Bela-Bela (65)</a>
+                            <a class="loc-link" id="loc-Polokwane" onclick="setLocFilter('Polokwane')">Polokwane (45)</a>
+                            <a class="loc-link" id="loc-Tzaneen" onclick="setLocFilter('Tzaneen')">Tzaneen & Magoebaskloof (32)</a>
+                            <a class="loc-link" id="loc-Phalaborwa" onclick="setLocFilter('Phalaborwa')">Phalaborwa (22)</a>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-box">
+                        <span class="filter-header"><i class="fa fa-concierge-bell me-2"></i> Amenities</span>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="safari" id="chkSafari" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkSafari">Game Drives Included</label>
+                        </div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="ac" id="chkAc" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkAc">Air Conditioning</label>
+                        </div>
+                        <div class="form-check small mb-2">
+                            <input class="form-check-input filter-amenity" type="checkbox" value="pool" id="chkPool" onchange="filterData(true)">
+                            <label class="form-check-label fw-bold" for="chkPool">Swimming Pool</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div id="mapView" class="dynamic-map"><iframe id="mapIframe" src="" allowfullscreen="" loading="lazy"></iframe></div>
+
+                <div class="alert alert-success border-0 py-3 px-4 small mb-4 fw-bold d-flex justify-content-between align-items-center" style="background: #f0f9f0; color: #008009; border-radius: 8px;">
+                    <span><i class="fa fa-info-circle me-2 fs-5 align-middle"></i> Taxes and conservation fees are included.</span>
+                    <span id="rentalNotice" class="badge bg-success py-2 px-3 fs-6">Showing totals for 2 nights</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                    <h3 class="h5 m-0 fw-bold" style="color: var(--navy-blue);"><span id="stayCount">0</span> properties found</h3>
+                </div>
+
+                <div class="row g-4" id="stayList"></div>
+                
+                <div class="text-center mt-5 mb-3" id="loadMoreContainer" style="display: none;">
+                    <button class="btn btn-outline-success px-5 fw-bold" onclick="loadMore()">Load 20 More Properties</button>
+                </div>
+            </div>
         </div>
     </div>
-	<!-- Footer -->
-    <footer>
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-4 mb-5">
-                    <h2 class="mb-4" style="color:var(--primary-green)">SafariStay<span class="text-white">.co.za</span></h2>
-                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
-                    <div class="mt-4">
-                        <h6>Subscribe to our newsletter</h6>
-                        <form action="thanks.html" class="d-flex gap-2">
-                            <input type="email" class="form-control" placeholder="Email address" required>
-                            <button type="submit" class="btn btn-green">Join</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-6 footer-col">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="customer-service.html">Customer Service</a></li>
-                        <li><a href="partner-help.html">Partner Help</a></li>
-                        <li><a href="safety.html">Safety Centre</a></li>
-                        <li><a href="cancel.html">Cancel Booking</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-6 footer-col">
-                    <h4>Discover</h4>
-                    <ul>
-                        <li><a href="genius.html">Genius Loyalty</a></li>
-                        <li><a href="articles.html">Travel Articles</a></li>
-                        <li><a href="deals.html">Holiday Deals</a></li>
-                        <li><a href="safari-packages.html">Safari Packages</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 footer-col">
-                    <h4>Mzansi Secure Payments</h4>
-                    <p>We accept all major South African payment methods.</p>
-                    <div class="fs-2">
-                        <i class="fab fa-cc-visa me-2"></i>
-                        <i class="fab fa-cc-mastercard me-2"></i>
-                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
-                        <span class="fs-6 badge bg-light text-dark align-middle">PayFast</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom text-center">
-            <div class="container">
-                <p class="mb-0">&copy; 1996–2026 SafariStay.co.za™. All rights reserved. Your Premier South African Travel Partner.</p>
-            </div>
-        </div>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // --- 1. Real Property Database for Limpopo ---
+        const realLimpopoDatabase = [
+            // HOEDSPRUIT
+            { name: "Kapama River Lodge", loc: "Hoedspruit", area: "Kapama Game Reserve", addr: "R40 Hoedspruit", type: "Lodge", rate: 9.7, img: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800" },
+            { name: "Thornybush Game Lodge", loc: "Hoedspruit", area: "Thornybush Nature Reserve", addr: "Guernsey Road", type: "Lodge", rate: 9.5, img: "https://images.unsplash.com/photo-1547471080-7fc2caa6f57e?auto=format&fit=crop&w=800" },
+            
+            // POLOKWANE
+            { name: "Protea Hotel Ranch Resort", loc: "Polokwane", area: "The Ranch", addr: "R101, 25km South of Polokwane", type: "Hotel", rate: 8.6, img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800" },
+            { name: "Town Lodge Polokwane", loc: "Polokwane", area: "Bendor", addr: "Cnr East Safari & RSA", type: "Hotel", rate: 8.1, img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800" },
+            
+            // WATERBERG
+            { name: "Mhondoro Safari Lodge & Villa", loc: "Waterberg", area: "Welgevonden Game Reserve", addr: "Welgevonden Main Gate", type: "Lodge", rate: 9.9, img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800" },
+            { name: "Mabula Game Lodge", loc: "Waterberg", area: "Bela-Bela", addr: "R516 Rooiberg Road", type: "Lodge", rate: 8.8, img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800" },
+            
+            // TZANEEN
+            { name: "Coach House Hotel & Spa", loc: "Tzaneen", area: "Agatha", addr: "Old Coach Road, Agatha", type: "Hotel", rate: 8.5, img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800" },
+            { name: "Tzaneen Country Lodge", loc: "Tzaneen", area: "Letaba", addr: "R71 Tarentaalrand", type: "Hotel", rate: 8.3, img: "https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&w=800" },
+            
+            // PHALABORWA
+            { name: "aha Makalali Private Game Lodge", loc: "Phalaborwa", area: "Makalali Game Reserve", addr: "Gravelotte Road", type: "Lodge", rate: 9.2, img: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800" },
+            { name: "Sefapane Lodge and Safaris", loc: "Phalaborwa", area: "Kruger Border", addr: "Copper Road", type: "Lodge", rate: 8.4, img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800" }
+        ];
+
+        let allStays = [];
+        let displayLimit = 20;
+        let activeLocation = "All";
+        let stayNights = 2;
+
+        window.onload = () => {
+            const today = new Date();
+            const checkIn = new Date(today); checkIn.setDate(today.getDate() + 1);
+            const checkOut = new Date(today); checkOut.setDate(today.getDate() + 3); 
+            document.getElementById('checkInDate').valueAsDate = checkIn;
+            document.getElementById('checkOutDate').valueAsDate = checkOut;
+            initData();
+        };
+
+        function calculateNights() {
+            const inDate = new Date(document.getElementById('checkInDate').value);
+            const outDate = new Date(document.getElementById('checkOutDate').value);
+            if (outDate <= inDate) {
+                outDate.setDate(inDate.getDate() + 1);
+                document.getElementById('checkOutDate').valueAsDate = outDate;
+            }
+            stayNights = Math.ceil(Math.abs(outDate - inDate) / (1000 * 60 * 60 * 24)); 
+            document.getElementById('rentalNotice').innerText = `Showing totals for ${stayNights} nights`;
+            filterData(false);
+        }
+
+        function initData() {
+            allStays = realLimpopoDatabase.map((p, index) => ({
+                id: index + 1,
+                name: p.name,
+                location: p.loc,
+                suburb: p.area,
+                address: p.addr,
+                type: p.type,
+                pricePerNight: Math.floor(Math.random() * 4000) + 1500, // Slightly higher for lodges
+                rating: p.rate,
+                images: [p.img, "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800"],
+                amenities: { safari: p.type === 'Lodge', ac: true, pool: true },
+                badges: { genius: p.rate >= 9.0, deal: Math.random() > 0.8 }
+            }));
+            updateMap("Limpopo, South Africa");
+            filterData(true);
+        }
+
+        function setLocFilter(loc) {
+            activeLocation = loc;
+            document.querySelectorAll('.loc-link').forEach(el => el.classList.remove('active'));
+            document.getElementById(`loc-${loc}`).classList.add('active');
+            
+            // Adjust map search based on region
+            let mapQuery = `${loc}, Limpopo, South Africa`;
+            if (loc === "All") mapQuery = "Limpopo, South Africa";
+            if (loc === "Waterberg") mapQuery = "Waterberg District Municipality, Limpopo";
+            
+            updateMap(mapQuery);
+            filterData(true);
+        }
+
+        function updateMap(location) {
+            // Zoom level adjusted out slightly for Limpopo's vastness
+            document.getElementById('mapIframe').src = `https://maps.google.com/maps?q=${encodeURIComponent(location)}&t=&z=9&ie=UTF8&iwloc=&output=embed`;
+        }
+
+        function filterData(resetLimit = true) {
+            if (resetLimit) displayLimit = 20; 
+            const searchTxt = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            const sortVal = document.getElementById('sortFilter').value;
+
+            let filtered = allStays.filter(stay => {
+                if (activeLocation !== "All" && stay.location !== activeLocation) return false;
+                if (searchTxt && !stay.name.toLowerCase().includes(searchTxt) && !stay.suburb.toLowerCase().includes(searchTxt)) return false;
+                if (typeFilter !== "All" && stay.type !== typeFilter) return false;
+                return true;
+            });
+
+            if(sortVal === "price_asc") filtered.sort((a,b) => a.pricePerNight - b.pricePerNight);
+            else if (sortVal === "rating_desc") filtered.sort((a,b) => b.rating - a.rating);
+
+            document.getElementById('stayCount').innerText = filtered.length;
+            renderStays(filtered);
+        }
+
+        function renderStays(data) {
+            const list = document.getElementById('stayList');
+            list.innerHTML = data.slice(0, displayLimit).map(stay => {
+                const total = stay.pricePerNight * stayNights;
+                const carouselId = `carousel-${stay.id}`;
+                return `
+                <div class="col-md-6">
+                    <div class="stay-card">
+                        <div class="img-container">
+                            ${stay.badges.genius ? '<span class="badge-top badge-genius">Genius Property</span>' : ''}
+                            <div id="${carouselId}" class="carousel slide h-100">
+                                <div class="carousel-inner h-100">
+                                    ${stay.images.map((img, i) => `<div class="carousel-item ${i===0?'active':''}"><img src="${img}" class="d-block w-100"></div>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stay-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <h3 class="stay-title">${stay.name}</h3>
+                                    <div class="stay-meta mb-1"><i class="fa fa-map-marker-alt text-danger me-1"></i> <strong>${stay.suburb}</strong>, ${stay.location}</div>
+                                    <div class="small text-muted mb-2">${stay.address}</div>
+                                </div>
+                                <span class="rating-pill">${stay.rating}</span>
+                            </div>
+                            <div class="amenities-list">
+                                <i class="fa ${stay.amenities.safari ? 'fa-binoculars' : 'fa-leaf'}"></i> ${stay.amenities.safari ? 'Game Drives Available' : 'Scenic Bush View'} <br> 
+                                <i class="fa fa-snowflake"></i> Air Conditioning <br>
+                                <i class="fa fa-swimming-pool"></i> Swimming Pool
+                            </div>
+                            <div class="mt-auto pt-3 border-top">
+                                <div class="small text-muted fw-bold text-uppercase" style="font-size: 10px;">Total for ${stayNights} nights</div>
+                                <span class="price-tag">ZAR ${total.toLocaleString()}</span>
+                                <button class="btn-book mt-3">Reserve Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+    </script>
 </body>
 </html>
