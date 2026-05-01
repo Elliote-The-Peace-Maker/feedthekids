@@ -13,10 +13,34 @@
         :root {
             --navy: #1e272e; --primary: #28a745; --gold: #fbc531;
             --text: #2f3640; --border: #dee2e6; --blue-link: #006ce4;
+          :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #1e7e34;
+            --light-bg: #f5f6fa;
+            --border-color: #dcdde1;
+            --text-main: #2f3640;
+            --text-muted: #7f8c8d;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: var(--text); background-color: #f8f9fa; }
-        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
+        h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Topbar */
+        .topbar { background: var(--navy-blue); color: white; font-size: 13px; padding: 8px 0; }
+        .topbar a { color: white; text-decoration: none; margin-left: 15px; }
+
+        /* Header/Nav */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+        
+        /* Hero Carousel & Search */
+        .hero-container { position: relative; }
+        .carousel-item { height: 70vh; min-height: 500px; }
+        .carousel-item img { object-fit: cover; height: 100%; filter: brightness(0.6); }
+        .carousel-caption { bottom: 40%; text-align: left; left: 10%; right: 10%; }
 
         .navbar { background: var(--navy) !important; padding: 15px 0; border-bottom: 3px solid var(--primary); }
         .hero-gauteng { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1549144482-f024ee083fcd?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; padding: 80px 0; color: white; }
@@ -70,7 +94,7 @@
 </head>
 <body>
 
-       <!-- Navigation -->
+      <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -81,15 +105,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="accommodation/stays.html">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="flights/Flights.html">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../cars.html">Car Rentals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="accommodation/packages.html">Packages</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
                     </li>
                     <li class="nav-item ms-lg-2">
-                        <a href="login.html" class="btn btn-green btn-sm mt-1"></a>
+                        
                     </li>
                 </ul>
             </div>

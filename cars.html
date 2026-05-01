@@ -14,9 +14,26 @@
             --blue-link: #006ce4;
         }
 
-        body { font-family: 'Open Sans', sans-serif; color: var(--text); background-color: #f4f7f6; margin: 0; }
+          :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #1e7e34;
+            --light-bg: #f5f6fa;
+            --border-color: #dcdde1;
+            --text-main: #2f3640;
+            --text-muted: #7f8c8d;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
         h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
+        /* Header/Nav */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+        
+        
         /* Navigation */
         .navbar { background: var(--navy) !important; padding: 15px 0; border-bottom: 3px solid var(--primary); }
         .navbar-brand { font-size: 1.5rem; color: white !important; }
@@ -115,8 +132,31 @@
         }
     </style>
 </head>
-<body>
-
+<!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">STA Travel</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="hero-container">
         <img src="https://images.unsplash.com/photo-1549144482-f024ee083fcd?auto=format&fit=crop&w=1920&q=80" alt="South Africa Drive">
         <div class="hero-content">
