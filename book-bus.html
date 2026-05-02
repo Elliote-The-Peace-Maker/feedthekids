@@ -1,1 +1,443 @@
-d
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Search Results | STA Travel</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Frameworks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --light-bg: #f4f5f8;
+            --border-color: #e0e0e0;
+            --text-main: #2f3640;
+            --text-muted: #757575;
+            --orange-alert: #ff9800;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: var(--light-bg); }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 12px 0; border-bottom: 2px solid var(--primary-green); }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; transition: 0.2s;}
+        .nav-link:hover { color: var(--primary-green) !important; }
+
+        /* Header Image Banner */
+        .results-header {
+            background: linear-gradient(rgba(30, 39, 46, 0.7), rgba(30, 39, 46, 0.9)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center 30%;
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Top Modification Search Bar */
+        .search-modifier-bar {
+            background: var(--navy-blue);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .mod-input-group {
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            height: 100%;
+        }
+        .mod-input-group i { color: var(--primary-green); margin-right: 10px; font-size: 1.1rem;}
+        .mod-input-group input { border: none; outline: none; width: 100%; font-size: 14px; font-weight: 600; color: var(--navy-blue); background: transparent; }
+        .btn-update { background: var(--primary-green); color: white; border: none; font-weight: 700; border-radius: 6px; padding: 10px 20px; width: 100%; height: 100%; transition: 0.2s; font-size: 16px;}
+        .btn-update:hover { background: var(--dark-green); }
+
+        /* Layout */
+        .page-container { margin-top: 35px; margin-bottom: 50px; }
+        
+        /* Sidebar Filters */
+        .filter-sidebar { background: white; border-radius: 8px; border: 1px solid var(--border-color); padding: 20px; position: sticky; top: 100px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);}
+        .filter-title { font-size: 16px; font-weight: 700; color: var(--navy-blue); margin-bottom: 15px; }
+        .filter-section { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 20px; }
+        .filter-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .form-check-label { font-size: 14px; color: var(--text-main); display: flex; justify-content: space-between; width: 100%; cursor: pointer;}
+        .filter-count { color: var(--text-muted); font-size: 13px; font-weight: 600; }
+        .form-check-input { accent-color: var(--primary-green); cursor: pointer; }
+        
+        /* Bus Cards */
+        .bus-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 20px; transition: 0.2s; position: relative;}
+        .bus-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.08); border-color: var(--primary-green); transform: translateY(-2px);}
+        
+        .operator-logo { max-width: 120px; max-height: 35px; object-fit: contain; margin-bottom: 10px; }
+        .operator-name { font-size: 18px; font-weight: 700; color: var(--navy-blue); margin-bottom: 2px; }
+        .bus-type { font-size: 13px; color: var(--text-muted); font-weight: 600;}
+        
+        .time-block h4 { font-size: 22px; font-weight: 800; margin: 0; color: var(--navy-blue); }
+        .time-block p { font-size: 13px; color: var(--text-muted); margin: 0; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;}
+        
+        .duration-line { text-align: center; position: relative; padding: 0 15px; }
+        .duration-text { font-size: 12px; color: var(--text-muted); background: white; padding: 0 10px; position: relative; z-index: 2; font-weight: 700; border: 1px solid var(--border-color); border-radius: 10px;}
+        .line-dash { border-top: 2px dashed #b0bec5; position: absolute; top: 50%; left: 0; right: 0; z-index: 1; }
+        
+        .price-text { font-size: 26px; font-weight: 800; color: var(--navy-blue); }
+        .btn-view-seats { background: var(--orange-alert); color: white; border: none; font-weight: 700; padding: 10px 20px; border-radius: 6px; width: 100%; transition: 0.2s; font-size: 15px;}
+        .btn-view-seats:hover { background: #e68a00; }
+        
+        .amenities-icons { color: #7f8c8d; font-size: 15px; margin-top: 15px; display: flex; gap: 15px;}
+        .amenities-icons i { cursor: pointer; transition: 0.2s; }
+        .amenities-icons i:hover { color: var(--primary-green); }
+
+        /* Ad Banner */
+        .ad-banner { background: #eafaf1; border: 1px solid #c3e6cb; border-radius: 8px; padding: 15px 20px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px;}
+
+        /* Mobile specific fixes */
+        .mobile-filter-btn { background: white; border: 1px solid var(--border-color); color: var(--navy-blue); width: 100%; font-weight: bold; padding: 12px; border-radius: 8px; margin-bottom: 20px; }
+        
+        @media (max-width: 992px) {
+            .search-modifier-bar { padding: 15px; position: relative; }
+            .mod-input-group { margin-bottom: 12px; }
+            .bus-card { padding: 20px; }
+            .bus-card .row > div { margin-bottom: 20px; }
+            .bus-card .row > div:last-child { margin-bottom: 0; border-top: 1px solid var(--border-color); padding-top: 20px; text-align: left !important; }
+            .price-text { font-size: 22px; }
+            .time-block p { max-width: 100%; white-space: normal;}
+            .operator-logo { max-width: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">STA Travel</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="buses-sa.html">Transport</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Banner -->
+    <div class="results-header">
+        <div class="container">
+            <h2 class="fw-bold mb-0">Select your departure</h2>
+            <p class="text-white-50">Compare schedules and prices from top South African operators.</p>
+        </div>
+    </div>
+
+    <!-- Top Modification Bar -->
+    <div class="search-modifier-bar">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-lg-3 col-md-6">
+                    <div class="mod-input-group">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="routeFrom" value="Johannesburg (JHB)">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="mod-input-group">
+                        <i class="fas fa-location-arrow"></i>
+                        <input type="text" id="routeTo" value="Durban (DUR)">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <div class="mod-input-group">
+                        <i class="fas fa-calendar-day"></i>
+                        <input type="date" id="depDate">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <div class="mod-input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" value="1 Passenger" readonly>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-12">
+                    <button class="btn-update" onclick="alert('Updating search...')">UPDATE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container page-container">
+        
+        <!-- Mobile Filter Toggle -->
+        <div class="d-lg-none">
+            <button class="mobile-filter-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarFilters">
+                <i class="fas fa-sliders-h me-2"></i> Sort & Filter Options
+            </button>
+        </div>
+
+        <div class="row">
+            
+            <!-- LEFT SIDEBAR: FILTERS -->
+            <div class="col-lg-3 collapse d-lg-block" id="sidebarFilters">
+                <div class="filter-sidebar">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                        <h5 class="m-0 fw-bold">Filters</h5>
+                        <a href="#" class="text-danger small text-decoration-none fw-bold">CLEAR ALL</a>
+                    </div>
+
+                    <!-- Departure Time -->
+                    <div class="filter-section">
+                        <h6 class="filter-title">Departure Time</h6>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="time1">
+                            <label class="form-check-label" for="time1">
+                                <span><i class="fas fa-sun text-warning me-2" style="width:15px;"></i> Morning <small class="text-muted">(06:00 - 11:59)</small></span>
+                                <span class="filter-count">12</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="time2">
+                            <label class="form-check-label" for="time2">
+                                <span><i class="fas fa-cloud-sun text-primary me-2" style="width:15px;"></i> Afternoon <small class="text-muted">(12:00 - 17:59)</small></span>
+                                <span class="filter-count">8</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="time3">
+                            <label class="form-check-label" for="time3">
+                                <span><i class="fas fa-moon text-dark me-2" style="width:15px;"></i> Night <small class="text-muted">(18:00 - 05:59)</small></span>
+                                <span class="filter-count">5</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Bus Operator -->
+                    <div class="filter-section">
+                        <h6 class="filter-title">Bus Operator</h6>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="op1" checked>
+                            <label class="form-check-label" for="op1">
+                                <span>Intercape</span> <span class="filter-count">10</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="op2" checked>
+                            <label class="form-check-label" for="op2">
+                                <span>Greyhound</span> <span class="filter-count">8</span>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="op3" checked>
+                            <label class="form-check-label" for="op3">
+                                <span>Eldo Coaches</span> <span class="filter-count">4</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="op4" checked>
+                            <label class="form-check-label" for="op4">
+                                <span>Translux</span> <span class="filter-count">3</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Bus Type -->
+                    <div class="filter-section">
+                        <h6 class="filter-title">Seat Type</h6>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="type1">
+                            <label class="form-check-label" for="type1">
+                                <span>Sleeper / Recliner</span> <span class="filter-count">15</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="type2">
+                            <label class="form-check-label" for="type2">
+                                <span>Standard Seater</span> <span class="filter-count">10</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Boarding Point -->
+                    <div class="filter-section">
+                        <h6 class="filter-title">Boarding Point (JHB)</h6>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="bp1">
+                            <label class="form-check-label" for="bp1">Park Station</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="bp2">
+                            <label class="form-check-label" for="bp2">Midrand (Gautrain)</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="bp3">
+                            <label class="form-check-label" for="bp3">O.R. Tambo Airport</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: RESULTS -->
+            <div class="col-lg-9">
+                
+                <!-- Results Header -->
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+                    <h4 class="m-0 fs-5"><strong>25 Buses</strong> found for your journey</h4>
+                    <div class="d-flex align-items-center mt-3 mt-md-0">
+                        <span class="text-muted fw-bold small me-2 text-nowrap">Sort by:</span>
+                        <select class="form-select form-select-sm fw-bold border border-secondary shadow-sm" style="width: 160px; padding: 8px;">
+                            <option>Cheapest First</option>
+                            <option>Departure (Early)</option>
+                            <option>Departure (Late)</option>
+                            <option>Fastest Duration</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Ad Banner -->
+                <div class="ad-banner">
+                    <i class="fas fa-shield-check fa-2x" style="color: var(--primary-green);"></i>
+                    <div>
+                        <h6 class="mb-1 fw-bold" style="color: var(--dark-green);">Safe & Secure Booking Guarantee</h6>
+                        <p class="mb-0 small" style="color: #2e7d32;">All operators are vetted for safety compliance. Instant e-ticket delivery directly to your phone.</p>
+                    </div>
+                </div>
+
+                <!-- Bus List Container -->
+                <div id="busList">
+                    <!-- Cards will be generated by JS -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to Generate Bus Cards dynamically -->
+    <script>
+        // Check URL for search parameters
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fromLoc = urlParams.get('from');
+            const toLoc = urlParams.get('to');
+            
+            if (fromLoc) document.getElementById('routeFrom').value = fromLoc;
+            if (toLoc) document.getElementById('routeTo').value = toLoc;
+            
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('depDate').valueAsDate = tomorrow;
+        };
+
+        // Simulated Bus Data with Logos
+        const operatorLogos = {
+            "Intercape": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Intercape_logo.svg/1200px-Intercape_logo.svg.png",
+            "Greyhound": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Greyhound_Lines_logo.svg/1200px-Greyhound_Lines_logo.svg.png",
+            "Eldo Coaches": "https://www.eldocoaches.co.za/wp-content/uploads/2019/10/Eldo-Coaches-Logo.png",
+            "Translux": "https://ui-avatars.com/api/?name=Translux&background=1e272e&color=fff&rounded=false&bold=true&font-size=0.3" // Fallback logo
+        };
+
+        const busData = [
+            { op: "Intercape", type: "Mainliner (Semi-Sleeper)", depT: "07:30", arrT: "15:00", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Durban Station", price: 420, seats: 12 },
+            { op: "Greyhound", type: "Dreamliner (Full Sleeper)", depT: "08:00", arrT: "15:15", dur: "7h 15m", depL: "Midrand, JHB", arrL: "Durban Beachfront", price: 580, seats: 4 },
+            { op: "Eldo Coaches", type: "Executive Coach", depT: "09:00", arrT: "16:45", dur: "7h 45m", depL: "Park Station, JHB", arrL: "Durban Station", price: 350, seats: 22 },
+            { op: "Translux", type: "Standard Seater", depT: "10:30", arrT: "18:00", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Pinetown", price: 320, seats: 8 },
+            { op: "Intercape", type: "Sleepliner", depT: "13:00", arrT: "20:30", dur: "7h 30m", depL: "O.R. Tambo Airport", arrL: "Durban Station", price: 550, seats: 15 },
+            { op: "Greyhound", type: "Premium Seater", depT: "14:15", arrT: "21:45", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Durban Station", price: 450, seats: 2 },
+            { op: "Eldo Coaches", type: "Executive Coach", depT: "21:00", arrT: "04:30", dur: "7h 30m", depL: "Midrand, JHB", arrL: "Durban Station", price: 380, seats: 30 },
+            { op: "Intercape", type: "Sleepliner", depT: "22:30", arrT: "06:00", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Durban Station", price: 490, seats: 6 }
+        ];
+
+        const busListContainer = document.getElementById('busList');
+        let htmlContent = '';
+
+        busData.forEach(bus => {
+            let seatBadge = bus.seats <= 5 
+                ? `<span class="badge bg-danger mb-3 p-2 w-100 text-center"><i class="fas fa-fire me-1"></i> Only ${bus.seats} seats left</span>` 
+                : `<span class="badge bg-success mb-3 p-2 w-100 text-center"><i class="fas fa-check me-1"></i> ${bus.seats} seats available</span>`;
+            
+            // Render Logo or Text fallback
+            let logoHTML = operatorLogos[bus.op] && bus.op !== "Translux" 
+                ? `<img src="${operatorLogos[bus.op]}" alt="${bus.op}" class="operator-logo">` 
+                : `<div class="operator-name">${bus.op}</div>`;
+
+            htmlContent += `
+            <div class="bus-card">
+                <div class="row align-items-center">
+                    
+                    <!-- Operator Info -->
+                    <div class="col-lg-3 col-md-12">
+                        ${logoHTML}
+                        <div class="bus-type mt-1">${bus.type}</div>
+                        <div class="amenities-icons">
+                            <i class="fas fa-wifi" title="Free WiFi"></i>
+                            <i class="fas fa-plug" title="USB Charging"></i>
+                            <i class="fas fa-tv" title="Entertainment"></i>
+                            <i class="fas fa-snowflake" title="Air Conditioning"></i>
+                            <i class="fas fa-toilet" title="Onboard Restroom"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Journey Timeline -->
+                    <div class="col-lg-6 col-md-12 my-3 my-lg-0">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <!-- Dep -->
+                            <div class="time-block text-end" style="width: 30%;">
+                                <h4>${bus.depT}</h4>
+                                <p title="${bus.depL}">${bus.depL}</p>
+                            </div>
+                            
+                            <!-- Duration Line -->
+                            <div class="duration-line flex-grow-1 mx-2" style="width: 40%;">
+                                <div class="line-dash"></div>
+                                <span class="duration-text"><i class="fas fa-bus-alt text-muted me-1"></i> ${bus.dur}</span>
+                            </div>
+                            
+                            <!-- Arr -->
+                            <div class="time-block text-start" style="width: 30%;">
+                                <h4>${bus.arrT}</h4>
+                                <p title="${bus.arrL}">${bus.arrL}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Price & Action -->
+                    <div class="col-lg-3 col-md-12 text-lg-end border-start-lg border-light ps-lg-4">
+                        <div class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-end h-100">
+                            <div class="text-start text-lg-end">
+                                <div class="text-muted small fw-bold text-uppercase" style="letter-spacing:1px;">Ticket Price</div>
+                                <div class="price-text">ZAR ${bus.price}</div>
+                            </div>
+                            <div class="text-end w-100 mt-lg-2" style="max-width: 200px;">
+                                ${seatBadge}
+                                <button class="btn-view-seats" onclick="alert('Checking seat map for ${bus.op}...')">VIEW SEATS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+
+        busListContainer.innerHTML = htmlContent;
+    </script>
+</body>
+</html>
