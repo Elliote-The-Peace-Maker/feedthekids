@@ -1,1 +1,588 @@
-d
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Holiday Deals & Packages | STA Travel</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Frameworks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #fbc531;
+            --deal-red: #e74c3c;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
+            --text-main: #2f3640;
+            --text-muted: #757575;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: var(--light-bg); }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; transition: 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+
+        /* Hero Deals Section */
+        .deals-hero {
+            background: linear-gradient(rgba(30, 39, 46, 0.7), rgba(30, 39, 46, 0.85)), url('https://images.unsplash.com/photo-1518182170546-076616fdcb14?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center 60%;
+            padding: 100px 0 80px;
+            color: white;
+            text-align: center;
+        }
+        .deals-hero h1 { font-weight: 800; font-size: 3.5rem; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .deals-badge { background: var(--deal-red); color: white; padding: 6px 15px; border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 13px; display: inline-block; margin-bottom: 20px;}
+
+        /* Category Filters */
+        .deal-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: -25px auto 40px;
+            position: relative;
+            z-index: 10;
+        }
+        .filter-btn {
+            background: white;
+            color: var(--navy-blue);
+            border: 2px solid white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        /* 2026 Calendar Section Title */
+        .calendar-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .calendar-title h2 { color: var(--navy-blue); font-size: 2.2rem; }
+        .calendar-title p { color: var(--text-muted); font-size: 1.1rem; }
+        .calendar-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Deal Cards */
+        .deal-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+        .deal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: var(--primary-green);
+        }
+        .deal-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        .deal-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        .deal-card:hover .deal-img-wrapper img { transform: scale(1.05); }
+        
+        /* Badges */
+        .date-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(30, 39, 46, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            backdrop-filter: blur(5px);
+            z-index: 2;
+        }
+        .date-badge span { color: var(--accent-gold); display: block; font-size: 15px;}
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--deal-red);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 13px;
+            z-index: 2;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Card Body */
+        .deal-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .deal-category { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-green); font-weight: 700; margin-bottom: 8px; }
+        .deal-title { font-size: 1.25rem; font-weight: 700; color: var(--navy-blue); margin-bottom: 10px; line-height: 1.3; }
+        .deal-location { font-size: 13px; color: var(--text-muted); font-weight: 600; margin-bottom: 15px; }
+        .deal-location i { color: var(--deal-red); }
+        
+        .deal-includes { margin-bottom: 20px; flex-grow: 1;}
+        .deal-includes ul { list-style: none; padding: 0; margin: 0; font-size: 13px; color: var(--text-muted); }
+        .deal-includes ul li { margin-bottom: 5px; }
+        .deal-includes ul li i { color: var(--primary-green); margin-right: 8px; width: 14px;}
+
+        /* Pricing Area */
+        .deal-footer { border-top: 1px solid var(--border-color); padding-top: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 14px; font-weight: 600; display: block; margin-bottom: 2px;}
+        .price-new { font-size: 24px; font-weight: 800; color: var(--navy-blue); line-height: 1; }
+        .price-pp { font-size: 11px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+        .btn-book-deal { background: var(--navy-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; transition: 0.3s; }
+        .deal-card:hover .btn-book-deal { background: var(--primary-green); }
+
+        /* Footer */
+        footer { background: var(--navy-blue); color: white; padding-top: 60px; margin-top: 60px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; transition: 0.2s;}
+        .footer-col ul li a:hover { color: var(--primary-green); padding-left: 5px;}
+        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .deals-hero h1 { font-size: 2.5rem; }
+            .deal-filters { padding: 0 15px; margin-top: -15px; }
+            .filter-btn { padding: 8px 16px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">STA Travel</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="transport-tours.html">Transport</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="deals.html">Holiday Deals</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Deals Hero Section -->
+    <header class="deals-hero">
+        <div class="container">
+            <span class="deals-badge"><i class="fas fa-bolt me-2"></i> Limited Time Offers</span>
+            <h1>2026 Ultimate Holiday Deals</h1>
+            <p class="lead text-white-50 mx-auto mt-3" style="max-width: 700px;">Plan ahead for South Africa's 2026 long weekends and public holidays. Secure the best rates on beach getaways, bush safaris, and city escapes today.</p>
+        </div>
+    </header>
+
+    <!-- Category Filters -->
+    <div class="container">
+        <div class="deal-filters">
+            <a href="#" class="filter-btn active"><i class="fas fa-globe-africa me-2"></i> All Deals</a>
+            <a href="#" class="filter-btn"><i class="fas fa-umbrella-beach me-2"></i> Coastal & Beach</a>
+            <a href="#" class="filter-btn"><i class="fas fa-paw me-2"></i> Safari & Bush</a>
+            <a href="#" class="filter-btn"><i class="fas fa-mountain me-2"></i> Adventure & Snow</a>
+            <a href="#" class="filter-btn"><i class="fas fa-heart me-2"></i> Romantic Escapes</a>
+            <a href="#" class="filter-btn"><i class="fas fa-users me-2"></i> Family Breaks</a>
+        </div>
+    </div>
+
+    <main class="container py-5">
+
+        <!-- Q1: Easter & Freedom Day -->
+        <div class="calendar-title">
+            <h2>April 2026: The Mega-Month</h2>
+            <p>Maximize your annual leave with Easter and Freedom Day long weekends.</p>
+        </div>
+
+        <div class="row g-4 mb-5 pb-4">
+            <!-- Easter Deal -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Easter Weekend <span>3 - 6 April '26</span></div>
+                        <div class="discount-badge">-25%</div>
+                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80" alt="Umhlanga Beach">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Coastal Family Break</span>
+                        <h3 class="deal-title">Umhlanga Sands Resort Escape</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> KwaZulu-Natal</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 3 Nights Sea-Facing Family Room</li>
+                                <li><i class="fas fa-utensils"></i> Daily Buffet Breakfast</li>
+                                <li><i class="fas fa-child"></i> Kids Club & Easter Egg Hunt</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 8,200</span>
+                                <span class="price-new">ZAR 6,150</span>
+                                <span class="price-pp">Total per family (4)</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Freedom Day Deal -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Freedom Day Long Wkd <span>24 - 27 April '26</span></div>
+                        <div class="discount-badge">-30%</div>
+                        <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=600&q=80" alt="Waterberg Lodge">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Luxury Safari</span>
+                        <h3 class="deal-title">Waterberg Big 5 Bush Retreat</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> Limpopo</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 3 Nights Luxury Tent</li>
+                                <li><i class="fas fa-glass-cheers"></i> All Meals & Local Beverages</li>
+                                <li><i class="fas fa-binoculars"></i> 4x Guided Game Drives</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 12,500</span>
+                                <span class="price-new">ZAR 8,750</span>
+                                <span class="price-pp">Per Person Sharing</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Worker's Day Deal -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Workers' Day Weekend <span>1 - 3 May '26</span></div>
+                        <div class="discount-badge">-15%</div>
+                        <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?auto=format&fit=crop&w=600&q=80" alt="Franschhoek Winelands">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Romantic Escape</span>
+                        <h3 class="deal-title">Franschhoek Wine & Dine</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> Western Cape</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 2 Nights Boutique Estate Room</li>
+                                <li><i class="fas fa-wine-glass-alt"></i> Private Cellar Tasting</li>
+                                <li><i class="fas fa-spa"></i> 60-min Couples Massage</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 5,800</span>
+                                <span class="price-new">ZAR 4,930</span>
+                                <span class="price-pp">Per Couple Total</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Q2/Q3: Winter & Women's Day -->
+        <div class="calendar-title">
+            <h2>Mid-Year Winter Magic</h2>
+            <p>Celebrate Youth Day (June) and Women's Day (August) in style.</p>
+        </div>
+
+        <div class="row g-4 mb-5 pb-4">
+            <!-- Youth Day Snow Deal -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Youth Day Mid-Week <span>13 - 16 June '26</span></div>
+                        <div class="discount-badge">-20%</div>
+                        <img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=600&q=80" alt="Afriski Lesotho">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Adventure & Snow</span>
+                        <h3 class="deal-title">Drakensberg/Lesotho Ski Trip</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> Border / Afriski</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 3 Nights Alpine Chalet</li>
+                                <li><i class="fas fa-snowflake"></i> 2-Day Ski Pass & Gear Hire</li>
+                                <li><i class="fas fa-mug-hot"></i> Glühwein Welcome</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 7,500</span>
+                                <span class="price-new">ZAR 6,000</span>
+                                <span class="price-pp">Per Person Sharing</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Women's Day Spa Retreat -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Women's Day Long Wkd <span>7 - 10 Aug '26</span></div>
+                        <div class="discount-badge">Girls Trip!</div>
+                        <img src="https://images.unsplash.com/photo-1544124499-58912cbddaad?auto=format&fit=crop&w=600&q=80" alt="Magaliesberg Spa">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Wellness & Luxury</span>
+                        <h3 class="deal-title">Magaliesberg Spa Retreat</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> North West / Gauteng Border</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 3 Nights Executive Suite</li>
+                                <li><i class="fas fa-spa"></i> Full Day Spa Package</li>
+                                <li><i class="fas fa-cocktail"></i> High Tea & Bubbles</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 6,900</span>
+                                <span class="price-new">ZAR 5,850</span>
+                                <span class="price-pp">Per Person Sharing</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Generic Winter City Break -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Valid Jul - Aug 2026 <span>Winter Warmers</span></div>
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" alt="Durban Warmth">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">City Break</span>
+                        <h3 class="deal-title">Durban Winter Warmer</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> KwaZulu-Natal</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-plane"></i> Return Flights (JHB/CPT to DUR)</li>
+                                <li><i class="fas fa-bed"></i> 2 Nights 4-Star Hotel</li>
+                                <li><i class="fas fa-car"></i> 3 Days Car Rental Included</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 4,800</span>
+                                <span class="price-new">ZAR 3,999</span>
+                                <span class="price-pp">Per Person Total</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Q4: Heritage Day & Festive Season -->
+        <div class="calendar-title">
+            <h2>Spring & Festive Early Birds</h2>
+            <p>Book Heritage Day (September) and secure December 2026 before it sells out.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Heritage Day -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Heritage Day Long Wkd <span>24 - 27 Sept '26</span></div>
+                        <div class="discount-badge">-10%</div>
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80" alt="Kruger Braai">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Family Bush Break</span>
+                        <h3 class="deal-title">Kruger Park Boma & Bush</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> Mpumalanga</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 3 Nights Self-Catering Chalet</li>
+                                <li><i class="fas fa-fire-alt"></i> Heritage Day Traditional Braai</li>
+                                <li><i class="fas fa-ticket-alt"></i> Kruger Park Entry Fees Paid</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 5,500</span>
+                                <span class="price-new">ZAR 4,950</span>
+                                <span class="price-pp">Total per chalet (4 sleeper)</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Early Bird December -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">Festive Season 2026 <span>15 Dec - 3 Jan</span></div>
+                        <div class="discount-badge">Early Bird</div>
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="Garden Route">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Coastal Summer Holiday</span>
+                        <h3 class="deal-title">Garden Route Summer House</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> Plettenberg Bay, Western Cape</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-home"></i> 7 Nights Private Villa (Sleeps 8)</li>
+                                <li><i class="fas fa-swimmer"></i> Private Pool & Ocean Views</li>
+                                <li><i class="fas fa-broom"></i> Daily Housekeeping Included</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 45,000</span>
+                                <span class="price-new">ZAR 38,500</span>
+                                <span class="price-pp">Total for 7 Nights</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- New Year's Eve Safari -->
+            <div class="col-lg-4 col-md-6">
+                <a href="packages.html" class="deal-card">
+                    <div class="deal-img-wrapper">
+                        <div class="date-badge">New Year's Eve <span>30 Dec '26 - 2 Jan '27</span></div>
+                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80" alt="Karoo NYE">
+                    </div>
+                    <div class="deal-body">
+                        <span class="deal-category">Unique Experience</span>
+                        <h3 class="deal-title">Karoo Star-Gazing NYE</h3>
+                        <p class="deal-location"><i class="fas fa-map-marker-alt"></i> Sutherland, Northern Cape</p>
+                        <div class="deal-includes">
+                            <ul>
+                                <li><i class="fas fa-bed"></i> 3 Nights Boutique Farm Stay</li>
+                                <li><i class="fas fa-star"></i> SALT Observatory Tour</li>
+                                <li><i class="fas fa-glass-cheers"></i> NYE Desert Dinner Under Stars</li>
+                            </ul>
+                        </div>
+                        <div class="deal-footer">
+                            <div>
+                                <span class="price-old">ZAR 8,200</span>
+                                <span class="price-new">ZAR 7,100</span>
+                                <span class="price-pp">Per Person Sharing</span>
+                            </div>
+                            <button class="btn-book-deal">View Deal</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="mb-3" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="partner-help.html">Partner Help</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="genius.html">Genius Loyalty</a></li>
+                        <li><a href="articles.html">Travel Articles</a></li>
+                        <li><a href="deals.html">Holiday Deals</a></li>
+                        <li><a href="packages.html">Safari Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col text-lg-end">
+                    <h4>Mzansi Secure Payments</h4>
+                    <p class="small text-muted mb-2">We accept all major South African payment methods.</p>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">Ozow</span>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">PayFast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0 text-white-50">&copy; 1976–2026 STA Travel South Africa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Centre | STA Travel</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Frameworks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #1e272e;
+            --primary-green: #28a745;
+            --dark-green: #1e7e34;
+            --accent-gold: #fbc531;
+            --light-bg: #f4f5f8;
+            --border-color: #e0e0e0;
+            --text-main: #2f3640;
+            --text-muted: #757575;
+            --alert-red: #e74c3c;
+        }
+
+        body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: var(--light-bg); }
+        h1, h2, h3, h4, h5, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
+
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
+        .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; transition: 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
+
+        /* Safety Hero */
+        .safety-hero {
+            background: linear-gradient(rgba(30, 39, 46, 0.85), rgba(30, 39, 46, 0.95)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: var(--alert-red);
+            color: white;
+            padding: 25px 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        }
+        .emergency-number { font-size: 24px; font-weight: 700; display: block; margin-top: 5px; }
+        .emergency-number a { color: white; text-decoration: none; }
+        .emergency-number a:hover { text-decoration: underline; }
+
+        /* Safety Cards */
+        .safety-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: 0.3s;
+            height: 100%;
+        }
+        .safety-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--primary-green);
+        }
+        .safety-icon {
+            font-size: 50px;
+            color: var(--primary-green);
+            margin-bottom: 25px;
+            display: inline-block;
+            background: rgba(40, 167, 69, 0.1);
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border-radius: 50%;
+        }
+        .safety-card h4 { font-size: 20px; margin-bottom: 15px; color: var(--navy-blue); }
+        .safety-card p { font-size: 14px; color: var(--text-muted); margin: 0; line-height: 1.7; }
+
+        /* Report Section */
+        .report-section { background: white; padding: 80px 0; border-top: 1px solid var(--border-color); margin-top: 60px; }
+        .report-box { background: var(--light-bg); border-radius: 12px; padding: 40px; border: 1px solid var(--border-color); }
+        
+        /* Form Styling */
+        .form-control, .form-select { padding: 14px 15px; border-radius: 8px; border: 1px solid var(--border-color); font-size: 14px; }
+        .form-control:focus, .form-select:focus { border-color: var(--alert-red); box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25); }
+        .btn-report { background: var(--alert-red); color: white; border: none; font-weight: 700; padding: 15px 30px; border-radius: 8px; width: 100%; transition: 0.3s; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-report:hover { background: #c0392b; color: white;}
+
+        /* Tips List */
+        .tips-list { list-style: none; padding: 0; }
+        .tips-list li { position: relative; padding-left: 35px; margin-bottom: 20px; font-size: 15px; color: var(--text-main); }
+        .tips-list li i { position: absolute; left: 0; top: 3px; color: var(--primary-green); font-size: 20px; }
+
+        /* Footer */
+        footer { background: var(--navy-blue); color: white; padding-top: 60px; }
+        .footer-col h4 { font-size: 16px; margin-bottom: 20px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #bdc3c7; text-decoration: none; font-size: 14px; transition: 0.2s;}
+        .footer-col ul li a:hover { color: var(--primary-green); padding-left: 5px;}
+        .footer-bottom { background: rgba(0,0,0,0.2); padding: 20px 0; margin-top: 40px; font-size: 13px; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .safety-hero { padding: 60px 0 80px; }
+            .emergency-banner { margin-top: -20px; border-radius: 0; }
+            .report-box { padding: 25px; }
+            .emergency-col { margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 20px; }
+            .emergency-col:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: var(--primary-green);">STA Travel</span>.co.za
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buses-sa.html">Transport</a></li>
+                    <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Safety Hero Section -->
+    <header class="safety-hero">
+        <div class="container">
+            <i class="fas fa-shield-alt fa-4x mb-4 text-success"></i>
+            <h1 class="display-4 fw-bold">Your safety is our priority</h1>
+            <p class="lead text-white-50 mx-auto" style="max-width: 700px;">Whether you are booking a stay, a bus, or a luxury cruise, we are committed to keeping you, your data, and your money secure.</p>
+        </div>
+    </header>
+
+    <!-- Emergency Contacts Banner -->
+    <div class="container">
+        <div class="emergency-banner">
+            <div class="row text-center">
+                <div class="col-md-4 emergency-col border-end border-light border-opacity-25">
+                    <span class="text-uppercase small fw-bold text-white-50">SAPS (Police)</span>
+                    <span class="emergency-number"><i class="fas fa-phone-alt me-2"></i><a href="tel:10111">10111</a></span>
+                </div>
+                <div class="col-md-4 emergency-col border-end border-light border-opacity-25">
+                    <span class="text-uppercase small fw-bold text-white-50">Ambulance</span>
+                    <span class="emergency-number"><i class="fas fa-ambulance me-2"></i><a href="tel:10177">10177</a></span>
+                </div>
+                <div class="col-md-4 emergency-col">
+                    <span class="text-uppercase small fw-bold text-white-50">Mobile Emergency</span>
+                    <span class="emergency-number"><i class="fas fa-mobile-alt me-2"></i><a href="tel:112">112</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How We Protect You Grid -->
+    <main class="container py-5 mt-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: var(--navy-blue);">How we protect you</h2>
+            <p class="text-muted">Our platform is built with industry-leading security measures.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Feature 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="safety-card">
+                    <i class="fas fa-lock safety-icon"></i>
+                    <h4>Secure Payments</h4>
+                    <p>We process all payments through PCI-DSS compliant gateways like PayFast and Ozow. We never store your full credit card details on our servers.</p>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="safety-card">
+                    <i class="fas fa-check-circle safety-icon"></i>
+                    <h4>Vetted Partners</h4>
+                    <p>Every guest house, hotel, and transport operator on our platform undergoes a strict verification process before they are allowed to accept bookings.</p>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="safety-card">
+                    <i class="fas fa-user-shield safety-icon"></i>
+                    <h4>Fraud Prevention</h4>
+                    <p>Our automated systems monitor for suspicious behavior 24/7. If a listing or user appears fraudulent, they are immediately suspended from the platform.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Travel Tips & Report Section -->
+    <section class="report-section">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                
+                <!-- Travel Tips -->
+                <div class="col-lg-5">
+                    <h2 class="fw-bold mb-4" style="color: var(--navy-blue);">Travel safely in Mzansi</h2>
+                    <p class="text-muted mb-4">South Africa is a beautiful country, but like any major tourist destination, it pays to stay vigilant. Here are our top tips for a safe trip:</p>
+
+                    <ul class="tips-list">
+                        <li>
+                            <i class="fas fa-car-side"></i>
+                            <strong>Transport Safety:</strong> Always use verified transport partners booked through our site. If using e-hailing apps, verify the license plate and driver name before getting in.
+                        </li>
+                        <li>
+                            <i class="fas fa-wallet"></i>
+                            <strong>Payment Scams:</strong> Never wire money or pay via EFT directly to a property owner outside of the STA Travel platform.
+                        </li>
+                        <li>
+                            <i class="fas fa-eye"></i>
+                            <strong>Situational Awareness:</strong> Avoid flashing expensive cameras, jewelry, or large amounts of cash in busy public areas or unfamiliar neighborhoods.
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marked-alt"></i>
+                            <strong>Route Planning:</strong> If driving a rental car, plan your route before leaving. Stick to major highways and avoid driving in unfamiliar rural areas at night.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Report Form -->
+                <div class="col-lg-7">
+                    <div class="report-box">
+                        <h3 class="fw-bold mb-3 text-danger"><i class="fas fa-exclamation-triangle me-2"></i> Report a Safety Issue</h3>
+                        <p class="text-muted small mb-4">If you felt unsafe at a property, experienced an issue with a transport provider, or suspect a scam, please report it immediately. Our Trust & Safety team will investigate.</p>
+                        
+                        <form action="thanks.html" method="GET">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small text-muted">Your Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold small text-muted">Booking Reference</label>
+                                    <input type="text" class="form-control" placeholder="e.g. STA-84729" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small text-muted">Issue Type</label>
+                                    <select class="form-select" required>
+                                        <option value="" selected disabled>Select the nature of the issue...</option>
+                                        <option value="scam">Suspected Fraud / Scam / Fake Property</option>
+                                        <option value="physical_safety">Physical Safety Concern at Property</option>
+                                        <option value="transport_safety">Reckless Driving / Transport Safety</option>
+                                        <option value="harassment">Harassment by Host / Driver</option>
+                                        <option value="other">Other Security Concern</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small text-muted">Please provide details</label>
+                                    <textarea class="form-control" rows="5" placeholder="Describe exactly what happened. Include dates, times, and the names of anyone involved..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn-report">Submit Report Securely</button>
+                                </div>
+                                <div class="col-12 text-center mt-3">
+                                    <small class="text-muted"><i class="fas fa-lock me-1"></i> Your report will be handled confidentially.</small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row g-4">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="mb-3" style="color:var(--primary-green)">STA Travel<span class="text-white">.co.za</span></h2>
+                    <p>South Africa's premier booking platform for stays, adventures, and local experiences.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="customer-service.html">Customer Service</a></li>
+                        <li><a href="partner-help.html">Partner Help</a></li>
+                        <li><a href="safety.html">Safety Centre</a></li>
+                        <li><a href="cancel.html">Cancel Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6 footer-col">
+                    <h4>Discover</h4>
+                    <ul>
+                        <li><a href="genius.html">Genius Loyalty</a></li>
+                        <li><a href="articles.html">Travel Articles</a></li>
+                        <li><a href="deals.html">Holiday Deals</a></li>
+                        <li><a href="packages.html">Safari Packages</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 footer-col text-lg-end">
+                    <h4>Mzansi Secure Payments</h4>
+                    <p class="small text-muted mb-2">We accept all major South African payment methods.</p>
+                    <div class="fs-2">
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">Ozow</span>
+                        <span class="fs-6 badge bg-light text-dark align-middle mb-2">PayFast</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <p class="mb-0 text-white-50">&copy; 1976–2026 STA Travel South Africa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
