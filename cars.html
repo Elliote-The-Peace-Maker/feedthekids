@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STA Travel | Premium Car Rentals South Africa</title>
+    <title>STA Travel | Premium Car Rentals & Chauffeur Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     
     <style>
         :root {
-            --navy: #1e272e; --primary: #28a745; --primary-dark: #218838; 
-            --light-green: #eafaf1; --text: #2f3640; --border: #dee2e6; --shadow: 0 4px 20px rgba(0,0,0,0.08);
-            --blue-link: #006ce4;
-        }
-
-          :root {
             --navy-blue: #1e272e;
             --primary-green: #28a745;
             --dark-green: #1e7e34;
@@ -23,23 +18,21 @@
             --border-color: #dcdde1;
             --text-main: #2f3640;
             --text-muted: #7f8c8d;
+            --blue-link: #006ce4;
+            --light-green: #eafaf1;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         body { font-family: 'Open Sans', sans-serif; color: var(--text-main); background-color: white; }
         h1, h2, h3, h4, .navbar-brand { font-family: 'Poppins', sans-serif; font-weight: 700; }
 
-        /* Header/Nav */
-        .navbar { background: var(--navy-blue) !important; padding: 15px 0; }
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 15px 0; border-bottom: 3px solid var(--primary-green); }
+        .navbar-brand { font-size: 1.5rem; color: white !important; }
         .nav-link { color: white !important; font-weight: 600; font-size: 14px; margin: 0 10px; }
         .nav-link:hover, .nav-link.active { color: var(--primary-green) !important; }
-        
-        
-        /* Navigation */
-        .navbar { background: var(--navy) !important; padding: 15px 0; border-bottom: 3px solid var(--primary); }
-        .navbar-brand { font-size: 1.5rem; color: white !important; }
-        .nav-link { color: white !important; font-weight: 600; }
-        .btn-green { background: var(--primary); color: white; border: none; transition: 0.3s; padding: 12px 20px; border-radius: 6px; font-weight: bold; }
-        .btn-green:hover { background: var(--primary-dark); color: white; }
+        .btn-green { background: var(--primary-green); color: white; border: none; transition: 0.3s; padding: 12px 20px; border-radius: 6px; font-weight: bold; }
+        .btn-green:hover { background: var(--dark-green); color: white; }
 
         /* Hero Carousel & Search */
         .hero-container { position: relative; width: 100%; margin-bottom: 100px; height: 350px; background: #1e272e; }
@@ -49,61 +42,62 @@
         .search-engine-wrapper { position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1140px; z-index: 100; }
         
         .service-toggle { text-shadow: 1px 1px 3px rgba(0,0,0,0.8); margin-bottom: 15px; }
-        .service-toggle label { cursor: pointer; transition: 0.2s; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); font-weight: bold; color: white; margin-right: 10px;}
-        .service-toggle label:hover { background: rgba(0,0,0,0.9); border-color: var(--primary); }
-        .service-toggle input { accent-color: var(--primary); margin-right: 8px; }
+        .service-toggle label { cursor: pointer; transition: 0.2s; background: rgba(0,0,0,0.7); padding: 8px 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.3); font-weight: bold; color: white; margin-right: 10px; margin-bottom: 5px; display: inline-block;}
+        .service-toggle label:hover { background: rgba(0,0,0,0.9); border-color: var(--primary-green); }
+        .service-toggle input { accent-color: var(--primary-green); margin-right: 8px; }
 
-        .search-engine { background: white; padding: 15px; border-radius: 12px; box-shadow: var(--shadow); display: grid; grid-template-columns: 2fr 1fr 1fr 150px; gap: 10px; align-items: center; border: 4px solid var(--primary); }
+        .search-engine { background: white; padding: 15px; border-radius: 12px; box-shadow: var(--shadow); display: grid; grid-template-columns: 2fr 1fr 1fr 150px; gap: 10px; align-items: center; border: 4px solid var(--primary-green); }
         .search-input-group { background: #f8f9fa; border: 1px solid #eee; border-radius: 8px; display: flex; align-items: center; padding: 12px 15px; position: relative; }
-        .search-input-group input { border: none; background: transparent; width: 100%; outline: none; font-size: 14px; font-weight: 600; color: var(--navy); }
+        .search-input-group input { border: none; background: transparent; width: 100%; outline: none; font-size: 14px; font-weight: 600; color: var(--navy-blue); }
         .search-label { font-size: 11px; font-weight: bold; color: #7f8c8d; text-transform: uppercase; margin-bottom: 2px; display: block; }
         
         /* Autocomplete Dropdown */
-        .location-dropdown { position: absolute; top: 105%; left: 0; width: 100%; background: white; border-radius: 8px; box-shadow: var(--shadow); z-index: 1000; display: none; max-height: 250px; overflow-y: auto; border: 1px solid var(--border); }
-        .loc-item { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid #f1f1f1; font-size: 14px; color: var(--navy); }
-        .loc-item:hover { background: var(--light-green); color: var(--primary-dark); }
+        .location-dropdown { position: absolute; top: 105%; left: 0; width: 100%; background: white; border-radius: 8px; box-shadow: var(--shadow); z-index: 1000; display: none; max-height: 250px; overflow-y: auto; border: 1px solid var(--border-color); }
+        .loc-item { padding: 12px 15px; cursor: pointer; border-bottom: 1px solid #f1f1f1; font-size: 14px; color: var(--navy-blue); }
+        .loc-item:hover { background: var(--light-green); color: var(--dark-green); }
         
         /* Sidebar & Layout */
         .main-content { max-width: 1140px; margin: 0 auto 50px; display: grid; grid-template-columns: 280px 1fr; gap: 30px; padding: 0 15px; }
-        .sidebar { background: white; border-radius: 12px; padding: 25px; height: fit-content; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,0.02); position: sticky; top: 100px;}
+        .sidebar { background: white; border-radius: 12px; padding: 25px; height: fit-content; border: 1px solid var(--border-color); box-shadow: 0 2px 10px rgba(0,0,0,0.02); position: sticky; top: 100px;}
         .filter-section { border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
         .filter-section:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
         .check-item { display: flex; align-items: center; font-size: 14px; margin-bottom: 12px; cursor: pointer; color: #4a4a4a; }
-        .check-item input { margin-right: 12px; accent-color: var(--primary); width: 16px; height: 16px; }
+        .check-item input { margin-right: 12px; accent-color: var(--primary-green); width: 16px; height: 16px; }
 
-        .search-box-sm { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; outline: none; }
-        .search-box-sm:focus { border-color: var(--primary); }
+        .search-box-sm { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; outline: none; }
+        .search-box-sm:focus { border-color: var(--primary-green); }
 
         /* Dynamic Map Container */
-        .dynamic-map { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 20px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05);}
+        .dynamic-map { width: 100%; height: 200px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); margin-bottom: 20px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.05);}
         .dynamic-map iframe { width: 100%; height: 100%; border: none; }
 
         /* Car Cards */
-        .car-card { background: white; border: 1px solid var(--border); border-radius: 12px; display: flex; margin-bottom: 20px; overflow: hidden; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .car-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: var(--shadow); }
+        .car-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; display: flex; margin-bottom: 20px; overflow: hidden; transition: 0.3s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .car-card:hover { transform: translateY(-3px); border-color: var(--primary-green); box-shadow: var(--shadow); }
         .car-img-area { width: 260px; padding: 25px; background: #fdfdfd; display: flex; align-items: center; justify-content: center; position: relative;}
         .car-img-area img { width: 100%; height: auto; object-fit: contain; max-height: 150px; border-radius: 4px;}
         
         .car-details { flex: 1; padding: 25px; border-right: 1px solid #eee; }
         
         .provider-logo { height: 28px; width: auto; max-width: 100px; object-fit: contain; margin-bottom: 12px; display: block; }
-        .car-name { font-size: 20px; font-weight: 700; margin-bottom: 5px; color: var(--navy); }
+        .car-name { font-size: 20px; font-weight: 700; margin-bottom: 5px; color: var(--navy-blue); }
         
         .rating-box { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
-        .rating-score { background: var(--navy); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px; }
-        .rating-text { font-size: 13px; font-weight: 600; color: var(--text); }
+        .rating-score { background: var(--navy-blue); color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 14px; }
+        .rating-text { font-size: 13px; font-weight: 600; color: var(--text-main); }
         
         .specs { font-size: 13px; color: #636e72; margin: 15px 0; font-weight: 600; }
         
-        .discount-badge { background: #d4111e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 10px; }
-        .genius-badge { background: var(--blue-link); color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 10px; }
+        .discount-badge { background: #d4111e; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 10px; margin-right: 5px;}
+        .genius-badge { background: var(--blue-link); color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 10px; margin-right: 5px;}
+        .chauffeur-badge { background: var(--navy-blue); color: #fbc531; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; display: inline-block; margin-top: 10px; }
 
         .price-area { width: 220px; padding: 25px; text-align: right; background: #fafafa; display: flex; flex-direction: column; justify-content: space-between; }
-        .current-price { font-size: 24px; font-weight: 800; color: var(--navy); margin-bottom: 15px;}
+        .current-price { font-size: 24px; font-weight: 800; color: var(--navy-blue); margin-bottom: 15px;}
         .strike-price { text-decoration: line-through; color: #d4111e; font-size: 14px; font-weight: 600; margin-bottom: 5px;}
 
         /* Footer */
-        footer { background: var(--navy); color: white; padding-top: 60px; }
+        footer { background: var(--navy-blue); color: white; padding-top: 60px; }
         .footer-col h4 { font-size: 16px; margin-bottom: 25px; color: white; text-transform: uppercase; letter-spacing: 1px;}
         .footer-col ul { list-style: none; padding: 0; }
         .footer-col ul li { margin-bottom: 12px; }
@@ -132,7 +126,9 @@
         }
     </style>
 </head>
-<!-- Navigation -->
+<body>
+
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
@@ -143,31 +139,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="stays.html">Stays</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Flights.html">Flights</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cars.html">Car Rentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="stays.html">Stays</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tours.html">Tours</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="cars.html">Car Rentals</a></li>
                     <li class="nav-item"><a class="nav-link" href="packages.html">Packages</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="list-property.html" class="btn btn-outline-light btn-sm mt-1">List Property</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Hero Carousel & Search -->
     <div class="hero-container">
         <img src="https://images.unsplash.com/photo-1549144482-f024ee083fcd?auto=format&fit=crop&w=1920&q=80" alt="South Africa Drive">
         <div class="hero-content">
-            <h1 class="display-5 fw-bold mb-3">Premium car hire in South Africa</h1>
-            <p class="lead fw-normal text-light">Compare deals from top providers across airports and cities.</p>
+            <h1 class="display-5 fw-bold mb-3">Premium Car Hire & Chauffeurs</h1>
+            <p class="lead fw-normal text-light">Compare self-drive deals or book a professional driver anywhere in SA.</p>
         </div>
 
         <div class="search-engine-wrapper">
-            <div class="service-toggle d-flex px-2">
+            <div class="service-toggle px-2">
                 <label><input type="radio" name="serviceType" value="Branch" checked onchange="updateServiceUI()"> Collect at Branch</label>
                 <label><input type="radio" name="serviceType" value="Delivery" onchange="updateServiceUI()"> Deliver to Address</label>
+                <label><input type="radio" name="serviceType" value="Chauffeur" onchange="updateServiceUI()"> Chauffeur Service <i class="fas fa-user-tie ms-1"></i></label>
             </div>
             <div class="search-engine">
                 <div class="search-input-group d-block">
@@ -176,11 +172,11 @@
                     <div id="locDropdown" class="location-dropdown"></div>
                 </div>
                 <div class="search-input-group d-block">
-                    <span class="search-label">Pick-up Date</span>
+                    <span class="search-label" id="pickupLabel">Pick-up Date</span>
                     <input type="date" id="pickupDate" onchange="calculateDays()">
                 </div>
                 <div class="search-input-group d-block">
-                    <span class="search-label">Drop-off Date</span>
+                    <span class="search-label" id="dropoffLabel">Drop-off Date</span>
                     <input type="date" id="dropoffDate" onchange="calculateDays()">
                 </div>
                 <button onclick="triggerSearch()" class="btn-green w-100 h-100 fs-5">Search</button>
@@ -188,6 +184,7 @@
         </div>
     </div>
 
+    <!-- Main Content -->
     <div class="main-content">
         <aside class="sidebar">
             <div class="filter-section">
@@ -219,13 +216,13 @@
                 <iframe id="mapIframe" src="" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
-            <div class="alert alert-success border-0 py-3 px-4 small mb-4 fw-bold d-flex justify-content-between align-items-center" style="background: #f0f9f0; color: #008009; border-radius: 8px;">
-                <span>✓ All rentals include basic theft and collision damage protection.</span>
+            <div class="alert alert-success border-0 py-3 px-4 small mb-4 fw-bold d-flex flex-column flex-md-row justify-content-between align-items-md-center" style="background: #f0f9f0; color: #008009; border-radius: 8px;">
+                <span class="mb-2 mb-md-0" id="trustBanner">✓ All rentals include basic theft and collision damage protection.</span>
                 <span id="rentalNotice" class="badge bg-success py-2 px-3 fs-6">Showing prices for 3 days</span>
             </div>
             
             <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
-                <h2 class="h5 m-0 fw-bold" style="color: var(--navy);"><span id="carCount">0</span> vehicles available</h2>
+                <h2 class="h5 m-0 fw-bold" style="color: var(--navy-blue);"><span id="carCount">0</span> vehicles available</h2>
                 
                 <select id="sortFilter" class="form-select w-auto form-select-sm border-secondary text-secondary fw-bold" onchange="filterData()">
                     <option value="recommended">Sort by: Recommended</option>
@@ -238,12 +235,13 @@
         </main>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container pb-4">
             <div class="row">
                 <div class="col-lg-4 mb-5">
                     <h2 class="mb-4 fw-bold" style="color:var(--primary-green); font-family: 'Poppins', sans-serif;">STA Travel<span class="text-white">.co.za</span></h2>
-                    <p style="color: #a4b0be; line-height: 1.8;">South Africa's premier booking platform for stays, adventures, and secure car rentals.</p>
+                    <p style="color: #a4b0be; line-height: 1.8;">South Africa's premier booking platform for stays, adventures, and secure car & chauffeur rentals.</p>
                 </div>
                 <div class="col-lg-2 col-6 footer-col">
                     <h4>Support</h4>
@@ -265,7 +263,9 @@
                     <h4>Secure Payments</h4>
                     <p style="color: #a4b0be; font-size: 14px;">We process transactions securely using South Africa's trusted gateways.</p>
                     <div class="fs-1 mt-3 d-flex gap-3 align-items-center text-white fw-bold">
-                        VISA | MasterCard | PayFast
+                        <i class="fab fa-cc-visa me-2"></i>
+                        <i class="fab fa-cc-mastercard me-2"></i>
+                        <span class="fs-6 badge bg-light text-dark align-middle">Ozow</span>
                     </div>
                 </div>
             </div>
@@ -288,7 +288,6 @@
         };
         const companies = Object.keys(companyLogos);
         
-        // EXPANDED BRANCH LOCATIONS
         const branchLocations = [
             "OR Tambo International Airport", "Lanseria International Airport", "Sandton Gautrain Station", 
             "Pretoria Station", "Menlyn Maine, Pretoria", "Centurion Gautrain Station", "Wonderboom Airport",
@@ -307,8 +306,7 @@
             const drop = document.getElementById('locDropdown');
             const type = document.querySelector('input[name="serviceType"]:checked').value;
             
-            // Allow them to type anything for delivery without autocomplete getting in the way
-            if (type === 'Delivery') { drop.style.display = 'none'; return; }
+            if (type === 'Delivery' || type === 'Chauffeur') { drop.style.display = 'none'; return; }
             if (query.length < 2) { drop.style.display = 'none'; return; }
 
             const matches = branchLocations.filter(l => l.toLowerCase().includes(query.toLowerCase()));
@@ -328,27 +326,46 @@
             if (!e.target.closest('.search-input-group')) { document.getElementById('locDropdown').style.display = 'none'; }
         });
 
-        // UPDATED MAP LOGIC FOR DELIVERY
+        // Toggle UI text based on Self-Drive vs Chauffeur
         function updateServiceUI() {
             const type = document.querySelector('input[name="serviceType"]:checked').value;
             const locInput = document.getElementById('locInput');
+            const pickupLabel = document.getElementById('pickupLabel');
+            const dropoffLabel = document.getElementById('dropoffLabel');
+            const trustBanner = document.getElementById('trustBanner');
+
             if (type === 'Delivery') {
-                locInput.placeholder = "Enter Address (e.g. 123 Vilakazi St, or Soshanguve)"; 
+                locInput.placeholder = "Enter Address (e.g. 123 Vilakazi St)"; 
                 locInput.value = "";
                 document.getElementById('locDropdown').style.display = 'none'; 
-                // Show a generic zoomed out map of South Africa until they search
+                pickupLabel.innerText = "Delivery Date";
+                dropoffLabel.innerText = "Collection Date";
+                trustBanner.innerText = "✓ Door-to-door delivery. All rentals include basic theft/collision protection.";
                 updateMap("South Africa"); 
+            } else if (type === 'Chauffeur') {
+                locInput.placeholder = "Enter Pick-up Location / Hotel"; 
+                locInput.value = "";
+                document.getElementById('locDropdown').style.display = 'none'; 
+                pickupLabel.innerText = "Service Start Date";
+                dropoffLabel.innerText = "Service End Date";
+                trustBanner.innerText = "✓ Chauffeur services include fuel, professional driver, and all vehicle insurances.";
+                updateMap("South Africa");
             } else {
                 locInput.placeholder = "Search Branches & Airports"; 
                 locInput.value = "OR Tambo International Airport";
+                pickupLabel.innerText = "Pick-up Date";
+                dropoffLabel.innerText = "Drop-off Date";
+                trustBanner.innerText = "✓ All rentals include basic theft and collision damage protection.";
                 updateMap("OR Tambo International Airport");
             }
+            
+            // Re-filter data to update pricing (Chauffeur adds a driver fee)
+            filterData();
         }
 
         function triggerSearch() {
             const loc = document.getElementById('locInput').value;
             if (loc.trim() === "") { alert("Please enter a location first."); return; }
-            // This will now update the map for BOTH Branches and Delivery Addresses
             updateMap(loc); 
             filterData();
         }
@@ -357,7 +374,6 @@
             const mapContainer = document.getElementById('mapView');
             const mapIframe = document.getElementById('mapIframe');
             if(location && location.length > 3) {
-                // If it's just "South Africa", zoom out a bit more
                 const zoom = location === "South Africa" ? "6" : "14";
                 const query = encodeURIComponent(location + (location === "South Africa" ? "" : ", South Africa"));
                 mapIframe.src = `https://maps.google.com/maps?q=${query}&t=&z=${zoom}&ie=UTF8&iwloc=&output=embed`;
@@ -382,10 +398,16 @@
             if (dDate <= pDate) { dDate.setDate(pDate.getDate() + 1); document.getElementById('dropoffDate').valueAsDate = dDate; }
             const diffTime = Math.abs(dDate - pDate);
             let days = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            if (days > 30) { alert("Maximum rental period is 30 days."); dDate.setDate(pDate.getDate() + 30); document.getElementById('dropoffDate').valueAsDate = dDate; days = 30; }
+            if (days > 30) { alert("Maximum booking period is 30 days."); dDate.setDate(pDate.getDate() + 30); document.getElementById('dropoffDate').valueAsDate = dDate; days = 30; }
             rentalDays = days;
+            
             let noticeText = `Showing prices for ${rentalDays} days`;
-            if (rentalDays >= 14) noticeText = `Long-Term 25% Discount Applied (${rentalDays} days)`;
+            const type = document.querySelector('input[name="serviceType"]:checked').value;
+            
+            if (rentalDays >= 14 && type !== 'Chauffeur') {
+                noticeText = `Long-Term 25% Discount Applied (${rentalDays} days)`;
+            }
+            
             document.getElementById('rentalNotice').innerText = noticeText;
             filterData();
         }
@@ -452,8 +474,8 @@
                 const hasGenius = Math.random() > 0.7;   
 
                 allCars.push({
-                    id: i, name: model.name, company, category: cat, price,
-                    seats: 5, bags: cat === "Small" ? 2 : (cat === "Medium" ? 3 : 4), 
+                    id: i, name: model.name, company, category: cat, baseCarPrice: price,
+                    seats: cat === "Small" ? 4 : 5, bags: cat === "Small" ? 2 : (cat === "Medium" ? 3 : 4), 
                     img: assignedImage, rating, ratingText, hasDiscount, hasGenius
                 });
             }
@@ -471,12 +493,22 @@
             const maxPrice = document.getElementById('priceRange').value;
             const searchModel = document.getElementById('carModelSearch').value.toLowerCase();
             const sortVal = document.getElementById('sortFilter').value;
+            const serviceType = document.querySelector('input[name="serviceType"]:checked').value;
             
             const selectedCats = Array.from(document.querySelectorAll('.cat-check:checked')).map(c => c.value);
             const selectedComps = Array.from(document.querySelectorAll('.comp-check:checked')).map(c => c.value);
 
-            let filtered = allCars.filter(car => {
-                const matchesPrice = car.price <= maxPrice;
+            // Apply pricing changes based on Chauffeur
+            let processedCars = allCars.map(car => {
+                let currentPrice = car.baseCarPrice;
+                if (serviceType === 'Chauffeur') {
+                    currentPrice += 800; // Add driver fee per day
+                }
+                return { ...car, displayPrice: currentPrice };
+            });
+
+            let filtered = processedCars.filter(car => {
+                const matchesPrice = car.displayPrice <= maxPrice;
                 const matchesCat = selectedCats.includes(car.category);
                 const matchesComp = selectedComps.includes(car.company);
                 const matchesModel = car.name.toLowerCase().includes(searchModel) || car.category.toLowerCase().includes(searchModel);
@@ -484,27 +516,37 @@
                 return matchesPrice && matchesCat && matchesComp && matchesModel;
             });
 
-            if(sortVal === "price_asc") { filtered.sort((a,b) => a.price - b.price); } 
+            if(sortVal === "price_asc") { filtered.sort((a,b) => a.displayPrice - b.displayPrice); } 
             else if (sortVal === "rating_desc") { filtered.sort((a,b) => b.rating - a.rating); } 
             else { filtered.sort((a,b) => (b.hasGenius ? 1 : 0) - (a.hasGenius ? 1 : 0) || b.rating - a.rating); }
 
             document.getElementById('carCount').innerText = filtered.length;
             
             document.getElementById('carList').innerHTML = filtered.map(car => {
-                const baseTotal = car.price * rentalDays;
+                const baseTotal = car.displayPrice * rentalDays;
                 
                 let badgesHTML = '';
-                if (car.hasGenius) badgesHTML += `<div class="genius-badge me-2">Genius</div>`;
-                if (rentalDays >= 14) badgesHTML += `<div class="discount-badge">25% Long-Term Deal</div>`;
-                else if (car.hasDiscount) badgesHTML += `<div class="discount-badge">Limited Time Offer</div>`;
+                if (car.hasGenius) badgesHTML += `<div class="genius-badge">Genius</div>`;
+                
+                if (serviceType === 'Chauffeur') {
+                    badgesHTML += `<div class="chauffeur-badge"><i class="fas fa-user-tie"></i> Includes Chauffeur</div>`;
+                } else if (rentalDays >= 14) {
+                    badgesHTML += `<div class="discount-badge">25% Long-Term Deal</div>`;
+                } else if (car.hasDiscount) {
+                    badgesHTML += `<div class="discount-badge">Limited Time Offer</div>`;
+                }
 
                 let priceHTML = `<div class="current-price">ZAR ${baseTotal.toLocaleString()}</div>`;
-                if (car.hasDiscount && rentalDays < 14) {
+                if (car.hasDiscount && rentalDays < 14 && serviceType !== 'Chauffeur') {
                     const originalPrice = baseTotal * 1.15; 
                     priceHTML = `<div class="strike-price">ZAR ${originalPrice.toLocaleString()}</div><div class="current-price" style="color: #008009;">ZAR ${baseTotal.toLocaleString()}</div>`;
                 }
 
                 const logoSrc = companyLogos[car.company] || "";
+                
+                // Adjust specs for chauffeur
+                let passCount = serviceType === 'Chauffeur' ? (car.seats - 1) : car.seats;
+                let passLabel = serviceType === 'Chauffeur' ? 'Passengers (Max)' : 'Seats';
 
                 return `
                 <div class="car-card">
@@ -526,11 +568,12 @@
                         </div>
 
                         <div class="specs">
-                            ${car.seats} Seats • ${car.bags} Bags • A/C • Automatic
+                            <i class="fas fa-user me-1 text-muted"></i> ${passCount} ${passLabel} • 
+                            <i class="fas fa-suitcase me-1 text-muted"></i> ${car.bags} Bags • A/C • Auto
                         </div>
                         
                         <div class="mt-2">${badgesHTML}</div>
-                        <div class="text-success small fw-bold mt-2">Free Cancellation</div>
+                        <div class="text-success small fw-bold mt-2">Free Cancellation up to 48 hours</div>
                     </div>
                     
                     <div class="price-area">
@@ -538,7 +581,7 @@
                             <div class="small text-muted mb-2 fw-bold text-uppercase" style="letter-spacing: 0.5px; font-size: 11px;">Total for ${rentalDays} days</div>
                             ${priceHTML}
                         </div>
-                        <button class="btn-green w-100" onclick="goToDeal('${car.name}', ${car.price}, '${car.company}', '${car.category}', '${car.img}', ${car.rating}, '${car.ratingText}', ${car.hasGenius})">View Deal ></button>
+                        <button class="btn-green w-100" onclick="goToDeal('${car.name}', ${car.displayPrice}, '${car.company}', '${car.category}', '${car.img}', ${car.rating}, '${car.ratingText}', ${car.hasGenius})">View Deal ></button>
                     </div>
                 </div>`;
             }).slice(0, 50).join(''); 

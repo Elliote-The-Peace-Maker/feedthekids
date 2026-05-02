@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Tours & Cruises | STA Travel Premium</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Frameworks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --navy-blue: #0a1118; /* Deeper, richer dark blue/black for elite feel */
+            --primary-green: #1e7e34;
+            --accent-gold: #d4af37; /* Champagne Gold */
+            --light-gold: #f9f6f0;
+            --text-main: #333333;
+            --text-light: #f5f5f5;
+        }
+
+        body { font-family: 'Poppins', sans-serif; color: var(--text-main); background-color: #fafafa; }
+        
+        /* Elite Typography */
+        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
+        .tracking-wide { letter-spacing: 2px; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+
+        /* Navigation */
+        .navbar { background: var(--navy-blue) !important; padding: 20px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-size: 24px; color: white !important; }
+        .nav-link { color: rgba(255,255,255,0.8) !important; font-weight: 400; font-size: 14px; margin: 0 15px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-gold) !important; }
+
+        /* Elite Hero Section */
+        .elite-hero {
+            background: linear-gradient(to right, rgba(10, 17, 24, 0.8), rgba(10, 17, 24, 0.4)), url('https://images.unsplash.com/photo-1540946485063-a40da27545f8?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 85vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        .hero-content { max-width: 700px; }
+        .hero-subtitle { color: var(--accent-gold); margin-bottom: 20px; display: block; }
+        .hero-title { font-size: 4.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 30px; }
+
+        /* Buttons */
+        .btn-gold { background: var(--accent-gold); color: var(--navy-blue); border: none; padding: 15px 35px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 0; transition: 0.4s; }
+        .btn-gold:hover { background: white; color: var(--navy-blue); }
+        .btn-outline-gold { background: transparent; color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 10px 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 0; transition: 0.4s; }
+        .btn-outline-gold:hover { background: var(--accent-gold); color: var(--navy-blue); }
+
+        /* Section Styling */
+        .elite-section { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 2.5rem; color: var(--navy-blue); margin-bottom: 15px; }
+        .divider-gold { height: 2px; width: 60px; background: var(--accent-gold); margin: 0 auto 20px; }
+
+        /* Premium Cards */
+        .premium-card { background: white; border: none; border-radius: 0; overflow: hidden; transition: 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.05); height: 100%; display: flex; flex-direction: column; cursor: pointer; text-decoration: none; color: inherit;}
+        .premium-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+        .card-img-wrapper { overflow: hidden; position: relative; height: 300px; }
+        .card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
+        .premium-card:hover .card-img-wrapper img { transform: scale(1.08); }
+        
+        .card-badge { position: absolute; top: 20px; right: 20px; background: var(--navy-blue); color: var(--accent-gold); padding: 8px 15px; font-family: 'Playfair Display', serif; font-style: italic; z-index: 2; }
+        
+        .card-body-elite { padding: 35px 30px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-body-elite h4 { font-size: 1.5rem; color: var(--navy-blue); margin-bottom: 15px; }
+        .card-body-elite p { color: #666; font-size: 14px; line-height: 1.8; margin-bottom: 25px; }
+        
+        .card-footer-elite { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eaeaea; padding-top: 20px; }
+        .price-elite { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy-blue); font-weight: 600; }
+        .card-action { color: var(--accent-gold); text-transform: uppercase; font-size: 12px; font-weight: 600; letter-spacing: 1px; display: flex; align-items: center;}
+        .card-action i { margin-left: 8px; transition: 0.3s; }
+        .premium-card:hover .card-action i { transform: translateX(5px); }
+
+        /* Dark Section (Intercity) */
+        .dark-section { background: var(--navy-blue); color: white; }
+        .dark-section h2 { color: white; }
+        .dark-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .dark-card:hover { background: rgba(255,255,255,0.06); border-color: var(--accent-gold); }
+        .dark-card .card-body-elite h4, .dark-card .price-elite { color: white; }
+        .dark-card .card-body-elite p { color: #aaa; }
+
+        /* Features */
+        .feature-box { text-align: center; padding: 40px 20px; }
+        .feature-icon { font-size: 40px; color: var(--accent-gold); margin-bottom: 25px; }
+        .feature-box h5 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 15px; }
+        .feature-box p { color: #666; font-size: 14px; line-height: 1.7; }
+
+        /* Footer */
+        footer { background: #05080c; color: white; padding-top: 80px; border-top: 1px solid rgba(255,255,255,0.05);}
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent-gold); margin-bottom: 20px; display: block;}
+        .footer-links h6 { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin-bottom: 25px; color: #888; }
+        .footer-links a { color: #ccc; text-decoration: none; font-size: 14px; display: block; margin-bottom: 12px; transition: 0.3s;}
+        .footer-links a:hover { color: var(--accent-gold); }
+
+        /* Mobile */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .elite-section { padding: 60px 0; }
+            .elite-hero { height: auto; padding: 120px 0 80px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elite Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                STA Travel <span style="color: var(--accent-gold); font-size: 14px; letter-spacing: 2px; font-family: 'Poppins', sans-serif;">PRIVÉ</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white fs-4"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="stays.html">Residences</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Tours.html">Aviation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cars.html">Chauffeur & Cars</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="Tours.html">Tours & Cruises</a></li>
+                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+                        <a href="transport-Tours.html" class="btn-outline-gold d-inline-block text-center w-100">Standard Booking</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Elite Hero -->
+    <header class="elite-hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="tracking-wide hero-subtitle"><i class="fas fa-star me-2"></i> The Signature Collection</span>
+                <h1 class="hero-title">Curated Journeys.<br>Unforgettable Moments.</h1>
+                <p class="lead mb-5" style="color: rgba(255,255,255,0.8); font-weight: 300;">Discover South Africa through our exclusive portfolio of private boat cruises, elite city sightseeing, and first-class intercity travel.</p>
+                <a href="#cruises" class="btn-gold me-3 d-inline-block mb-3 mb-md-0">Explore Cruises</a>
+                <a href="#bus-Tours" class="btn-outline-gold d-inline-block text-white border-white">View Land Tours</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section: Private & Sunset Cruises -->
+    <section id="cruises" class="elite-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="tracking-wide" style="color: var(--accent-gold);">Nautical Elegance</span>
+                <h2>Signature Boat Cruises</h2>
+                <div class="divider-gold"></div>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Set sail from South Africa's most prestigious harbors. Enjoy champagne sunsets, private charters, and unparalleled coastal views.</p>
+            </div>
+
+            <div class="row g-5">
+                <!-- Cruise 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="book-cruise.html" class="premium-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-badge">Cape Town</span>
+                            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80" alt="V&A Sunset Cruise">
+                        </div>
+                        <div class="card-body-elite">
+                            <h4>V&A Champagne Sunset</h4>
+                            <p>Board a luxury catamaran at the V&A Waterfront. Watch the sun dip below the Atlantic horizon while sipping on premium Méthode Cap Classique.</p>
+                            <div class="card-footer-elite">
+                                <div>
+                                    <span class="d-block text-muted" style="font-size:11px; text-transform:uppercase; letter-spacing:1px;">From</span>
+                                    <span class="price-elite">ZAR 850</span>
+                                </div>
+                                <span class="card-action">Reserve <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Cruise 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="book-cruise.html" class="premium-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-badge">Durban</span>
+                            <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=800&q=80" alt="Durban Yacht">
+                        </div>
+                        <div class="card-body-elite">
+                            <h4>Indian Ocean VIP Charter</h4>
+                            <p>A private 4-hour yacht experience departing from Durban Harbor. Includes a dedicated skipper, onboard chef, and deep-sea swimming.</p>
+                            <div class="card-footer-elite">
+                                <div>
+                                    <span class="d-block text-muted" style="font-size:11px; text-transform:uppercase; letter-spacing:1px;">From</span>
+                                    <span class="price-elite">ZAR 4,200</span>
+                                </div>
+                                <span class="card-action">Reserve <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Cruise 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="book-cruise.html" class="premium-card">
+                        <div class="card-img-wrapper">
+                            <span class="card-badge">Knysna</span>
+                            <img src="https://images.unsplash.com/photo-1563821035677-227e7d583058?auto=format&fit=crop&w=800&q=80" alt="Knysna Lagoon">
+                        </div>
+                        <div class="card-body-elite">
+                            <h4>Knysna Lagoon Oyster Sail</h4>
+                            <p>Glide through the famous Knysna Heads on a classic wooden schooner. Paired with freshly shucked local oysters and fine white wine.</p>
+                            <div class="card-footer-elite">
+                                <div>
+                                    <span class="d-block text-muted" style="font-size:11px; text-transform:uppercase; letter-spacing:1px;">From</span>
+                                    <span class="price-elite">ZAR 1,150</span>
+                                </div>
+                                <span class="card-action">Reserve <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: City Sightseeing -->
+    <section id="bus-Tours" class="elite-section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="tracking-wide" style="color: var(--accent-gold);">Urban Exploration</span>
+                <h2>Premium Sightseeing</h2>
+                <div class="divider-gold"></div>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Discover the heartbeat of South Africa's major cities aboard our exclusive, open-top double-decker viewing coaches.</p>
+            </div>
+
+            <div class="row align-items-center mb-5 pb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0 pr-lg-5">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" class="img-fluid w-100" style="height: 500px; object-fit: cover;" alt="Cape Town City Tour">
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <h3 class="serif-font mb-3" style="color: var(--navy-blue); font-size: 2rem;">The Cape Peninsula Route</h3>
+                    <p class="mb-4 text-muted" style="line-height: 1.8;">Experience the breathtaking beauty of the Mother City. This hop-on, hop-off journey takes you from the historic city center, past the majestic Table Mountain cableway, down to the elite shores of Camps Bay and Clifton.</p>
+                    <ul class="list-unstyled mb-5 text-muted">
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i> VIP Fast-Track Boarding</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i> Complimentary Audio Guide in 14 Languages</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i> Exclusive Wine Tasting Stop Access</li>
+                    </ul>
+                    <a href="book-bus.html" class="btn-outline-gold d-inline-block">Book Sightseeing</a>
+                </div>
+            </div>
+
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-lg-6 mb-4 mb-lg-0 pl-lg-5">
+                    <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80" class="img-fluid w-100" style="height: 500px; object-fit: cover;" alt="Johannesburg City Tour">
+                </div>
+                <div class="col-lg-5">
+                    <h3 class="serif-font mb-3" style="color: var(--navy-blue); font-size: 2rem;">The City of Gold Tour</h3>
+                    <p class="mb-4 text-muted" style="line-height: 1.8;">Delve into the rich history of Johannesburg. Navigate through the leafy suburbs of Rosebank, explore the poignant Constitution Hill, and feel the vibrant energy of the inner city from an elevated vantage point.</p>
+                    <ul class="list-unstyled mb-5 text-muted">
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i> Air-Conditioned Lower Deck Lounge</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i> Direct connection to the Gautrain</li>
+                        <li class="mb-3"><i class="fas fa-check text-success me-3"></i> Secure Hop-On Hop-Off Network</li>
+                    </ul>
+                    <a href="book-bus.html" class="btn-outline-gold d-inline-block">Book Sightseeing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: First-Class Intercity Travel -->
+    <section class="elite-section dark-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="tracking-wide" style="color: var(--accent-gold);">Cross-Country Comfort</span>
+                <h2>First-Class Intercity Travel</h2>
+                <div class="divider-gold"></div>
+                <p class="mx-auto" style="max-width: 600px; color: #ccc;">Why fly when you can recline? Experience the landscape of South Africa shifting through panoramic windows in absolute luxury.</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <a href="buses-sa.html" class="premium-card dark-card">
+                        <div class="card-body-elite">
+                            <h4 class="d-flex justify-content-between">The Sleepliner Experience <i class="fas fa-bed" style="color: var(--accent-gold);"></i></h4>
+                            <p class="mt-3">Travel overnight between Johannesburg and Cape Town in our 150-degree reclining memory foam seats. Featuring individual climate control, USB charging, and complimentary refreshments.</p>
+                            <div class="card-footer-elite border-secondary mt-4">
+                                <span class="card-action">View Schedules <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="buses-sa.html" class="premium-card dark-card">
+                        <div class="card-body-elite">
+                            <h4 class="d-flex justify-content-between">Executive Day Coaches <i class="fas fa-crown" style="color: var(--accent-gold);"></i></h4>
+                            <p class="mt-3">Perfect for the Garden Route or trips from Gauteng to Durban. Spacious 2x1 seating configurations offering maximum privacy, onboard lavatories, and cinematic window views.</p>
+                            <div class="card-footer-elite border-secondary mt-4">
+                                <span class="card-action">View Schedules <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5 pt-4">
+                <a href="buses-sa.html" class="btn-gold">Search All Routes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Perks -->
+    <section class="elite-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="fas fa-concierge-bell feature-icon"></i>
+                        <h5>Dedicated Concierge</h5>
+                        <p>From the moment you book, our private travel advisors are available 24/7 to customize your itinerary and fulfill special requests.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="fas fa-shield-alt feature-icon"></i>
+                        <h5>Uncompromising Safety</h5>
+                        <p>All vessels and coaches undergo rigorous weekly inspections, operated only by our most experienced and highly trained captains and drivers.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <i class="fas fa-gem feature-icon"></i>
+                        <h5>The Privé Standard</h5>
+                        <p>Skip the lines. Enjoy private boarding lanes, premium lounge access where available, and complimentary upgrades for loyal members.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Footer -->
+    <footer>
+        <div class="container pb-5">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <a href="index.html" class="footer-brand text-decoration-none">STA Travel <span style="font-family: 'Poppins', sans-serif; font-size:12px; letter-spacing: 2px;">PRIVÉ</span></a>
+                    <p style="color: #777; line-height: 1.8; font-size: 14px;">Redefining luxury travel across South Africa. Experience the extraordinary with our signature collection of Tours, cruises, and elite transport.</p>
+                </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h6>The Collection</h6>
+                    <a href="#cruises">Boat Cruises</a>
+                    <a href="#bus-Tours">City Sightseeing</a>
+                    <a href="buses-sa.html">Intercity Coaches</a>
+                    <a href="packages.html">Bespoke Packages</a>
+                </div>
+                <div class="col-lg-2 col-6 footer-links">
+                    <h6>Client Services</h6>
+                    <a href="#">Privé Concierge</a>
+                    <a href="#">Manage Booking</a>
+                    <a href="#">Chauffeur Services</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <h6 class="mb-4" style="color: #888; text-transform: uppercase; letter-spacing: 2px; font-size: 12px;">Exclusive Member Updates</h6>
+                    <form class="d-flex align-items-center justify-content-lg-end border-bottom border-secondary pb-2 mb-4" style="max-width: 300px; margin-left: auto;">
+                        <input type="email" placeholder="Your Email Address" style="background: transparent; border: none; color: white; width: 100%; outline: none; font-size: 14px;">
+                        <button type="submit" style="background: transparent; border: none; color: var(--accent-gold); cursor: pointer;"><i class="fas fa-arrow-right"></i></button>
+                    </form>
+                    <div class="d-flex gap-3 justify-content-lg-end">
+                        <a href="#" class="text-white opacity-50 text-decoration-none"><i class="fab fa-instagram fs-5"></i></a>
+                        <a href="#" class="text-white opacity-50 text-decoration-none"><i class="fab fa-facebook-f fs-5"></i></a>
+                        <a href="#" class="text-white opacity-50 text-decoration-none"><i class="fab fa-linkedin-in fs-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-4" style="background: #030508;">
+            <div class="container text-center">
+                <p class="mb-0 text-white-50" style="font-size: 12px; letter-spacing: 1px;">&copy; 2026 STA TRAVEL PRIVÉ. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
