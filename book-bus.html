@@ -60,7 +60,7 @@
             height: 100%;
         }
         .mod-input-group i { color: var(--primary-green); margin-right: 10px; font-size: 1.1rem;}
-        .mod-input-group input { border: none; outline: none; width: 100%; font-size: 14px; font-weight: 600; color: var(--navy-blue); background: transparent; }
+        .mod-input-group input, .mod-input-group select { border: none; outline: none; width: 100%; font-size: 14px; font-weight: 600; color: var(--navy-blue); background: transparent; cursor: pointer; }
         .btn-update { background: var(--primary-green); color: white; border: none; font-weight: 700; border-radius: 6px; padding: 10px 20px; width: 100%; height: 100%; transition: 0.2s; font-size: 16px;}
         .btn-update:hover { background: var(--dark-green); }
 
@@ -74,7 +74,7 @@
         .filter-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         
         .form-check-label { font-size: 14px; color: var(--text-main); display: flex; justify-content: space-between; width: 100%; cursor: pointer;}
-        .filter-count { color: var(--text-muted); font-size: 13px; font-weight: 600; }
+        .filter-count { color: var(--text-muted); font-size: 13px; font-weight: 600; background: var(--light-bg); padding: 2px 8px; border-radius: 12px; }
         .form-check-input { accent-color: var(--primary-green); cursor: pointer; }
         
         /* Bus Cards */
@@ -156,15 +156,71 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="mod-input-group">
                         <i class="fas fa-map-marker-alt"></i>
-                        <input type="text" id="routeFrom" value="Johannesburg (JHB)">
+                        <input type="text" id="routeFrom" value="Johannesburg, Gauteng" placeholder="Leaving from..." list="saDestinations">
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="mod-input-group">
                         <i class="fas fa-location-arrow"></i>
-                        <input type="text" id="routeTo" value="Durban (DUR)">
+                        <input type="text" id="routeTo" value="Durban, KwaZulu-Natal" placeholder="Going to..." list="saDestinations">
                     </div>
                 </div>
+                
+                <!-- MASSIVE DESTINATION DATALIST -->
+                <datalist id="saDestinations">
+                    <!-- Gauteng -->
+                    <option value="Johannesburg, Gauteng">
+                    <option value="Pretoria, Gauteng">
+                    <option value="Centurion, Gauteng">
+                    <option value="Midrand, Gauteng">
+                    <option value="Kempton Park, Gauteng">
+                    <option value="Soweto, Gauteng">
+                    <option value="Vanderbijlpark, Gauteng">
+                    <!-- Western Cape -->
+                    <option value="Cape Town, Western Cape">
+                    <option value="Stellenbosch, Western Cape">
+                    <option value="George, Western Cape">
+                    <option value="Knysna, Western Cape">
+                    <option value="Mossel Bay, Western Cape">
+                    <option value="Plettenberg Bay, Western Cape">
+                    <option value="Paarl, Western Cape">
+                    <option value="Worcester, Western Cape">
+                    <!-- KwaZulu-Natal -->
+                    <option value="Durban, KwaZulu-Natal">
+                    <option value="Pietermaritzburg, KwaZulu-Natal">
+                    <option value="Richards Bay, KwaZulu-Natal">
+                    <option value="Newcastle, KwaZulu-Natal">
+                    <option value="Umhlanga, KwaZulu-Natal">
+                    <option value="Ladysmith, KwaZulu-Natal">
+                    <option value="Ballito, KwaZulu-Natal">
+                    <option value="Margate, KwaZulu-Natal">
+                    <!-- Eastern Cape -->
+                    <option value="Port Elizabeth (Gqeberha), Eastern Cape">
+                    <option value="East London, Eastern Cape">
+                    <option value="Jeffreys Bay, Eastern Cape">
+                    <option value="Mthatha, Eastern Cape">
+                    <option value="Grahamstown (Makhanda), Eastern Cape">
+                    <option value="Coffee Bay, Eastern Cape">
+                    <option value="Graaff-Reinet, Eastern Cape">
+                    <option value="Port Alfred, Eastern Cape">
+                    <!-- Limpopo -->
+                    <option value="Polokwane, Limpopo">
+                    <option value="Hoedspruit, Limpopo">
+                    <option value="Tzaneen, Limpopo">
+                    <option value="Phalaborwa, Limpopo">
+                    <option value="Bela-Bela, Limpopo">
+                    <option value="Mokopane, Limpopo">
+                    <option value="Musina, Limpopo">
+                    <!-- Northern Cape -->
+                    <option value="Kimberley, Northern Cape">
+                    <option value="Upington, Northern Cape">
+                    <option value="Springbok, Northern Cape">
+                    <option value="Colesberg, Northern Cape">
+                    <option value="Kuruman, Northern Cape">
+                    <option value="Calvinia, Northern Cape">
+                    <option value="De Aar, Northern Cape">
+                </datalist>
+
                 <div class="col-lg-2 col-6">
                     <div class="mod-input-group">
                         <i class="fas fa-calendar-day"></i>
@@ -174,11 +230,17 @@
                 <div class="col-lg-2 col-6">
                     <div class="mod-input-group">
                         <i class="fas fa-user"></i>
-                        <input type="text" value="1 Passenger" readonly>
+                        <select id="numPassengers">
+                            <option value="1">1 Passenger</option>
+                            <option value="2">2 Passengers</option>
+                            <option value="3">3 Passengers</option>
+                            <option value="4">4 Passengers</option>
+                            <option value="5">5 Passengers</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-2 col-12">
-                    <button class="btn-update" onclick="alert('Updating search...')">UPDATE</button>
+                    <button class="btn-update" onclick="updateSearchRoute()">UPDATE</button>
                 </div>
             </div>
         </div>
@@ -202,31 +264,31 @@
                     
                     <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
                         <h5 class="m-0 fw-bold">Filters</h5>
-                        <a href="#" class="text-danger small text-decoration-none fw-bold">CLEAR ALL</a>
+                        <a href="javascript:void(0)" onclick="clearFilters()" class="text-danger small text-decoration-none fw-bold">CLEAR ALL</a>
                     </div>
 
                     <!-- Departure Time -->
                     <div class="filter-section">
                         <h6 class="filter-title">Departure Time</h6>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="time1">
+                            <input class="form-check-input filter-time" type="checkbox" value="Morning" id="time1" onchange="applyFilters()">
                             <label class="form-check-label" for="time1">
                                 <span><i class="fas fa-sun text-warning me-2" style="width:15px;"></i> Morning <small class="text-muted">(06:00 - 11:59)</small></span>
-                                <span class="filter-count">12</span>
+                                <span class="filter-count" id="count-Morning">0</span>
                             </label>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="time2">
+                            <input class="form-check-input filter-time" type="checkbox" value="Afternoon" id="time2" onchange="applyFilters()">
                             <label class="form-check-label" for="time2">
                                 <span><i class="fas fa-cloud-sun text-primary me-2" style="width:15px;"></i> Afternoon <small class="text-muted">(12:00 - 17:59)</small></span>
-                                <span class="filter-count">8</span>
+                                <span class="filter-count" id="count-Afternoon">0</span>
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="time3">
+                            <input class="form-check-input filter-time" type="checkbox" value="Night" id="time3" onchange="applyFilters()">
                             <label class="form-check-label" for="time3">
                                 <span><i class="fas fa-moon text-dark me-2" style="width:15px;"></i> Night <small class="text-muted">(18:00 - 05:59)</small></span>
-                                <span class="filter-count">5</span>
+                                <span class="filter-count" id="count-Night">0</span>
                             </label>
                         </div>
                     </div>
@@ -235,28 +297,24 @@
                     <div class="filter-section">
                         <h6 class="filter-title">Bus Operator</h6>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="op1" checked>
-                            <label class="form-check-label" for="op1">
-                                <span>Intercape</span> <span class="filter-count">10</span>
-                            </label>
+                            <input class="form-check-input filter-operator" type="checkbox" value="Intercape" id="op1" checked onchange="applyFilters()">
+                            <label class="form-check-label" for="op1">Intercape <span class="filter-count" id="count-Intercape">0</span></label>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="op2" checked>
-                            <label class="form-check-label" for="op2">
-                                <span>Greyhound</span> <span class="filter-count">8</span>
-                            </label>
+                            <input class="form-check-input filter-operator" type="checkbox" value="Greyhound" id="op2" checked onchange="applyFilters()">
+                            <label class="form-check-label" for="op2">Greyhound <span class="filter-count" id="count-Greyhound">0</span></label>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="op3" checked>
-                            <label class="form-check-label" for="op3">
-                                <span>Eldo Coaches</span> <span class="filter-count">4</span>
-                            </label>
+                            <input class="form-check-input filter-operator" type="checkbox" value="Eldo Coaches" id="op3" checked onchange="applyFilters()">
+                            <label class="form-check-label" for="op3">Eldo Coaches <span class="filter-count" id="count-Eldo Coaches">0</span></label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input filter-operator" type="checkbox" value="Translux" id="op4" checked onchange="applyFilters()">
+                            <label class="form-check-label" for="op4">Translux <span class="filter-count" id="count-Translux">0</span></label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="op4" checked>
-                            <label class="form-check-label" for="op4">
-                                <span>Translux</span> <span class="filter-count">3</span>
-                            </label>
+                            <input class="form-check-input filter-operator" type="checkbox" value="Eagle Liner" id="op5" checked onchange="applyFilters()">
+                            <label class="form-check-label" for="op5">Eagle Liner <span class="filter-count" id="count-Eagle Liner">0</span></label>
                         </div>
                     </div>
 
@@ -264,33 +322,12 @@
                     <div class="filter-section">
                         <h6 class="filter-title">Seat Type</h6>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="type1">
-                            <label class="form-check-label" for="type1">
-                                <span>Sleeper / Recliner</span> <span class="filter-count">15</span>
-                            </label>
+                            <input class="form-check-input filter-type" type="checkbox" value="Sleeper" id="type1" onchange="applyFilters()">
+                            <label class="form-check-label" for="type1">Sleeper / Recliner <span class="filter-count" id="count-Sleeper">0</span></label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="type2">
-                            <label class="form-check-label" for="type2">
-                                <span>Standard Seater</span> <span class="filter-count">10</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Boarding Point -->
-                    <div class="filter-section">
-                        <h6 class="filter-title">Boarding Point (JHB)</h6>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="bp1">
-                            <label class="form-check-label" for="bp1">Park Station</label>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="bp2">
-                            <label class="form-check-label" for="bp2">Midrand (Gautrain)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="bp3">
-                            <label class="form-check-label" for="bp3">O.R. Tambo Airport</label>
+                            <input class="form-check-input filter-type" type="checkbox" value="Standard" id="type2" onchange="applyFilters()">
+                            <label class="form-check-label" for="type2">Standard Seater <span class="filter-count" id="count-Standard">0</span></label>
                         </div>
                     </div>
                 </div>
@@ -301,14 +338,14 @@
                 
                 <!-- Results Header -->
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
-                    <h4 class="m-0 fs-5"><strong>25 Buses</strong> found for your journey</h4>
+                    <h4 class="m-0 fs-5"><strong id="resultsCount">0 Buses</strong> found for <span id="routeDisplayText">JHB to DUR</span></h4>
                     <div class="d-flex align-items-center mt-3 mt-md-0">
                         <span class="text-muted fw-bold small me-2 text-nowrap">Sort by:</span>
-                        <select class="form-select form-select-sm fw-bold border border-secondary shadow-sm" style="width: 160px; padding: 8px;">
-                            <option>Cheapest First</option>
-                            <option>Departure (Early)</option>
-                            <option>Departure (Late)</option>
-                            <option>Fastest Duration</option>
+                        <select id="sortDropdown" class="form-select form-select-sm fw-bold border border-secondary shadow-sm" style="width: 160px; padding: 8px;" onchange="applyFilters()">
+                            <option value="cheap">Cheapest First</option>
+                            <option value="fast">Fastest Duration</option>
+                            <option value="early">Departure (Early)</option>
+                            <option value="late">Departure (Late)</option>
                         </select>
                     </div>
                 </div>
@@ -331,113 +368,253 @@
         </div>
     </div>
 
-    <!-- Script to Generate Bus Cards dynamically -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Dynamic Generation & Filtering Engine -->
     <script>
-        // Check URL for search parameters
+        const operatorLogos = {
+            "Intercape": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Intercape_logo.svg/1200px-Intercape_logo.svg.png",
+            "Greyhound": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Greyhound_Lines_logo.svg/1200px-Greyhound_Lines_logo.svg.png",
+            "Eldo Coaches": "https://www.eldocoaches.co.za/wp-content/uploads/2019/10/Eldo-Coaches-Logo.png",
+            "Eagle Liner": "https://ui-avatars.com/api/?name=Eagle+Liner&background=d35400&color=fff&rounded=false&bold=true",
+            "Translux": "" 
+        };
+
+        let allBuses = [];
+
+        // Generates exactly 45 unique buses based on the selected departure and arrival
+        function generateBuses(fromCity, toCity) {
+            allBuses = [];
+            const operators = ["Intercape", "Greyhound", "Eldo Coaches", "Translux", "Eagle Liner"];
+            const types = [
+                { name: "Mainliner (Semi-Sleeper)", class: "Sleeper" },
+                { name: "Dreamliner (Full Sleeper)", class: "Sleeper" },
+                { name: "Executive Coach", class: "Standard" },
+                { name: "Standard Seater", class: "Standard" },
+                { name: "Premium Seater", class: "Standard" }
+            ];
+            
+            for (let i = 1; i <= 45; i++) {
+                const op = operators[Math.floor(Math.random() * operators.length)];
+                const typeObj = types[Math.floor(Math.random() * types.length)];
+                
+                // Random Departure Time
+                const hour = Math.floor(Math.random() * 24);
+                const minute = Math.floor(Math.random() * 60);
+                const depT = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                
+                // Determine Time Category
+                let timeCategory = "Night";
+                if (hour >= 6 && hour < 12) timeCategory = "Morning";
+                else if (hour >= 12 && hour < 18) timeCategory = "Afternoon";
+                
+                // Random Duration (between 4 hours and 16 hours)
+                const durMin = Math.floor(Math.random() * 720) + 240; 
+                const h = Math.floor(durMin / 60);
+                const m = durMin % 60;
+                const durText = `${h}h ${m}m`;
+                
+                // Calculate Arrival Time
+                const arrDate = new Date();
+                arrDate.setHours(hour, minute + durMin, 0);
+                const arrT = `${arrDate.getHours().toString().padStart(2, '0')}:${arrDate.getMinutes().toString().padStart(2, '0')}`;
+                
+                // Formatting Location Strings (handles "Port Elizabeth (Gqeberha), Eastern Cape")
+                const depL = fromCity.split('(')[0].split(',')[0].trim() + " Station";
+                const arrL = toCity.split('(')[0].split(',')[0].trim() + " Central";
+
+                allBuses.push({
+                    id: i,
+                    op: op,
+                    type: typeObj.name,
+                    seatClass: typeObj.class,
+                    timeCategory: timeCategory,
+                    depT: depT,
+                    arrT: arrT,
+                    durMin: durMin,
+                    durText: durText,
+                    depL: depL,
+                    arrL: arrL,
+                    basePrice: Math.floor(Math.random() * 450) + 200, // ZAR 200 - 650 per person
+                    seats: Math.floor(Math.random() * 45) + 1 // 1 to 45 seats available
+                });
+            }
+        }
+
+        function updateSidebarCounts() {
+            // Update Time Counts
+            document.getElementById('count-Morning').innerText = allBuses.filter(b => b.timeCategory === 'Morning').length;
+            document.getElementById('count-Afternoon').innerText = allBuses.filter(b => b.timeCategory === 'Afternoon').length;
+            document.getElementById('count-Night').innerText = allBuses.filter(b => b.timeCategory === 'Night').length;
+
+            // Update Operator Counts
+            document.getElementById('count-Intercape').innerText = allBuses.filter(b => b.op === 'Intercape').length;
+            document.getElementById('count-Greyhound').innerText = allBuses.filter(b => b.op === 'Greyhound').length;
+            document.getElementById('count-Eldo Coaches').innerText = allBuses.filter(b => b.op === 'Eldo Coaches').length;
+            document.getElementById('count-Translux').innerText = allBuses.filter(b => b.op === 'Translux').length;
+            document.getElementById('count-Eagle Liner').innerText = allBuses.filter(b => b.op === 'Eagle Liner').length;
+
+            // Update Seat Types
+            document.getElementById('count-Sleeper').innerText = allBuses.filter(b => b.seatClass === 'Sleeper').length;
+            document.getElementById('count-Standard').innerText = allBuses.filter(b => b.seatClass === 'Standard').length;
+        }
+
         window.onload = () => {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('depDate').valueAsDate = tomorrow;
+
+            // Catch URL Params from previous page
             const urlParams = new URLSearchParams(window.location.search);
             const fromLoc = urlParams.get('from');
             const toLoc = urlParams.get('to');
             
             if (fromLoc) document.getElementById('routeFrom').value = fromLoc;
             if (toLoc) document.getElementById('routeTo').value = toLoc;
-            
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            document.getElementById('depDate').valueAsDate = tomorrow;
+
+            // Initialize Page
+            updateSearchRoute();
         };
 
-        // Simulated Bus Data with Logos
-        const operatorLogos = {
-            "Intercape": "https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Intercape_logo.svg/1200px-Intercape_logo.svg.png",
-            "Greyhound": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Greyhound_Lines_logo.svg/1200px-Greyhound_Lines_logo.svg.png",
-            "Eldo Coaches": "https://www.eldocoaches.co.za/wp-content/uploads/2019/10/Eldo-Coaches-Logo.png",
-            "Translux": "https://ui-avatars.com/api/?name=Translux&background=1e272e&color=fff&rounded=false&bold=true&font-size=0.3" // Fallback logo
-        };
-
-        const busData = [
-            { op: "Intercape", type: "Mainliner (Semi-Sleeper)", depT: "07:30", arrT: "15:00", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Durban Station", price: 420, seats: 12 },
-            { op: "Greyhound", type: "Dreamliner (Full Sleeper)", depT: "08:00", arrT: "15:15", dur: "7h 15m", depL: "Midrand, JHB", arrL: "Durban Beachfront", price: 580, seats: 4 },
-            { op: "Eldo Coaches", type: "Executive Coach", depT: "09:00", arrT: "16:45", dur: "7h 45m", depL: "Park Station, JHB", arrL: "Durban Station", price: 350, seats: 22 },
-            { op: "Translux", type: "Standard Seater", depT: "10:30", arrT: "18:00", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Pinetown", price: 320, seats: 8 },
-            { op: "Intercape", type: "Sleepliner", depT: "13:00", arrT: "20:30", dur: "7h 30m", depL: "O.R. Tambo Airport", arrL: "Durban Station", price: 550, seats: 15 },
-            { op: "Greyhound", type: "Premium Seater", depT: "14:15", arrT: "21:45", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Durban Station", price: 450, seats: 2 },
-            { op: "Eldo Coaches", type: "Executive Coach", depT: "21:00", arrT: "04:30", dur: "7h 30m", depL: "Midrand, JHB", arrL: "Durban Station", price: 380, seats: 30 },
-            { op: "Intercape", type: "Sleepliner", depT: "22:30", arrT: "06:00", dur: "7h 30m", depL: "Park Station, JHB", arrL: "Durban Station", price: 490, seats: 6 }
-        ];
-
-        const busListContainer = document.getElementById('busList');
-        let htmlContent = '';
-
-        busData.forEach(bus => {
-            let seatBadge = bus.seats <= 5 
-                ? `<span class="badge bg-danger mb-3 p-2 w-100 text-center"><i class="fas fa-fire me-1"></i> Only ${bus.seats} seats left</span>` 
-                : `<span class="badge bg-success mb-3 p-2 w-100 text-center"><i class="fas fa-check me-1"></i> ${bus.seats} seats available</span>`;
+        // Called when the "Update" button is clicked
+        function updateSearchRoute() {
+            const from = document.getElementById('routeFrom').value || "Johannesburg";
+            const to = document.getElementById('routeTo').value || "Durban";
             
-            // Render Logo or Text fallback
-            let logoHTML = operatorLogos[bus.op] && bus.op !== "Translux" 
-                ? `<img src="${operatorLogos[bus.op]}" alt="${bus.op}" class="operator-logo">` 
-                : `<div class="operator-name">${bus.op}</div>`;
+            // Clean up text for header display
+            const shortFrom = from.split('(')[0].split(',')[0].trim();
+            const shortTo = to.split('(')[0].split(',')[0].trim();
+            document.getElementById('routeDisplayText').innerText = `${shortFrom} to ${shortTo}`;
+            
+            // Generate 45 new buses based on the input
+            generateBuses(shortFrom, shortTo);
+            updateSidebarCounts();
+            applyFilters();
+        }
 
-            htmlContent += `
-            <div class="bus-card">
-                <div class="row align-items-center">
-                    
-                    <!-- Operator Info -->
-                    <div class="col-lg-3 col-md-12">
-                        ${logoHTML}
-                        <div class="bus-type mt-1">${bus.type}</div>
-                        <div class="amenities-icons">
-                            <i class="fas fa-wifi" title="Free WiFi"></i>
-                            <i class="fas fa-plug" title="USB Charging"></i>
-                            <i class="fas fa-tv" title="Entertainment"></i>
-                            <i class="fas fa-snowflake" title="Air Conditioning"></i>
-                            <i class="fas fa-toilet" title="Onboard Restroom"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Journey Timeline -->
-                    <div class="col-lg-6 col-md-12 my-3 my-lg-0">
-                        <div class="d-flex justify-content-between align-items-center w-100">
-                            <!-- Dep -->
-                            <div class="time-block text-end" style="width: 30%;">
-                                <h4>${bus.depT}</h4>
-                                <p title="${bus.depL}">${bus.depL}</p>
-                            </div>
-                            
-                            <!-- Duration Line -->
-                            <div class="duration-line flex-grow-1 mx-2" style="width: 40%;">
-                                <div class="line-dash"></div>
-                                <span class="duration-text"><i class="fas fa-bus-alt text-muted me-1"></i> ${bus.dur}</span>
-                            </div>
-                            
-                            <!-- Arr -->
-                            <div class="time-block text-start" style="width: 30%;">
-                                <h4>${bus.arrT}</h4>
-                                <p title="${bus.arrL}">${bus.arrL}</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Price & Action -->
-                    <div class="col-lg-3 col-md-12 text-lg-end border-start-lg border-light ps-lg-4">
-                        <div class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-end h-100">
-                            <div class="text-start text-lg-end">
-                                <div class="text-muted small fw-bold text-uppercase" style="letter-spacing:1px;">Ticket Price</div>
-                                <div class="price-text">ZAR ${bus.price}</div>
-                            </div>
-                            <div class="text-end w-100 mt-lg-2" style="max-width: 200px;">
-                                ${seatBadge}
-                                <button class="btn-view-seats" onclick="alert('Checking seat map for ${bus.op}...')">VIEW SEATS</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-        });
+        function clearFilters() {
+            document.querySelectorAll('.form-check-input').forEach(checkbox => {
+                if(checkbox.classList.contains('filter-operator')) {
+                    checkbox.checked = true; // Keep operators default on
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+            applyFilters();
+        }
 
-        busListContainer.innerHTML = htmlContent;
+        // Master function to execute filters and sorting
+        function applyFilters() {
+            const passengers = parseInt(document.getElementById('numPassengers').value);
+            const sortMethod = document.getElementById('sortDropdown').value;
+
+            const selectedTimes = Array.from(document.querySelectorAll('.filter-time:checked')).map(cb => cb.value);
+            const selectedOperators = Array.from(document.querySelectorAll('.filter-operator:checked')).map(cb => cb.value);
+            const selectedTypes = Array.from(document.querySelectorAll('.filter-type:checked')).map(cb => cb.value);
+
+            let filteredBuses = allBuses.filter(bus => {
+                // 1. Passenger Check (Does the bus have enough seats?)
+                if (bus.seats < passengers) return false;
+
+                // 2. Sidebar Filters
+                const timeMatch = selectedTimes.length === 0 || selectedTimes.includes(bus.timeCategory);
+                const operatorMatch = selectedOperators.length === 0 || selectedOperators.includes(bus.op);
+                const typeMatch = selectedTypes.length === 0 || selectedTypes.includes(bus.seatClass);
+                
+                return timeMatch && operatorMatch && typeMatch;
+            });
+
+            // Calculate total price based on passengers
+            filteredBuses = filteredBuses.map(bus => {
+                return { ...bus, totalPrice: bus.basePrice * passengers };
+            });
+
+            // Sort Data
+            filteredBuses.sort((a, b) => {
+                if (sortMethod === "cheap") return a.totalPrice - b.totalPrice;
+                if (sortMethod === "fast") return a.durMin - b.durMin;
+                if (sortMethod === "early") return a.depT.localeCompare(b.depT);
+                if (sortMethod === "late") return b.depT.localeCompare(a.depT);
+                return 0;
+            });
+
+            renderBuses(filteredBuses, passengers);
+        }
+
+        function renderBuses(data, passengers) {
+            document.getElementById('resultsCount').innerText = `${data.length} Buses`;
+            const container = document.getElementById('busList');
+            
+            if(data.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-5 bg-white border rounded">
+                        <i class="fas fa-bus-alt fa-3x text-muted mb-3"></i>
+                        <h5>No buses match your criteria.</h5>
+                        <p class="text-muted">Try clearing filters or reducing the number of passengers.</p>
+                        <button class="btn btn-outline-success mt-2" onclick="clearFilters()">Clear Filters</button>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = data.map(bus => {
+                let seatBadge = bus.seats <= 5 
+                    ? `<span class="badge bg-danger mb-3 p-2 w-100 text-center"><i class="fas fa-fire me-1"></i> Only ${bus.seats} seats left</span>` 
+                    : `<span class="badge bg-success mb-3 p-2 w-100 text-center"><i class="fas fa-check me-1"></i> ${bus.seats} seats available</span>`;
+                
+                let logoHTML = operatorLogos[bus.op] 
+                    ? `<img src="${operatorLogos[bus.op]}" alt="${bus.op}" class="operator-logo">` 
+                    : `<div class="operator-name">${bus.op}</div>`;
+
+                let passLabel = passengers === 1 ? "1 Ticket" : `${passengers} Tickets`;
+
+                return `
+                <div class="bus-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-12">
+                            ${logoHTML}
+                            <div class="bus-type mt-1">${bus.type}</div>
+                            <div class="amenities-icons">
+                                <i class="fas fa-wifi" title="Free WiFi"></i>
+                                <i class="fas fa-plug" title="USB Charging"></i>
+                                <i class="fas fa-tv" title="Entertainment"></i>
+                                <i class="fas fa-snowflake" title="Air Conditioning"></i>
+                                <i class="fas fa-toilet" title="Onboard Restroom"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-12 my-3 my-lg-0">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <div class="time-block text-end" style="width: 30%;">
+                                    <h4>${bus.depT}</h4>
+                                    <p title="${bus.depL}">${bus.depL}</p>
+                                </div>
+                                <div class="duration-line flex-grow-1 mx-2" style="width: 40%;">
+                                    <div class="line-dash"></div>
+                                    <span class="duration-text"><i class="fas fa-bus-alt text-muted me-1"></i> ${bus.durText}</span>
+                                </div>
+                                <div class="time-block text-start" style="width: 30%;">
+                                    <h4>${bus.arrT}</h4>
+                                    <p title="${bus.arrL}">${bus.arrL}</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 col-md-12 text-lg-end border-start-lg border-light ps-lg-4">
+                            <div class="d-flex flex-lg-column justify-content-between align-items-center align-items-lg-end h-100">
+                                <div class="text-start text-lg-end">
+                                    <div class="text-muted small fw-bold text-uppercase" style="letter-spacing:1px;">Total for ${passLabel}</div>
+                                    <div class="price-text">ZAR ${bus.totalPrice.toLocaleString()}</div>
+                                </div>
+                                <div class="text-end w-100 mt-lg-2" style="max-width: 200px;">
+                                    ${seatBadge}
+                                    <button class="btn-view-seats" onclick="alert('Checking seat map for ${bus.op}...')">VIEW SEATS</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
     </script>
 </body>
 </html>
